@@ -4,7 +4,7 @@ excerpt: "An automatic vehicle equipped with transformable wheels for complex te
 collection: portfolio
 ---
 
-This project was built for **ME3500J Design and Manufacturing (II)** as a term-long class project where each team designed and manufactured an **autonomous vehicle** to traverse a pre-defined track with multiple terrains—flat ground, a 60 mm step into a 120 mm-high sandbox (and back out via a slope), a pair of 90 mm height-restriction bars, a printed turning sign to recognize, and a final parking box.
+This project was built for **ME3500J Design and Manufacturing (II)**  at SJTU as a term-long class project where each team designed and manufactured an **autonomous vehicle** to traverse a pre-defined track with multiple terrains—flat ground, a 60 mm step into a 120 mm-high sandbox (and back out via a slope), a pair of 90 mm height-restriction bars, a printed turning sign to recognize, and a final parking box.
 ![Design objective of the vehicle with transformable wheel](/images/wheel/wheel_objective.png)
 
 # Design of Wheel Transformation Mechanism
@@ -27,5 +27,6 @@ Assembly took way longer than we expected. The trickiest part was getting 3D-pri
 
 # Some Thoughts
 When doing this project, all of us seems to be in a hurry. Things we want to achieve seems much larger than we can actually handle within two months (together with other coursework). We were aggressive when planning the project, imagining all the engineering criteria we need to achieve as if we were developing a commercial product. But it turns out, the course itself doesn't evaluate us that strict. After all, it's only about driving a vehicle while adding some code for triggering wheel transformation. There are many shortcuts we actually can take but we didn't. Silly from a “get the grade” angle, maybe—but from an engineer’s angle, it made sense. Doing a course project this way meant more late nights, more test–reprint–test loops, and a lot more time in the “why is this not fitting?” zone. But it also meant we learned the stuff you only learn the hard way: tolerances stack, motors lie on spec sheets, and your integration day will always find the one screw you forgot to buy.
+
 
 
