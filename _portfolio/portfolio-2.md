@@ -29,6 +29,14 @@ On each Zumo, the onboard IMU measures yaw so a PID loop can keep motion smooth 
 ## Playground System (NUCLEO L4R5ZI)
 The field controller runs the game: it generates ten random parking spots each round, lights them on the LED grid (essentially APA102 LED strip, can be controlled through SPI), and uses a camera to track each robot's location by its color tag ([PixyCam's built-in color detection function](https://docs.pixycam.com/wiki/doku.php?id=wiki:v2:color_connected_components)). As robots claim spaces, the LEDs switch from white to the robot’s color, and the system updates scores by checking positions against assignments in real time.
 
+If you are interested, the following video might give you a better understanding of what we were doing.
+<video controls width="100%" poster="/images/parking/frame.jpg" preload="metadata" playsinline>
+  <source src="/images/parking/video_web.mp4" type="video/mp4">
+  Sorry, your browser doesn't support embedded videos.
+  <a href="/images/parking/video_web.mp4">Download the MP4</a>.
+</video>
+
+# 
 
 # Conclusion
 Starting from this project, my major field of study started to change from mechanical-oriented to electrical- and computer-oriented. 
