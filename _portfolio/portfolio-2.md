@@ -36,7 +36,10 @@ If you are interested, the following video might give you a better understanding
   <a href="/images/parking/video_web.mp4">Download the MP4</a>.
 </video>
 
-# 
+# An STM32 Library for PixyCam
+The PixyCam is a powerful camera module with an ESP32 processor on board that have many built in functionalities. When we choose to use it, we didn't realized that there isn't an existing API library for STM32. The only thing they got was an [Arduino library](https://docs.pixycam.com/wiki/doku.php?id=wiki:v2:arduino_api). In this project, we have port that library to STM32. If you are interested in using PixyCam with STM32, have a look at our [github repository](https://github.com/XuGuaaaanyu/Lumen_Grid/tree/main/Playground). (Note: Although PixyCam module supports multiple communication protocols including I2C, SPI, and UART, we have only ported the UART part of the original library). 
 
-# Conclusion
-Starting from this project, my major field of study started to change from mechanical-oriented to electrical- and computer-oriented. 
+# Some Thoughts
+Starting from this project, my major field of study started to change from mechanical-oriented to electrical- and computer-oriented. One fun thing about implementing this project is interfacing with the camera. Actually, we added the entire playground system only three weeks before the deadline, because we completed the other two earlier than we expected (Yeah only those two were on the initial proposal). I had a fun time porting the Arduino library for STM32, but fortunately, I don't have to write a library from scratch (no so nice for my later projects though). This might sounds trivial for people already working at the device driver level, but fine, the first time you do it is full of fun.  
+
+Seeing “Arduino code” from the bare-metal side was eye-opening. It’s not just “read sensor, drive motors.” You start caring about serial framing and checksums, SPI vs UART trade-offs, DMA vs polling, interrupt timing, circular buffers, and what happens when your packets are off by exactly one byte. You learn to love logic analyzers, to double-check stop bits, and to sprinkle timeouts everywhere so a missed frame doesn’t freeze your control loop.
