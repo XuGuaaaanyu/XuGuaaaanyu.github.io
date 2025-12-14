@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "About me"
+title: "Guanyu Xu "
 author_profile: true
 redirect_from: 
   - /about/
