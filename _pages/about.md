@@ -8,7 +8,7 @@ redirect_from:
 ---
 I'm an undergraduate student pursuing dual degrees in Computer Engineering at the [University of Michigan](https://ece.engin.umich.edu/academics/undergraduate/majors-minors/computer-engineering-major/) and Mechanical Engineering at [Shanghai Jiao Tong University](https://www.ji.sjtu.edu.cn/). Currently, I work as a research assistant at [Hybrid Dynamic Robotics Lab](https://soft.robotics.umich.edu/) directed by Prof. [Xiaonan (Sean) Huang](https://scholar.google.com/citations?user=MNKU_WcAAAAJ&hl=zh-CN). 
 
-My research is driven by a central question: How can we enable robots to perceive and interact with the physical world naturally and safely? I am particularly interested in Embodied AI, specifically at the intersection of **soft robotics, cyberphysical systems, and human-robot interaction (HRI)**. My research focuses on bridging the gap between hardware fabrication and algorithm design by embedding 'physical intelligence' into compliant robotic systems.
+My research is driven by a central question: How can we enable robots to perceive and interact with the physical world naturally and safely? I am particularly interested in Embodied AI, specifically at the intersection of **cyberphysical systems, soft robotics, and human-robot interaction**. My research focuses on bridging the gap between hardware fabrication and algorithm design by embedding 'physical intelligence' into compliant robotic systems.
 
 
 
@@ -31,11 +31,11 @@ My research is driven by a central question: How can we enable robots to perceiv
           <span>Report</span>
         </a>
         <a class="tag" href="https://github.com/GuanyuXu04/Smart_Glass" target="_blank" rel="noopener">
-          <i class="fas fa-github" aria-hidden="true"></i>
+          <i class="fab fa-github" aria-hidden="true"></i>
           <span>Code</span>
         </a>
         <a class="tag" href="https://www.youtube.com/embed/iU_iTmCLjYo" target="_blank" rel="noopener">
-          <i class="fas fa-youtube" aria-hidden="true"></i>
+          <i class="fab fa-youtube" aria-hidden="true"></i>
           <span>Video</span>
         </a>
       </div>
@@ -53,11 +53,11 @@ My research is driven by a central question: How can we enable robots to perceiv
           <span>Poster</span>
         </a>
         <a class="tag" href="https://github.com/XuGuaaaanyu/Lumen_Grid" target="_blank" rel="noopener">
-          <i class="fas fa-github" aria-hidden="true"></i>
+          <i class="fab fa-github" aria-hidden="true"></i>
           <span>Code</span>
         </a>
         <a class="tag" href="https://www.youtube.com/embed/jwMOQGUDSMY" target="_blank" rel="noopener">
-          <i class="fas fa-youtube" aria-hidden="true"></i>
+          <i class="fab fa-youtube" aria-hidden="true"></i>
           <span>Video</span>
         </a>
       </div>
