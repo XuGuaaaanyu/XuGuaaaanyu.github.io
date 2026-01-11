@@ -78,6 +78,10 @@
   opacity: 0.90;
 }
 
+.project-tags-page{
+  margin: 0.5rem 0 1rem 0;
+}
+
 /* Mobile */
 @media (max-width: 900px) {
   .project-card { flex-direction: column; align-items: stretch; }

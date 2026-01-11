@@ -22,13 +22,22 @@ My research is driven by a central question: How can we enable robots to perceiv
     <div class="project-body">
       <div class="project-title"><a href="{{ '/portfolio/smart-glass/' | relative_url }}">INSIGHT: Smart Assistive Glass</a></div>
       <div class="project-tags">
-        <a class="tag" href="/files/SmartGlass/poster.pdf" target="_blank">
+        <a class="tag" href="/files/SmartGlass/poster.pdf" target="_blank" rel="noopener">
           <i class="fas fa-file-pdf" aria-hidden="true"></i>
           <span>Poster</span>
         </a>
-        <a class="tag" href="/files/SmartGlass/report.pdf" target="_blank">Report</a>
-        <a class="tag" href="https://github.com/GuanyuXu04/Smart_Glass" target="_blank">Code</a>
-        <a class="tag" href="https://www.youtube.com/embed/iU_iTmCLjYo" target="_blank">Video</a>
+        <a class="tag" href="/files/SmartGlass/report.pdf" target="_blank" rel="noopener">
+          <i class="fas fa-file-pdf" aria-hidden="true"></i>
+          <span>Report</span>
+        </a>
+        <a class="tag" href="https://github.com/GuanyuXu04/Smart_Glass" target="_blank" rel="noopener">
+          <i class="fas fa-github" aria-hidden="true"></i>
+          <span>Code</span>
+        </a>
+        <a class="tag" href="https://www.youtube.com/embed/iU_iTmCLjYo" target="_blank" rel="noopener">
+          <i class="fas fa-youtube" aria-hidden="true"></i>
+          <span>Video</span>
+        </a>
       </div>
       <div class="project-desc">In-device navigation and scene interpretation glasses for low-vision users.</div>
     </div>
@@ -39,9 +48,18 @@ My research is driven by a central question: How can we enable robots to perceiv
     <div class="project-body">
       <div class="project-title"><a href="{{ '/portfolio/lumen-grid/' | relative_url }}">Lumen Grid: Multi-Robot Parking Game</a></div>
       <div class="project-tags">
-        <a class="tag" href="/files/lumen_grid_poster.pdf" target="_blank">Poster PDF</a>
-        <a class="tag" href="https://github.com/XuGuaaaanyu/Lumen_Grid" target="_blank">Code</a>
-        <a class="tag" href="https://www.youtube.com/embed/jwMOQGUDSMY" target="_blank">Video</a>
+        <a class="tag" href="/files/LuminGrid/poster.pdf" target="_blank" rel="noopener">
+          <i class="fas fa-file-pdf" aria-hidden="true"></i>
+          <span>Poster</span>
+        </a>
+        <a class="tag" href="https://github.com/XuGuaaaanyu/Lumen_Grid" target="_blank" rel="noopener">
+          <i class="fas fa-github" aria-hidden="true"></i>
+          <span>Code</span>
+        </a>
+        <a class="tag" href="https://www.youtube.com/embed/jwMOQGUDSMY" target="_blank" rel="noopener">
+          <i class="fas fa-youtube" aria-hidden="true"></i>
+          <span>Video</span>
+        </a>
       </div>
       <div class="project-desc">A competitive parking game using four Zumo robots on an LED-marked field.</div>
     </div>
@@ -52,7 +70,7 @@ My research is driven by a central question: How can we enable robots to perceiv
     <div class="project-body">
       <div class="project-title"><a href="{{ '/portfolio/transformable-wheel/' | relative_url }}">Transformable Wheel</a></div>
       <div class="project-tags">
-        <a class="tag" href="/files/transformable_wheel_patent.pdf" target="_blank">Patent PDF</a>
+        <a class="tag" href="http://epub.cnipa.gov.cn/cred/CN221698395U" target="_blank">Patent</a>
       </div>
       <div class="project-desc">An autonomous vehicle with transformable wheels for complex terrain locomotion.</div>
     </div>
