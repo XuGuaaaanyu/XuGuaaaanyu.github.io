@@ -22,7 +22,10 @@ My research is driven by a central question: How can we enable robots to perceiv
     <div class="project-body">
       <div class="project-title"><a href="{{ '/portfolio/smart-glass/' | relative_url }}">INSIGHT: Smart Assistive Glass</a></div>
       <div class="project-tags">
-        <a class="tag" href="/files/SmartGlass/poster.pdf" target="_blank">Poster PDF</a>
+        <a class="tag" href="/files/SmartGlass/poster.pdf" target="_blank">
+          <i class="fas fa-file-pdf" aria-hidden="true"></i>
+          <span>Poster</span>
+        </a>
         <a class="tag" href="/files/SmartGlass/report.pdf" target="_blank">Report</a>
         <a class="tag" href="https://github.com/GuanyuXu04/Smart_Glass" target="_blank">Code</a>
         <a class="tag" href="https://www.youtube.com/embed/iU_iTmCLjYo" target="_blank">Video</a>
