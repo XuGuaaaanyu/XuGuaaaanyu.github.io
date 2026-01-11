@@ -13,8 +13,8 @@ My research is driven by a central question: How can we enable robots to perceiv
 
 ## Research Projects
 <div class="project-list">
-  <div class="project-card" href="{{ '/portfolio/smart-glass/' | relative_url }}">
-    <div class="project-teaser"><img src="{{ '/images/glass/cover.png' | relative_url }}" alt="Smart Glass teaser"></div>
+  <div class="project-card" href="{{ '/research/optical-sensor/' | relative_url }}">
+    <div class="project-teaser"><img src="{{ '/images/optical_sensor/cover.png' | relative_url }}" alt="Smart Glass teaser"></div>
     <div class="project-body">
       <div class="project-title"><a href="{{ '/portfolio/smart-glass/' | relative_url }}">Optical Waveguide Sensor for 3D Shape Reconstruction </a></div>
       <!-- <div class="project-tags">
@@ -43,10 +43,10 @@ My research is driven by a central question: How can we enable robots to perceiv
 
 ## Selected Course Projects
 <div class="project-list">
-  <div class="project-card" href="{{ '/portfolio/smart-glass/' | relative_url }}">
+  <div class="project-card" href="{{ '/portfolio/01.SmartGlass/' | relative_url }}">
     <div class="project-teaser"><img src="{{ '/images/glass/cover.png' | relative_url }}" alt="Smart Glass teaser"></div>
     <div class="project-body">
-      <div class="project-title"><a href="{{ '/portfolio/smart-glass/' | relative_url }}">INSIGHT: Smart Assistive Glass</a></div>
+      <div class="project-title"><a href="{{ '/portfolio/01.SmartGlass/' | relative_url }}">INSIGHT: Smart Assistive Glass</a></div>
       <div class="project-tags">
         <a class="tag" href="/files/SmartGlass/poster.pdf" target="_blank" rel="noopener">
           <i class="fas fa-file-pdf" aria-hidden="true"></i>
@@ -69,10 +69,10 @@ My research is driven by a central question: How can we enable robots to perceiv
     </div>
   </div>
 
-  <div class="project-card" href="{{ '/portfolio/lumen-grid/' | relative_url }}">
+  <div class="project-card" href="{{ '/portfolio/02.LumenGrid/' | relative_url }}">
     <div class="project-teaser"><img src="{{ '/images/parking/cover.png' | relative_url }}" alt="Lumen Grid teaser"></div>
     <div class="project-body">
-      <div class="project-title"><a href="{{ '/portfolio/lumen-grid/' | relative_url }}">Lumen Grid: Multi-Robot Parking Game</a></div>
+      <div class="project-title"><a href="{{ '/portfolio/02.LumenGrid/' | relative_url }}">Lumen Grid: Multi-Robot Parking Game</a></div>
       <div class="project-tags">
         <a class="tag" href="/files/LuminGrid/poster.pdf" target="_blank" rel="noopener">
           <i class="fas fa-file-pdf" aria-hidden="true"></i>
@@ -91,10 +91,10 @@ My research is driven by a central question: How can we enable robots to perceiv
     </div>
   </div>
 
-  <div class="project-card" href="{{ '/portfolio/transformable-wheel/' | relative_url }}">
+  <div class="project-card" href="{{ '/portfolio/03.Wheel/' | relative_url }}">
     <div class="project-teaser"><img src="{{ '/images/wheel/wheel_mechanism.png' | relative_url }}" alt="Transformable wheel teaser"></div>
     <div class="project-body">
-      <div class="project-title"><a href="{{ '/portfolio/transformable-wheel/' | relative_url }}">Transformable Wheel</a></div>
+      <div class="project-title"><a href="{{ '/portfolio/03.Wheel/' | relative_url }}">Transformable Wheel</a></div>
       <div class="project-tags">
         <a class="tag" href="http://epub.cnipa.gov.cn/cred/CN221698395U" target="_blank">Patent</a>
       </div>
