@@ -115,3 +115,23 @@
     height: auto;
   }
 }
+
+a {
+  text-decoration: none;
+}
+
+.project-title a {
+  text-decoration: none;
+  transition: text-decoration 0.2s ease;
+}
+
+.project-title a:hover {
+  text-decoration: underline;
+}
+
+.project-card .project-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+}
