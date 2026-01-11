@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Guanyu Xu "
+title: "Guanyu Xu 徐冠宇"
 author_profile: true
 redirect_from: 
   - /about/
