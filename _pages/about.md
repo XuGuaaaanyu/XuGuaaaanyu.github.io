@@ -16,7 +16,7 @@ My research is driven by a central question: How can we enable robots to perceiv
   <div class="project-card" href="{{ '/research/optical-sensor/' | relative_url }}">
     <div class="project-teaser"><img src="{{ '/images/optical_sensor/cover.png' | relative_url }}" alt="Smart Glass teaser"></div>
     <div class="project-body">
-      <div class="project-title"><a href="{{ '/portfolio/smart-glass/' | relative_url }}">Optical Waveguide Sensor for 3D Shape Reconstruction </a></div>
+      <div class="project-title"><a href="{{ '/research/optical-sensor/' | relative_url }}">Optical Waveguide Sensor for 3D Shape Reconstruction </a></div>
       <!-- <div class="project-tags">
         <a class="tag" href="/files/OpticalSensor/paper.pdf" target="_blank" rel="noopener">
           <i class="fas fa-file-pdf" aria-hidden="true"></i>

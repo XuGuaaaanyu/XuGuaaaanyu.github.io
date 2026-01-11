@@ -2,7 +2,7 @@
 title: "Optical Waveguide Sensor for 3D Shape Reconstruction"
 collection: research
 category: HDRL
-permalink: /research/optical_sensor
+permalink: /research/optical-sensor
 excerpt: 'A soft, stretchable optical waveguide sensor with embedded LEDs and photodiodes for learning-based 3D deformation reconstruction.'
 #date: 2026-01-11
 #venue: 'Journal 1'
