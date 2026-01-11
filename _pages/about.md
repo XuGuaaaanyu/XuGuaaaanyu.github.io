@@ -10,24 +10,14 @@ I'm an undergraduate student pursuing dual degrees in Computer Engineering at th
 
 My research is driven by a central question: How can we enable robots to perceive and interact with the physical world naturally and safely? I am particularly interested in Embodied AI, specifically at the intersection of **soft robotics, cyberphysical systems, and human-robot interaction (HRI)**. My research focuses on bridging the gap between hardware fabrication and algorithm design by embedding 'physical intelligence' into compliant robotic systems.
 
-<div class="section-cards">
-  <a class="section-card" href="{{ '/portfolio/' | relative_url }}">
-    <div class="section-title">Projects</div>
-    <div class="section-desc">Research & course projects, with demos, reports, and code.</div>
-  </a>
 
-  <a class="section-card" href="{{ '/publications/' | relative_url }}">
-    <div class="section-title">Publications</div>
-    <div class="section-desc">Papers, manuscripts, and technical write-ups.</div>
-  </a>
-</div>
 
 ## Research Projects
 
 
 ## Selected Course Projects
 <div class="project-list">
-  <a class="project-card" href="{{ '/portfolio/smart-glass/' | relative_url }}">
+  <div class="project-card" href="{{ '/portfolio/smart-glass/' | relative_url }}">
     <div class="project-teaser"><img src="{{ '/images/glass/cover.png' | relative_url }}" alt="Smart Glass teaser"></div>
     <div class="project-body">
       <div class="project-title"><a href="{{ '/portfolio/smart-glass/' | relative_url }}">INSIGHT: Smart Assistive Glass</a></div>
@@ -39,9 +29,9 @@ My research is driven by a central question: How can we enable robots to perceiv
       </div>
       <div class="project-desc">In-device navigation and scene interpretation glasses for low-vision users.</div>
     </div>
-  </a>
+  </div>
 
-  <a class="project-card" href="{{ '/portfolio/lumen-grid/' | relative_url }}">
+  <div class="project-card" href="{{ '/portfolio/lumen-grid/' | relative_url }}">
     <div class="project-teaser"><img src="{{ '/images/parking/cover.png' | relative_url }}" alt="Lumen Grid teaser"></div>
     <div class="project-body">
       <div class="project-title"><a href="{{ '/portfolio/lumen-grid/' | relative_url }}">Lumen Grid: Multi-Robot Parking Game</a></div>
@@ -52,9 +42,9 @@ My research is driven by a central question: How can we enable robots to perceiv
       </div>
       <div class="project-desc">A competitive parking game using four Zumo robots on an LED-marked field.</div>
     </div>
-  </a>
+  </div>
 
-  <a class="project-card" href="{{ '/portfolio/transformable-wheel/' | relative_url }}">
+  <div class="project-card" href="{{ '/portfolio/transformable-wheel/' | relative_url }}">
     <div class="project-teaser"><img src="{{ '/images/wheel/wheel_mechanism.png' | relative_url }}" alt="Transformable wheel teaser"></div>
     <div class="project-body">
       <div class="project-title"><a href="{{ '/portfolio/transformable-wheel/' | relative_url }}">Transformable Wheel</a></div>
@@ -63,5 +53,5 @@ My research is driven by a central question: How can we enable robots to perceiv
       </div>
       <div class="project-desc">An autonomous vehicle with transformable wheels for complex terrain locomotion.</div>
     </div>
-  </a>
+  </div>
 </div>
