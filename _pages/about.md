@@ -17,8 +17,8 @@ My research is driven by a central question: How can we enable robots to perceiv
     <div class="project-teaser"><img src="{{ '/images/optical_sensor/cover.png' | relative_url }}" alt="Smart Glass teaser"></div>
     <div class="project-body">
       <div class="project-title"><a href="{{ '/research/optical-sensor/' | relative_url }}">Optical Waveguide Sensor for 3D Shape Reconstruction </a></div>
-      <!-- <div class="project-tags">
-        <a class="tag" href="/files/OpticalSensor/paper.pdf" target="_blank" rel="noopener">
+      <div class="project-tags">
+        <!-- <a class="tag" href="/files/OpticalSensor/paper.pdf" target="_blank" rel="noopener">
           <i class="fas fa-file-pdf" aria-hidden="true"></i>
           <span>Paper</span>
         </a>
@@ -29,12 +29,12 @@ My research is driven by a central question: How can we enable robots to perceiv
         <a class="tag" href="https://github.com/GuanyuXu04/ShapeNet" target="_blank" rel="noopener">
           <i class="fab fa-github" aria-hidden="true"></i>
           <span>Code</span>
-        </a>
-        <a class="tag" href="https://www.youtube.com/embed/watch?v=iU_iTmCLjYo" target="_blank" rel="noopener">
+        </a> -->
+        <a class="tag" href="https://www.youtube.com/watch?v=SRcHd9E9L2w" target="_blank" rel="noopener">
           <i class="fab fa-youtube" aria-hidden="true"></i>
           <span>Video</span>
         </a>
-      </div> -->
+      </div>
       <div class="project-desc">A soft, stretchable optical waveguide sensor with embedded LEDs and photodiodes for learning-based 3D deformation reconstruction.</div>
     </div>
   </div>
