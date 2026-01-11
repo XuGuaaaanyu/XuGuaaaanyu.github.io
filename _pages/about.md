@@ -11,7 +11,6 @@ I'm an undergraduate student pursuing dual degrees in Computer Engineering at th
 My research is driven by a central question: How can we enable robots to perceive and interact with the physical world naturally and safely? I am particularly interested in Embodied AI, specifically at the intersection of **cyberphysical systems, soft robotics, and human-robot interaction**. My research focuses on bridging the gap between hardware fabrication and algorithm design by embedding 'physical intelligence' into compliant robotic systems.
 
 
-
 ## Research Projects
 
 
@@ -34,7 +33,7 @@ My research is driven by a central question: How can we enable robots to perceiv
           <i class="fab fa-github" aria-hidden="true"></i>
           <span>Code</span>
         </a>
-        <a class="tag" href="https://www.youtube.com/embed/iU_iTmCLjYo" target="_blank" rel="noopener">
+        <a class="tag" href="https://www.youtube.com/embed/watch?v=iU_iTmCLjYo" target="_blank" rel="noopener">
           <i class="fab fa-youtube" aria-hidden="true"></i>
           <span>Video</span>
         </a>
@@ -56,7 +55,7 @@ My research is driven by a central question: How can we enable robots to perceiv
           <i class="fab fa-github" aria-hidden="true"></i>
           <span>Code</span>
         </a>
-        <a class="tag" href="https://www.youtube.com/embed/jwMOQGUDSMY" target="_blank" rel="noopener">
+        <a class="tag" href="https://www.youtube.com/embed/watch?v=jwMOQGUDSMY" target="_blank" rel="noopener">
           <i class="fab fa-youtube" aria-hidden="true"></i>
           <span>Video</span>
         </a>

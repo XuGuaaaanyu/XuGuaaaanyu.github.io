@@ -14,8 +14,8 @@ main:
   - title: "Portfolio"
     url: /portfolio/
 
-  #- title: "Publications"
-  #  url: /publications/
+  - title: "Research"
+    url: /publication/
 
   #- title: "Blog Posts"
   #  url: /year-archive/
