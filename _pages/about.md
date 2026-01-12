@@ -44,7 +44,7 @@ My research is driven by a central question: How can we enable robots to perceiv
 ## Selected Course Projects
 <div class="project-list">
   <div class="project-card" href="{{ '/portfolio/01.SmartGlass/' | relative_url }}">
-    <div class="project-teaser"><img src="{{ '/images/glass/cover.png' | relative_url }}" alt="Smart Glass teaser"></div>
+    <div class="project-teaser"><img src="{{ '/images/glass/teaser.png' | relative_url }}" alt="Smart Glass teaser"></div>
     <div class="project-body">
       <div class="project-title"><a href="{{ '/portfolio/01.SmartGlass/' | relative_url }}">INSIGHT: Smart Assistive Glass</a></div>
       <div class="project-tags">
@@ -70,7 +70,7 @@ My research is driven by a central question: How can we enable robots to perceiv
   </div>
 
   <div class="project-card" href="{{ '/portfolio/02.LumenGrid/' | relative_url }}">
-    <div class="project-teaser"><img src="{{ '/images/parking/cover.png' | relative_url }}" alt="Lumen Grid teaser"></div>
+    <div class="project-teaser"><img src="{{ '/images/parking/teaser.png' | relative_url }}" alt="Lumen Grid teaser"></div>
     <div class="project-body">
       <div class="project-title"><a href="{{ '/portfolio/02.LumenGrid/' | relative_url }}">Lumen Grid: Multi-Robot Parking Game</a></div>
       <div class="project-tags">
