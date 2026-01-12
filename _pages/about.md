@@ -74,7 +74,7 @@ My research is driven by a central question: How can we enable robots to perceiv
     <div class="project-body">
       <div class="project-title"><a href="{{ '/portfolio/02.LumenGrid/' | relative_url }}">Lumen Grid: Multi-Robot Parking Game</a></div>
       <div class="project-tags">
-        <a class="tag" href="/files/LuminGrid/poster.pdf" target="_blank" rel="noopener">
+        <a class="tag" href="/files/LumenGrid/poster.pdf" target="_blank" rel="noopener">
           <i class="fas fa-file-pdf" aria-hidden="true"></i>
           <span>Poster</span>
         </a>
