@@ -6,7 +6,7 @@ redirect_from:
   - /about/
   - /about.html
 ---
-I'm an undergraduate student pursuing dual degrees in Computer Engineering at the [University of Michigan](https://ece.engin.umich.edu/academics/undergraduate/majors-minors/computer-engineering-major/) and Mechanical Engineering at [Shanghai Jiao Tong University](https://www.ji.sjtu.edu.cn/). Currently, I work as a research assistant at [Hybrid Dynamic Robotics Lab](https://soft.robotics.umich.edu/) directed by Prof. [Xiaonan (Sean) Huang](https://scholar.google.com/citations?user=MNKU_WcAAAAJ&hl=zh-CN). 
+I'm an undergraduate student pursuing dual degrees in Computer Engineering at the **University of Michigan** and Mechanical Engineering at **Shanghai Jiao Tong University**. Currently, I work as a research assistant at [Hybrid Dynamic Robotics Lab](https://soft.robotics.umich.edu/) directed by Prof. [Xiaonan (Sean) Huang](https://scholar.google.com/citations?user=MNKU_WcAAAAJ&hl=zh-CN). 
 
 My research is driven by a central question: How can we enable robots to perceive and interact with the physical world naturally and safely? I am particularly interested in Embodied AI, specifically at the intersection of **cyberphysical systems, soft robotics, and human-robot interaction**. My research focuses on bridging the gap between hardware fabrication and algorithm design by embedding 'physical intelligence' into compliant robotic systems.
 
