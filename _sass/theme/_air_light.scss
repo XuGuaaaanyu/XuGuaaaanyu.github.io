@@ -12,10 +12,10 @@ $background                 : #eeeeee;
 $background-light           : mix(#fff, $background, 20%);
 $background-lighter         : mix(#fff, $background, 90%);
 $text                       : #222831;
-$link                       : mix($primary-color, $text, 20%);
+$link                       : mix($primary-color, $text, 80%);
 $link-dark                  : mix(#000, $link, 25%);
 $link-light                 : mix(#fff, $link, 25%);
-$footer                     : mix(#000, $background, 70%);
+$footer                     : mix(#000, $background, 10%);
 
 /* Color codes used for the site */
 $danger-color               : #ee5f5b;
