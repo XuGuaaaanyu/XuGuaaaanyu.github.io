@@ -87,3 +87,31 @@
   .project-card { flex-direction: column; align-items: stretch; }
   .project-teaser { flex: none; width: 100%; height: 220px; }
 }
+
+/* ===== Dark mode overrides ===== */
+html[data-theme="dark"] .section-card,
+html[data-theme="dark"] .project-card {
+  background: rgba(25, 25, 25, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+}
+
+html[data-theme="dark"] .section-card:hover,
+html[data-theme="dark"] .project-card:hover {
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.70);
+}
+
+html[data-theme="dark"] .project-desc,
+html[data-theme="dark"] .section-desc {
+  opacity: 0.92;
+}
+
+/* tag pills in dark mode */
+html[data-theme="dark"] .project-tags .tag {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+html[data-theme="dark"] .project-tags .tag:hover {
+  filter: brightness(1.08);
+}
