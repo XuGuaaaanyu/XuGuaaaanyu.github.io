@@ -13,7 +13,7 @@ projects:
       alt: "Optical Sensor teaser"
       authors: ["Guanyu Xu", "Jiaqi Wang", "Dezhong Tong", "Xiaonan Huang"]
       desc: "A soft, stretchable optical waveguide sensor with embedded LEDs and photodiodes for learning-based 3D deformation reconstruction."
-      date: "2026-01-21"
+      date: "2026-01"
       venue: "ArXiv Preprint"
       tags:
         - label: "Paper"
@@ -37,7 +37,7 @@ projects:
       authors: ["Guanyu Xu", "Haobo Fang", "Ruopu Dong", "Yizhe Shen", "Zhuoyang Chen", "Jinlin Li"]
       desc: "In-device navigation and scene interpretation glasses for low-vision users."
       date: "Fall 2025"
-      venue: "EECS 473: Advanced Embedded Systems"
+      venue: "EECS 473: Advanced Embedded Systems (UM)"
       tags:
         - label: "Poster"
           href: /files/SmartGlass/poster.pdf
@@ -62,6 +62,8 @@ projects:
       alt: "Lumen Grid teaser"
       authors: ["Guanyu Xu", "Haobo Fang", "Varun Agrawal", "Xiang Jiang"]
       desc: "A competitive parking game using four Zumo robots on an LED-marked field."
+      date: "Winter 2025"
+      venue: "EECS 373: Introduction to Embedded System Design (UM)"
       tags:
         - label: "Poster"
           href: /files/LumenGrid/poster.pdf
@@ -82,6 +84,8 @@ projects:
       alt: "Transformable Wheel teaser"
       authors: ["Guanyu Xu", "Jiawen Li", "Yimin Wang", "Haobo Fang"]
       desc: "A rover equipped with transformable wheels for cluttered terrain navigation."
+      date: "Summer 2024"
+      venue: "ME3500J: Design and Manufacturing (SJTU)"
       tags:
         - label: "Report"
           href: /files/Wheel/report.pdf
