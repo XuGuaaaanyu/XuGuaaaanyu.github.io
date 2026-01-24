@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 projects:
   research:
-    - title: "Optical Waveguide Sensor for 3D Shape Reconstruction"
+    - title: "Proprioceptive Membrane for 3D Shape Reconstruction"
       url: /research/optical-sensor/
       image: /images/optical_sensor/cover.png
       alt: "Optical Sensor teaser"
