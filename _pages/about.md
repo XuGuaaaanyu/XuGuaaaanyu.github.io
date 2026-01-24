@@ -13,6 +13,8 @@ projects:
       alt: "Optical Sensor teaser"
       authors: ["Guanyu Xu", "Jiaqi Wang", "Dezhong Tong", "Xiaonan Huang"]
       desc: "A soft, stretchable optical waveguide sensor with embedded LEDs and photodiodes for learning-based 3D deformation reconstruction."
+      date: "2026-01-21"
+      venue: "ArXiv Preprint"
       tags:
         - label: "Paper"
           href: /files/OpticalSensor/paper.pdf
@@ -34,6 +36,8 @@ projects:
       alt: "Smart Glass teaser"
       authors: ["Guanyu Xu", "Haobo Fang", "Ruopu Dong", "Yizhe Shen", "Zhuoyang Chen", "Jinlin Li"]
       desc: "In-device navigation and scene interpretation glasses for low-vision users."
+      date: "Fall 2025"
+      venue: "EECS 473: Advanced Embedded Systems"
       tags:
         - label: "Poster"
           href: /files/SmartGlass/poster.pdf
@@ -91,8 +95,8 @@ My research is driven by a central question: How can we enable robots to perceiv
 
 
 ## Research Projects
-{% include project_list.html projects=page.projects.research %}
+{% include project_list.html projects=page.projects.research kind="research" %}
 
 
 ## Selected Course Projects
-{% include project_list.html projects=page.projects.course %}
+{% include project_list.html projects=page.projects.course kind="course" %}

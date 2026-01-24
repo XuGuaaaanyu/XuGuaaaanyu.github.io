@@ -24,6 +24,12 @@
   opacity: 0.85;
   margin-top: 0.25rem;
 }
+
+.project-list .project-meta{
+  font-size: 0.85em;
+  opacity: 0.8;
+  margin-top: 0.2rem;
+}
 </style>
 
 <div class="project-list">
@@ -34,12 +40,10 @@
       </div>
 
       <div class="project-body">
-        <!-- Only the title is clickable -->
         <div class="project-title">
           <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
         </div>
 
-        <!-- Tags (clicking tags won't affect the title/card) -->
         {% if p.tags and p.tags.size > 0 %}
           <div class="project-tags">
             {% for t in p.tags %}
@@ -53,13 +57,20 @@
           </div>
         {% endif %}
 
-        <!-- Authors (small font; Guanyu Xu in bold; comma-separated, no dots) -->
         {% if p.authors and p.authors.size > 0 %}
           <div class="project-authors">
             {% for a in p.authors %}
               {% if a == "Guanyu Xu" %}<strong>{{ a }}</strong>{% else %}{{ a }}{% endif %}{% unless forloop.last %}, {% endunless %}
             {% endfor %}
           </div>
+        {% endif %}
+
+        {% if include.kind == "research" or include.kind == "course" %}
+          {% if p.date or p.venue %}
+            <div class="project-meta">
+              {% if p.date %}{{ p.date }}{% endif %}{% if p.date and p.venue %} — {% endif %}{% if p.venue %}{{ p.venue }}{% endif %}
+            </div>
+          {% endif %}
         {% endif %}
 
         <div class="project-desc">{{ p.desc }}</div>
