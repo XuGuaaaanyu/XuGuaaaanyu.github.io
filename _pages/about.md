@@ -72,8 +72,20 @@ projects:
           icon: "fab fa-youtube"
           new_tab: true
     
+    - title: "Rover with Transformable Wheels"
+      url: /portfolio/03.Wheel/
+      image: /images/wheel/teaser.png
+      alt: "Transformable Wheel teaser"
+      authors: ["Guanyu Xu", "Jiawen Li", "Yimin Wang", "Haobo Fang"]
+      desc: "A rover equipped with transformable wheels for cluttered terrain navigation."
+      tags:
+        - label: "Report"
+          href: /files/Wheel/report.pdf
+          icon: "fas fa-file-pdf"
+          new_tab: true
+    
 ---
-I'm an undergraduate student pursuing dual degrees in Computer Engineering at the **University of Michigan** and Mechanical Engineering at **Shanghai Jiao Tong University**. Currently, I work as a research assistant at [Hybrid Dynamic Robotics Lab](https://soft.robotics.umich.edu/) directed by Prof. [Xiaonan Huang](https://scholar.google.com/citations?user=MNKU_WcAAAAJ&hl=zh-CN). 
+Hi I'm Guanyu Xu, an undergraduate student pursuing dual degrees in Computer Engineering at the **University of Michigan** and Mechanical Engineering at **Shanghai Jiao Tong University**. Currently, I work as a research assistant at [Hybrid Dynamic Robotics Lab](https://soft.robotics.umich.edu/) directed by Prof. [Xiaonan Huang](https://scholar.google.com/citations?user=MNKU_WcAAAAJ&hl=en-US). 
 
 My research is driven by a central question: How can we enable robots to perceive and interact with the physical world naturally and safely? I am particularly interested in Embodied AI, specifically at the intersection of **cyberphysical systems, soft robotics, and human-robot interaction**. My research focuses on bridging the gap between hardware fabrication and algorithm design by embedding 'physical intelligence' into compliant robotic systems.
 
