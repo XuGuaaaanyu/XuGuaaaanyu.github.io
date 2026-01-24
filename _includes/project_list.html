@@ -1,0 +1,36 @@
+<div class="project-list">
+  {% for p in include.projects %}
+    <a class="project-card" href="{{ p.url | relative_url }}">
+      <div class="project-teaser">
+        <img src="{{ p.image | relative_url }}" alt="{{ p.alt | escape }}">
+      </div>
+
+      <div class="project-body">
+        <div class="project-title">{{ p.title }}</div>
+
+        {% if p.authors and p.authors.size > 0 %}
+          <div class="project-authors">
+            <i class="fas fa-user-friends" aria-hidden="true"></i>
+            <span>{{ p.authors | join: " · " }}</span>
+          </div>
+        {% endif %}
+
+        {% if p.tags and p.tags.size > 0 %}
+          <div class="project-tags">
+            {% for t in p.tags %}
+              {% assign href = t.href %}
+              <a class="tag"
+                 href="{% if href contains '://' %}{{ href }}{% else %}{{ href | relative_url }}{% endif %}"
+                 {% if t.new_tab %}target="_blank" rel="noopener"{% endif %}>
+                {% if t.icon %}<i class="{{ t.icon }}" aria-hidden="true"></i>{% endif %}
+                <span>{{ t.label }}</span>
+              </a>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="project-desc">{{ p.desc }}</div>
+      </div>
+    </a>
+  {% endfor %}
+</div>
