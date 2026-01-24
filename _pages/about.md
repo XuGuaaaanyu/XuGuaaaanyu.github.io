@@ -32,7 +32,7 @@ projects:
       url: /portfolio/01.SmartGlass/
       image: /images/glass/teaser.png
       alt: "Smart Glass teaser"
-      authors: ["Guanyu Xu", "Haobo Fang", "Jinlin Li", "Yizhe Shen"]
+      authors: ["Guanyu Xu", "Haobo Fang", "Ruopu Dong", "Yizhe Shen", "Zhuoyang Chen", "Jinlin Li"]
       desc: "In-device navigation and scene interpretation glasses for low-vision users."
       tags:
         - label: "Poster"
@@ -56,7 +56,7 @@ projects:
       url: /portfolio/02.LumenGrid/
       image: /images/parking/teaser.png
       alt: "Lumen Grid teaser"
-      authors: ["Guanyu Xu", "Haobo Fang", ]
+      authors: ["Guanyu Xu", "Haobo Fang", "Varun Agrawal", "Xiang Jiang"]
       desc: "A competitive parking game using four Zumo robots on an LED-marked field."
       tags:
         - label: "Poster"
