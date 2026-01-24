@@ -1,26 +1,50 @@
+<style>
+/* Scope styles to the project list to avoid affecting other parts of the site */
+.project-list .project-title a{
+  text-decoration: none;
+}
+.project-list .project-title a:hover{
+  text-decoration: underline;
+}
+
+/* Ensure tag links don't get underlined or show "visited" styling changes */
+.project-list .project-tags .tag{
+  text-decoration: none;
+}
+.project-list .project-tags .tag:hover{
+  text-decoration: none;
+}
+.project-list .project-tags .tag:visited{
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-list .project-authors{
+  font-size: 0.85em;
+  opacity: 0.85;
+  margin-top: 0.25rem;
+}
+</style>
+
 <div class="project-list">
   {% for p in include.projects %}
-    <a class="project-card" href="{{ p.url | relative_url }}">
+    <div class="project-card">
       <div class="project-teaser">
         <img src="{{ p.image | relative_url }}" alt="{{ p.alt | escape }}">
       </div>
 
       <div class="project-body">
-        <div class="project-title">{{ p.title }}</div>
+        <!-- Only the title is clickable -->
+        <div class="project-title">
+          <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+        </div>
 
-        {% if p.authors and p.authors.size > 0 %}
-          <div class="project-authors">
-            <i class="fas fa-user-friends" aria-hidden="true"></i>
-            <span>{{ p.authors | join: " · " }}</span>
-          </div>
-        {% endif %}
-
+        <!-- Tags (clicking tags won't affect the title/card) -->
         {% if p.tags and p.tags.size > 0 %}
           <div class="project-tags">
             {% for t in p.tags %}
-              {% assign href = t.href %}
               <a class="tag"
-                 href="{% if href contains '://' %}{{ href }}{% else %}{{ href | relative_url }}{% endif %}"
+                 href="{% if t.href contains '://' %}{{ t.href }}{% else %}{{ t.href | relative_url }}{% endif %}"
                  {% if t.new_tab %}target="_blank" rel="noopener"{% endif %}>
                 {% if t.icon %}<i class="{{ t.icon }}" aria-hidden="true"></i>{% endif %}
                 <span>{{ t.label }}</span>
@@ -29,8 +53,17 @@
           </div>
         {% endif %}
 
+        <!-- Authors (small font; Guanyu Xu in bold; comma-separated, no dots) -->
+        {% if p.authors and p.authors.size > 0 %}
+          <div class="project-authors">
+            {% for a in p.authors %}
+              {% if a == "Guanyu Xu" %}<strong>{{ a }}</strong>{% else %}{{ a }}{% endif %}{% unless forloop.last %}, {% endunless %}
+            {% endfor %}
+          </div>
+        {% endif %}
+
         <div class="project-desc">{{ p.desc }}</div>
       </div>
-    </a>
+    </div>
   {% endfor %}
 </div>
