@@ -15,7 +15,7 @@ main:
     url: /portfolio/
     
   - title: "CV"
-    url: https://github.com/XuGuaaaanyu/XuGuaaaanyu.github.io/blob/resume-pdf/Resume.pdf
+    url: /cv-pdf/
 
   #- title: "Blog Posts"
   #  url: /year-archive/
