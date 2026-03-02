@@ -24,11 +24,11 @@ jobs:
       - name: Detect LaTeX source
         id: detect_source
         run: |
-          if [ -f "resume/Resume.tex" ]; then
+          if [ -f "resume/main.tex" ]; then
             echo "found=true" >> "$GITHUB_OUTPUT"
           else
             echo "found=false" >> "$GITHUB_OUTPUT"
-            echo "No resume/Resume.tex found. Skipping PDF build."
+            echo "No resume/main.tex found. Skipping PDF build."
           fi
 
       - name: Build PDF from LaTeX
@@ -36,7 +36,7 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           working_directory: resume
-          root_file: Resume.tex
+          root_file: main.tex
 
       - name: Copy compiled PDF to files directory
         if: steps.detect_source.outputs.found == 'true'
