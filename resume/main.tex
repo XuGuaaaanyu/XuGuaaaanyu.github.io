@@ -1,0 +1,324 @@
+ \documentclass[12pt,letterpaper]{article}
+
+% Package imports
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome5}
+
+\definecolor{darkblue}{RGB}{0,0,139}
+
+% Page layout
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{margin=0.75in}
+\setlength{\footskip}{5pt} % Addressing fancyhdr warning
+
+% Hyperlink setup (moved after fancyhdr to address warning)
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+}
+
+% Custom box settings
+\usepackage[most]{tcolorbox}
+\tcbset{
+    frame code={},
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!20,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=-2mm,
+    boxsep=4pt,
+    arc=0pt,outer arc=0pt,
+}
+
+% URL style
+\urlstyle{same}
+
+% Text alignment
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\linewidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}} 
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[5]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\linewidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#5}} \\
+        {\small{\textit{#3}}\hspace{1em}\small{#4}} & \footnotesize{#2}\\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\linewidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \small{#4}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeOneLine}[2]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\linewidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#2}}
+    \end{tabular*}
+    \vspace{-1.2mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand{\labelitemii}{$\vcenter{\hbox{\tiny$\circ$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=3mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*,labelsep=3mm,itemsep=0.5mm]}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{-1mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-1mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-1mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+% Commands for icon sizing and positioning
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+\newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
+
+% Font options
+\newcommand{\headerfonti}{\fontfamily{phv}\selectfont} % Helvetica-like (similar to Arial/Calibri)
+\newcommand{\headerfontii}{\fontfamily{ptm}\selectfont} % Times-like (similar to Times New Roman)
+\newcommand{\headerfontiii}{\fontfamily{ppl}\selectfont} % Palatino (elegant serif)
+\newcommand{\headerfontiv}{\fontfamily{pbk}\selectfont} % Bookman (readable serif)
+\newcommand{\headerfontv}{\fontfamily{pag}\selectfont} % Avant Garde-like (similar to Trebuchet MS)
+\newcommand{\headerfontvi}{\fontfamily{cmss}\selectfont} % Computer Modern Sans Serif
+\newcommand{\headerfontvii}{\fontfamily{qhv}\selectfont} % Quasi-Helvetica (another Arial/Calibri alternative)
+\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} % Quasi-Palatino (another elegant serif option)
+\newcommand{\headerfontix}{\fontfamily{qtm}\selectfont} % Quasi-Times (another Times New Roman alternative)
+\newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
+
+\begin{document}
+\headerfontii
+
+% Header
+\begin{center}
+    {\Huge\textbf{GUANYU XU}}
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    +1-734-330-1367 | \href{mailto:xuguanyu@umich.edu}{xuguanyu@umich.edu} | 
+    \href{https://xuguaaaanyu.github.io/}{Personal Homepage}
+    }
+\end{center}
+\vspace{-6mm}
+
+%\begin{center}
+%    \small{
+%    \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/your-profile/}{your-profile} | 
+%    \socialicon{\faGithub} \href{https://github.com/your-username}{your-username} | 
+%    \ieeeicon{\includegraphics[height=1.3em]{ieee_collabratec_icon.png}} \href{https://ieee-collabratec.ieee.org/app/p/your-profile}{your-profile} |
+%    \socialicon{\faTwitter} \href{https://twitter.com/your-handle}{your-handle}
+%    }
+%\end{center}
+%\vspace{-6mm}
+\begin{center}
+    \small{Ann Arbor, MI - 48105, United States}
+\end{center}
+
+\vspace{-4mm}
+
+\section{\textbf{Education}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{University of Michigan - Ann Arbor}{Ann Arbor, US}
+{B.S.E. in Computer Engineering (Expected)}
+{\textbf{Overall GPA}: 3.97/4.0, \textbf{Major GPA}: 4.0/4.0}
+{Aug 2024 - May 2026}
+
+\resumeSubheading
+{Shanghai Jiao Tong University}{Shanghai, China}
+{B.E. in Mechanical Engineering (Expected)}{\textbf{Overall GPA}: 3.63/4.0, \textbf{Major GPA}: 3.68/4.0}{Sep 2022 - Aug 2026}
+\resumeSubHeadingListEnd
+
+\section{\textbf{Research Interest}}
+\small{
+My research primarily focus on \textbf{embodied intelligence and robotics}, with the overarching goal of enabling robots to \emph{perceive and interact with the physical world} in a natural and safe manner. I am particularly interested in leveraging foundation models to explore \textbf{scalable action tokenization}. My prior work is grounded in \textbf{full-stack robotic systems}, encompassing the expertise in mechanical design and smart manufacturing, embedded and real-time systems, and close-loop sensorimotor control.
+}
+\section{\textbf{Publication \& Patents}}
+\small{
+\begin{enumerate}[leftmargin=*, labelsep=0.5em, align=left, widest={[\textbf{S.1}]}, itemindent=0em, label={\textbf{[\arabic*]}]}]
+%\item[\textbf{[C.1]}] Your Name, et al. (Year). \href{https://doi.org/XX.XXXX/XXXXXXX.XXXX.XXXXXXX}{\textbf{Title of Conference Paper}}. In \textit{Name of Conference Proceedings}, pp. XX-XX. Publisher. Date, Location. DOI: XX.XXXX/XXXXXXX.XXXX.XXXXXXX
+
+%\item[\textbf{[S.1]}] Your Name, et al. (Year). \textbf{Title of Submitted Paper}. Manuscript submitted for publication in \textit{Journal Name}.
+
+\item[\textbf{[1]}] \textbf{Xu, G.}, Wang J. Tong, D., and Huang X. "Highly Deformable Proprioceptive Membrane for Real-Time 3D Shape Reconstruction", \textit{ArXiv.org. \href{https://arxiv.org/abs/2601.13574}{https://arxiv.org/abs/2601.13574}}, 2026. 
+
+\item[\textbf{[2]}] \textbf{Xu, G.} and Liu L. (2024). "A Variable Radius Wheel", \textit{National Intellectual Property Office, Patent No. \href{http://epub.cnipa.gov.cn/cred/CN221698395U}{
+CN221698395U}}, 2024.
+%\item[\textbf{[J.1]}] Author 1, Your Name, Author 3, et al. (Year). \href{https://doi.org/XX.XXXX/XXXXX.XXXX.XXXXXXX}{\textbf{Title of Journal Article}}. \textit{Journal Name}, Vol. XX, Issue X, pp. XXX-XXX. DOI: XX.XXXX/XXXXX.XXXX.XXXXXXX
+\end{enumerate}
+}
+
+\section{\textbf{Research Experience}}
+\resumeSubHeadingListStart
+% Optical Sensor Project
+\resumeProject
+    {Proprioceptive Membrane for 3D Shape Reconstruction (Project lead)}
+    {\href{https://soft.robotics.umich.edu/}{\underline{Hybrid Dynamic Robotics Lab}}, University of Michigan}
+    {Jun. 2025 - Present}
+    {Instructor: Prof. Xiaonan Huang}
+\vspace{2mm}
+\resumeItemListStart
+    \item \textbf{Spearheaded} the design and fabrication of a highly deformable proprioceptive membrane utilizing an \textbf{optical waveguide structure} to achieve real-time \textbf{3D shape reconstruction}.
+    \item Architected and trained a \textbf{PointNet-based autoencoder model} in \textbf{PyTorch} to decode optical signals into 3D point clouds.
+    \item Developed an automated data collection pipeline with a \textbf{depth camera} to capture high-accuracy ground-truth datasets.
+    \item Programmed \textbf{STM32} microcontroller to scan LEDs and sample photodiodes, and designed a custom stretchable PCB for the multilayer optical waveguide structure. 
+    \item Achieved high-accuracy surface shape reconstruction with \textbf{an average Chamfer distance of 1.3 mm} while maintaining accuracy for \textbf{indentations up to 25 mm} and \textbf{up to 75\% stretching strain}.
+    \item \textbf{First-authored paper under review at \textit{Advanced Robotics Research}.}
+\resumeItemListEnd
+
+% Growing Robot Project
+\resumeProject
+    {Active Steering Control of Soft Growing Robot (Core contributor)}
+    {\href{https://soft.robotics.umich.edu/}{\underline{Hybrid Dynamic Robotics Lab}}, University of Michigan}
+    {Oct. 2024 - Mar. 2025}
+    {Instructor: Prof. Xiaonan Huang}
+\vspace{2mm}
+\resumeItemListStart
+    \item Integrated the electrostatic clutch-based steering joint into a functional full-scale robot prototype to enable accurate closed-loop omnidirectional steering. 
+    \item Formulated a \textbf{geometrical model} to characterize the non-linear relationship between the steering angle and the clutch actuation patterns.
+    \item Designed a custom PCB to drive the high-voltage electrostatic clutch control circuits reliably.
+\resumeItemListEnd
+
+% Transformable Wheel Project
+\resumeProject
+    {Lunar Rover with Transformable Wheel (Project lead)}
+    {School of Aeronautics and Astronautics, Shanghai Jiao Tong University}
+    {Jan. 2023 - Oct. 2023}
+    {Instructor: Prof. Longquan Liu}
+\vspace{2mm}
+\resumeItemListStart
+    \item \textbf{Invented and prototyped} a self-adaptive, variable-radius transformable wheel, successfully translating the design into a fully granted \textbf{National Patent}.
+    \item This is a test. Implemented real-time sensing and transformation actuation algorithms on a Raspberry Pi, interfacing with ultrasonic sensors and LiDAR for obstacle-aware terrain adaptation. 
+    \item Developed and tuned a PID controller utilizing IMU feedback to maintain vehicle path stabilization during dynamic wheel transformations. 
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{\textbf{Project Experience}}
+\resumeSubHeadingListStart
+% INSIGHT Project
+\resumeProject
+  {INSIGHT: Smart Assistive Glass for Visually Impaired (Team Lead)}
+  {Course project for \href{https://www.eecs.umich.edu/courses/eecs473/overview.html}{\underline{EECS 473: Advanced Embedded System}} (MDE).}
+  {Aug. 2025 - Dec. 2025}
+  {Instructor: Prof. Mark Brehob}
+\vspace{2mm}
+\resumeItemListStart
+    \item Designed an \textbf{ESP32-based smart-glasses system} on a \textbf{custom PCB}, integrating microphone arrays, speaker, vibration motors, and OV2640 camera in a compact wearable form factor.
+    \item Engineered an end-to-end edge AI pipeline leveraging a \textbf{Jetson Orin Nano} base station, enabling real-time obstacle-aware assistive navigation and interactive scene description. 
+    \item Deployed \textbf{YOLO object detection} on the base station to achieve \textbf{up to 30 Hz} obstacle identification with directional vibrotactile feedback for assistive navigation. 
+    \item Deployed a lightweight Vision-Language Model (VLM) for strictly \textbf{on-device} scene description, performing real-time inference without relying on cloud APIs. 
+    \item Programmed the ESP32 to handle wake-word detection, real-time audio and video streaming, and low-latency text-to-speech (TTS) playback. 
+\resumeItemListEnd
+
+% LuminGrid Project
+\resumeProject
+    {Lumen Grid: Multi-Robot Competitive Parking Game (Team Lead)}
+    {Course project for \href{https://www.eecs.umich.edu/courses/eecs373/index.html}{\underline{EECS 373: Introduction to Embedded System Design}}}
+    {Feb. 2025 - Apr. 2025}
+    {Instructor: Prof. Junyi Zhu}
+\vspace{2mm}
+\resumeItemListStart
+    \item Programmed \textbf{robot control logic and inter-system communication protocols} in \textbf{C++} on an STM32 microcontroller.
+    \item Designed an \textbf{IMU-based remote controller} for the \textbf{Zumo robot} with vibration feedback reflecting Zumo’s speed.
+    \item Interfaced with a camera for real-time position tracking of all robots based on color codes.
+    \item Developed the \textbf{playground control algorithm} that scheduled lighting patterns, tracked robot position, and updated the scoring for the game setting.
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{\textbf{Teaching \& Community Service Experience}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+  \resumeOneLine{Grader, EECS 370: Intro to Computer Organization, University of Michigan}{Sep. 2025 -- Dec. 2025}
+  \resumeOneLine{Volunteer, IEEE International Conference on Robotics and Automation, Atlanta}{May. 2025}
+  \resumeOneLine{Student Volunteer, Shanghai Sunflower Community Children’s Service Center}{Sep. 2023 -- Dec. 2023}
+\resumeSubHeadingListEnd
+
+\section{\textbf{Honors \& Awards}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+  \resumeOneLine{University Honors, University of Michigan}{Dec. 2024 \& May 2025}
+  \resumeOneLine{Dean's List, University of Michigan}{Dec. 2024 \& Apr. 2025}
+  \resumeOneLine{Undergraduate Excellent Scholarship, Shanghai Jiao Tong University}{Dec 2023}
+\resumeSubHeadingListEnd
+
+
+\section{\textbf{Skills}}
+\vspace{-0.4mm}
+\resumeHeadingSkillStart
+  \resumeItem{Programming: }{C/C++, Python, MATLAB, Bash, CUDA C/C++.}
+  \resumeItem{Embedded Systems: }{STM32, ESP32; Raspberry Pi, Jetson Orin Nano; FreeRTOS; I$^2$C/SPI/UART/CAN. }
+  \resumeItem{AI/ML: }{PyTorch, YOLO, Moondream-VLM, Sentence Transformer.}
+  \resumeItem{Hardware Design: }{Altium Designer, EasyEDA, Solidworks, AutoCAD.}
+  \resumeItem{Tools: }{Git, SSH, CMake, Vim, HTML, Markdown, \LaTeX.}
+\resumeHeadingSkillEnd
+\end{document}

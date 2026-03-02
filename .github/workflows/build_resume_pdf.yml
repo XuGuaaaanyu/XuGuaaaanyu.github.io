@@ -1,0 +1,59 @@
+name: Build Resume PDF
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - "resume/**"
+      - ".github/workflows/build_resume_pdf.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-resume:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Detect LaTeX source
+        id: detect_source
+        run: |
+          if [ -f "resume/Resume.tex" ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            echo "No resume/Resume.tex found. Skipping PDF build."
+          fi
+
+      - name: Build PDF from LaTeX
+        if: steps.detect_source.outputs.found == 'true'
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: resume
+          root_file: Resume.tex
+
+      - name: Copy compiled PDF to files directory
+        if: steps.detect_source.outputs.found == 'true'
+        run: |
+          mkdir -p files
+          cp resume/Resume.pdf files/Resume.pdf
+
+      - name: Commit updated PDF
+        if: steps.detect_source.outputs.found == 'true'
+        run: |
+          if git diff --quiet -- files/Resume.pdf; then
+            echo "No Resume.pdf changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add files/Resume.pdf
+          git commit -m "chore: update Resume.pdf from LaTeX source"
+          git push
