@@ -1,7 +1,7 @@
-Place your Overleaf source at `resume/Resume.tex`.
+Place your Overleaf source at `resume/main.tex`.
 
 How it works:
-- On every push that changes files in `resume/`, GitHub Actions compiles `resume/Resume.tex`.
+- On every push that changes files in `resume/`, GitHub Actions compiles `resume/main.tex`.
 - The workflow writes the compiled PDF to `files/Resume.pdf`.
 - If `files/Resume.pdf` changed, the workflow commits it automatically.
 

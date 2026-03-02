@@ -42,7 +42,7 @@ jobs:
         if: steps.detect_source.outputs.found == 'true'
         run: |
           mkdir -p files
-          cp resume/Resume.pdf files/Resume.pdf
+          cp resume/main.pdf files/Resume.pdf
 
       - name: Commit updated PDF
         if: steps.detect_source.outputs.found == 'true'
