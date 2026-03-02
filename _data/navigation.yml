@@ -15,7 +15,7 @@ main:
     url: /portfolio/
     
   - title: "CV"
-    url: /cv-pdf/
+    url: /resume/main.pdf
 
   #- title: "Blog Posts"
   #  url: /year-archive/
