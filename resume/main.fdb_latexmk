@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1772426398.83153 "/Users/xuguanyu/Documents/XuGuaaaanyu.github.io/resume/main.tex" "main.pdf" "main" 1772426399.41808 0
-  "/Users/xuguanyu/Documents/XuGuaaaanyu.github.io/resume/main.tex" 1772423238.12969 14580 ff5eabcc5d6e48185c19a3cf4608bd4e ""
+["pdflatex"] 1772511578.71891 "/Users/xuguanyu/Documents/XuGuaaaanyu.github.io/resume/main.tex" "main.pdf" "main" 1772511579.38328 0
+  "/Users/xuguanyu/Documents/XuGuaaaanyu.github.io/resume/main.tex" 1772511578.48303 14624 ac063dd750787369543c0cbd4aeef65a ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc" 1202520719 2840 216e6e45ad352e2456e1149f28885bee ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc" 1202520719 2327 9d6df24f9c4f7368395224341a95523a ""
@@ -233,9 +233,9 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1772425894 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1741450574 3345740 46b66fdb0378f7bf5921b5eabf1762b8 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "main.aux" 1772426399.36724 1173 86fd586a8e612148b120883f4a6530e7 "pdflatex"
-  "main.out" 1772426399.36754 1106 d41f61154d8636e589aac459f4708f6c "pdflatex"
-  "main.tex" 1772423238.12969 14580 ff5eabcc5d6e48185c19a3cf4608bd4e ""
+  "main.aux" 1772511579.32842 1173 86fd586a8e612148b120883f4a6530e7 "pdflatex"
+  "main.out" 1772511579.32876 1106 d41f61154d8636e589aac459f4708f6c "pdflatex"
+  "main.tex" 1772511578.48303 14624 ac063dd750787369543c0cbd4aeef65a ""
   (generated)
   "main.aux"
   "main.log"
