@@ -25,7 +25,7 @@ projects:
           icon: "fab fa-github"
           new_tab: true
         - label: "Video"
-          href: "https://www.youtube.com/watch?v=SRcHd9E9L2w"
+          href: "https://www.youtube.com/watch?v=_Gzyzb5R1V0"
           icon: "fab fa-youtube"
           new_tab: true
 
