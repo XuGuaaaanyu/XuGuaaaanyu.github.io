@@ -17,7 +17,7 @@ projects:
       venue: "ArXiv Preprint"
       tags:
         - label: "Paper"
-          href: /files/OpticalSensor/paper.pdf
+          href: "https://arxiv.org/pdf/2601.13574"
           icon: "fas fa-file-pdf"
           new_tab: true
         - label: "Code"
