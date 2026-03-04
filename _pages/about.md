@@ -103,7 +103,3 @@ My research primarily focus on **embodied intelligence and robotics**, with the 
 
 ## Selected Course Projects
 {% include project_list.html projects=page.projects.course kind="course" %}
-
-<div style="position: fixed; bottom: 20px; right: 20px; width: 80px; height: 80px; overflow: hidden; z-index: 999;">
-<script type="text/javascript" id="mmvst_globe" src="https://mapmyvisitors.com/globe.js?d=eDgCwKsEwpau_4l1FBH_lDNKgPVifnqC2Z4EJh1VNCc"></script>
-</div>
