@@ -14,19 +14,20 @@ author_profile: true
 
 .blog-view-btn {
   padding: 0.35rem 0.9rem;
-  border: 1px solid #ccc;
-  background: #fff;
+  border: 1px solid var(--gx-surface-border, rgba(0,0,0,0.15));
+  background: transparent;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.875rem;
-  color: #555;
-  transition: background 0.1s, color 0.1s;
+  color: inherit;
+  opacity: 0.65;
+  transition: opacity 0.1s;
 }
 
 .blog-view-btn.active {
-  background: #555;
-  color: #fff;
-  border-color: #555;
+  opacity: 1;
+  border-color: currentColor;
+  font-weight: 600;
 }
 
 .blog-section-heading {
@@ -34,14 +35,14 @@ author_profile: true
   font-weight: 700;
   margin: 1.75rem 0 0.6rem;
   padding-bottom: 0.25rem;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--gx-surface-border, rgba(0,0,0,0.12));
 }
 
 .blog-entry {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--gx-surface-border, rgba(0,0,0,0.12));
   border-radius: 6px;
   overflow: hidden;
   margin-bottom: 0.85rem;
@@ -49,7 +50,7 @@ author_profile: true
 }
 
 .blog-entry:hover {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--gx-shadow-hover, 0 4px 14px rgba(0,0,0,0.12));
 }
 
 .blog-entry__thumbnail {
@@ -58,18 +59,17 @@ author_profile: true
   height: 120px;
   object-fit: cover;
   display: block;
-  background: #f5f5f5;
 }
 
 .blog-entry__thumbnail--placeholder {
   width: 120px;
   min-width: 120px;
   height: 120px;
-  background: #f0f0f0;
+  background: var(--gx-pill-bg, rgba(0,0,0,0.04));
   display: none;
   align-items: center;
   justify-content: center;
-  color: #bbb;
+  opacity: 0.4;
   font-size: 2rem;
 }
 
@@ -105,22 +105,26 @@ author_profile: true
 
 .blog-entry__date {
   font-size: 0.8rem;
-  color: #888;
+  opacity: 0.6;
   margin: 0;
 }
 
+/* matches .project-tags .tag pill from _custom.scss */
 .blog-entry__category {
-  font-size: 0.72rem;
-  background: #f0f0f0;
-  color: #555;
-  padding: 0.1rem 0.45rem;
-  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.80rem;
+  padding: 0.18rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--gx-pill-border, rgba(0,0,0,0.12));
+  background: var(--gx-pill-bg, rgba(0,0,0,0.04));
+  color: inherit;
   white-space: nowrap;
 }
 
 .blog-entry__preview {
   font-size: 0.85rem;
-  color: #555;
+  opacity: 0.75;
   margin: 0.1rem 0 0;
 }
 </style>
