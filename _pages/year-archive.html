@@ -1,19 +1,112 @@
 ---
 layout: archive
 permalink: /year-archive/
-title: "Blog posts"
+title: "Blog"
 author_profile: true
-redirect_from:
-  - /wordpress/blog-posts/
 ---
 
-{% include base_path %}
-{% capture written_year %}'None'{% endcapture %}
-{% for post in site.posts %}
-  {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
-  {% if year != written_year %}
-    <h2 id="{{ year | slugify }}" class="archive__subtitle">{{ year }}</h2>
-    {% capture written_year %}{{ year }}{% endcapture %}
-  {% endif %}
-  {% include archive-single.html %}
-{% endfor %}
+<style>
+.blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.blog-entry {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.15s ease;
+}
+
+.blog-entry:hover {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+.blog-entry__thumbnail {
+  width: 120px;
+  min-width: 120px;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+  background: #f5f5f5;
+}
+
+.blog-entry__thumbnail--placeholder {
+  width: 120px;
+  min-width: 120px;
+  height: 120px;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #bbb;
+  font-size: 2rem;
+}
+
+.blog-entry__body {
+  padding: 0.8rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.blog-entry__title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+  color: #333;
+  text-decoration: none;
+}
+
+.blog-entry__title:hover {
+  text-decoration: underline;
+}
+
+.blog-entry__date {
+  font-size: 0.8rem;
+  color: #888;
+  margin: 0;
+}
+
+.blog-entry__preview {
+  font-size: 0.875rem;
+  color: #555;
+  margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+</style>
+
+<div class="blog-list">
+  {% for post in site.posts %}
+    {% assign preview = post.content | split: '</style>' | last | strip_html | normalize_whitespace | truncate: 103 %}
+    <div class="blog-entry">
+      {% assign image_src = '/blog/' | append: post.slug | append: '/image.png' %}
+      <img
+        class="blog-entry__thumbnail"
+        src="{{ image_src | relative_url }}"
+        alt="{{ post.title }}"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+      />
+      <div class="blog-entry__thumbnail--placeholder" style="display:none;">&#128444;</div>
+      <div class="blog-entry__body">
+        <a class="blog-entry__title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <p class="blog-entry__date">{{ post.date | date: "%B %-d, %Y" }}</p>
+        <p class="blog-entry__preview">{{ preview }}</p>
+      </div>
+    </div>
+  {% endfor %}
+</div>

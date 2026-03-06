@@ -17,8 +17,8 @@ main:
   - title: "CV"
     url: /resume/main.pdf
 
-  #- title: "Blog Posts"
-  #  url: /year-archive/
+  - title: "Blog"
+    url: /year-archive/
   
 
   #- title: "Talks"
