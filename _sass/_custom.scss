@@ -1,4 +1,26 @@
 /* ==========================================================================
+   Global serif font
+   ========================================================================== */
+
+body,
+.page__content,
+.notion-content,
+.archive__item-title,
+.page__title,
+.blog-entry__title,
+.blog-entry__preview,
+.masthead__menu-item,
+.author__name,
+.nav__title {
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+/* Keep monospace for code */
+code, pre, .highlight, kbd, samp {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+/* ==========================================================================
    Guanyu custom cards (theme-adaptive)
    - Works for both light/dark and future theme changes
    - Avoids hard-coded card colors by deriving from theme variables
@@ -269,15 +291,17 @@ body.dark-theme {
 
   /* ── Display equations ────────────────────────────────────────────────── */
   figure.equation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
     overflow-x: auto;
     margin: 1.25em 0;
+    /* Let katex-display be block-level and full-width so KaTeX can
+       absolutely-position the equation number tag at the right edge. */
     .equation-container {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+      display: block;
+      width: 100%;
+    }
+    .katex-display {
+      width: 100%;
     }
   }
 

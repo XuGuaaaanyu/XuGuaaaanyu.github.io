@@ -1,18 +1,14 @@
 {% assign _post = include.post %}
 
-{% comment %}Use manual preview if provided; otherwise extract from HTML content.{% endcomment %}
-{% if _post.preview %}
-  {% assign _preview = _post.preview | truncate: 203 %}
-{% else %}
-  {% assign _parts = _post.content | split: '<math' %}
-  {% capture _no_math %}{% for _p in _parts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</math>' | last }}{% endif %}{% endfor %}{% endcapture %}
-  {% assign _parts2 = _no_math | split: '<style' %}
-  {% capture _no_style %}{% for _p in _parts2 %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</style>' | last }}{% endif %}{% endfor %}{% endcapture %}
-  {% assign _body_raw = _no_style | split: '<body' | last %}
-  {% assign _body_parts = _body_raw | split: '>' %}
-  {% capture _body_content %}{% for _bp in _body_parts %}{% unless forloop.first %}{{ '>' }}{{ _bp }}{% endunless %}{% endfor %}{% endcapture %}
-  {% assign _preview = _body_content | strip_html | strip | truncate: 203 %}
-{% endif %}
+{% comment %}Auto-extract preview from HTML content, skipping math and style blocks.{% endcomment %}
+{% assign _parts = _post.content | split: '<math' %}
+{% capture _no_math %}{% for _p in _parts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</math>' | last }}{% endif %}{% endfor %}{% endcapture %}
+{% assign _parts2 = _no_math | split: '<style' %}
+{% capture _no_style %}{% for _p in _parts2 %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</style>' | last }}{% endif %}{% endfor %}{% endcapture %}
+{% assign _body_raw = _no_style | split: '<body' | last %}
+{% assign _body_parts = _body_raw | split: '>' %}
+{% capture _body_content %}{% for _bp in _body_parts %}{% unless forloop.first %}{{ '>' }}{{ _bp }}{% endunless %}{% endfor %}{% endcapture %}
+{% assign _preview = _body_content | strip_html | strip | truncate: 123 %}
 
 {% if _post.image_dir %}
   {% assign _thumb = '/blog/' | append: _post.image_dir | append: '/image.png' %}

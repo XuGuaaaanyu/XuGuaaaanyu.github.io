@@ -24,10 +24,16 @@ What it keeps:
 
 The output is wrapped in <div class="notion-content"> so the SCSS in
 _sass/_notion.scss can style Notion-specific elements without leaking.
+
+Image handling:
+  - Relative src="..." paths are rewritten to absolute /blog/... paths
+  - Image directories sibling to the content file are copied to blog/
 """
 
 import re
+import shutil
 import sys
+import urllib.parse
 from pathlib import Path
 
 KATEX_CSS = (
@@ -35,6 +41,38 @@ KATEX_CSS = (
     ' href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css"'
     ' crossorigin="anonymous">\n'
 )
+
+BLOG_DIR = Path("blog")
+
+
+def rewrite_image_paths(body: str, content_file: Path) -> str:
+    """Rewrite relative src="..." to absolute /blog/... and copy image dirs."""
+    src_pattern = re.compile(r'src="(?!https?://)([^"]+)"')
+    content_dir = content_file.parent
+    copied: set[str] = set()
+
+    def rewrite(m: re.Match) -> str:
+        rel_path = m.group(1)
+        # URL-decode to get the real filesystem path
+        rel_decoded = urllib.parse.unquote(rel_path)
+        top_dir = rel_decoded.split("/")[0]
+
+        if top_dir and top_dir not in copied:
+            src = content_dir / top_dir
+            dst = BLOG_DIR / top_dir
+            if src.is_dir() and not dst.exists():
+                shutil.copytree(src, dst)
+                print(f"  Copied images: {src} → {dst}")
+            elif src.is_dir() and dst.exists():
+                # Copy any missing files (idempotent)
+                for item in src.iterdir():
+                    if item.is_file() and not (dst / item.name).exists():
+                        shutil.copy2(item, dst / item.name)
+            copied.add(top_dir)
+
+        return f'src="/blog/{rel_path}"'
+
+    return src_pattern.sub(rewrite, body)
 
 
 def process(path: str) -> None:
@@ -74,7 +112,10 @@ def process(path: str) -> None:
         body,
     )
 
-    # ── 7. Wrap in scoped container ────────────────────────────────────────
+    # ── 7. Rewrite relative image paths to /blog/... absolute paths ────────
+    body = rewrite_image_paths(body, Path(path))
+
+    # ── 8. Wrap in scoped container ────────────────────────────────────────
     output = KATEX_CSS + '<div class="notion-content">\n' + body.strip() + "\n</div>\n"
 
     Path(path).write_text(output, encoding="utf-8")
