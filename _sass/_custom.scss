@@ -229,3 +229,183 @@ body.dark-theme {
     height: 220px;
   }
 }
+
+/* ==========================================================================
+   Notion-embedded content (.notion-content)
+   Applied when a Notion export is rendered inside the academicpages template
+   via notion2jekyll.py + layout: blog-post.
+   ========================================================================== */
+
+.notion-content {
+  /* Notion uses pre-wrap so spaces/newlines in text nodes are literal */
+  white-space: pre-wrap;
+  line-height: 1.6;
+
+  /* Reset pre-wrap for block-level elements that manage their own whitespace */
+  h1, h2, h3, h4, h5, h6,
+  ul, ol, li,
+  figure, figcaption,
+  table, thead, tbody, tr, th, td,
+  details, summary,
+  .callout, .code, .equation {
+    white-space: normal;
+  }
+
+  /* ── Headings ─────────────────────────────────────────────────────────── */
+  h1, h2, h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.4em;
+  }
+
+  /* ── Inline equation tokens ───────────────────────────────────────────── */
+  .notion-text-equation-token {
+    display: inline;
+    /* strip the leading/trailing empty <span> placeholders */
+    > span:first-child,
+    > span:last-child {
+      display: none;
+    }
+  }
+
+  /* ── Display equations ────────────────────────────────────────────────── */
+  figure.equation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+    margin: 1.25em 0;
+    .equation-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+
+  /* ── Images ───────────────────────────────────────────────────────────── */
+  figure.image {
+    margin: 1.5em 0;
+    text-align: center;
+    img {
+      max-width: 100%;
+      border-radius: 4px;
+    }
+    figcaption {
+      font-size: 0.85em;
+      opacity: 0.7;
+      margin-top: 0.4em;
+    }
+  }
+
+  /* ── Code blocks ──────────────────────────────────────────────────────── */
+  .code {
+    position: relative;
+    margin: 1em 0;
+    pre {
+      background: var(--gx-pill-bg, rgba(0,0,0,0.04));
+      border: 1px solid var(--gx-surface-border, rgba(0,0,0,0.1));
+      border-radius: 6px;
+      padding: 1em 1.2em;
+      overflow-x: auto;
+      font-size: 0.875em;
+      line-height: 1.5;
+      white-space: pre;
+    }
+    /* optional language label Notion adds */
+    .code-toobar, [class*="language-label"] {
+      font-size: 0.75em;
+      opacity: 0.5;
+      margin-bottom: 0.25em;
+    }
+  }
+
+  /* ── Toggles (Notion uses <ul class="toggle"><li><details>) ───────────── */
+  ul.toggle {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.5em 0;
+    > li {
+      margin: 0.25em 0;
+    }
+    details {
+      summary {
+        cursor: pointer;
+        user-select: none;
+        padding: 0.2em 0;
+        &::marker { display: none; }
+        &::-webkit-details-marker { display: none; }
+        &::before {
+          content: "▶";
+          display: inline-block;
+          margin-right: 0.4em;
+          font-size: 0.7em;
+          opacity: 0.6;
+          transition: transform 0.15s;
+        }
+      }
+      &[open] > summary::before {
+        transform: rotate(90deg);
+      }
+      /* indent toggle body */
+      > :not(summary) {
+        padding-left: 1.4em;
+        margin-top: 0.25em;
+      }
+    }
+  }
+
+  /* ── Callouts ─────────────────────────────────────────────────────────── */
+  .callout {
+    display: flex;
+    gap: 0.75em;
+    padding: 0.8em 1em;
+    margin: 1em 0;
+    border-radius: 6px;
+    background: var(--gx-pill-bg, rgba(0,0,0,0.04));
+    border: 1px solid var(--gx-surface-border, rgba(0,0,0,0.08));
+    .icon { flex-shrink: 0; font-size: 1.2em; }
+    .callout-text { flex: 1; min-width: 0; }
+  }
+
+  /* ── Column layouts ───────────────────────────────────────────────────── */
+  .column_list {
+    display: flex;
+    gap: 1.5em;
+    margin: 1em 0;
+    .column { flex: 1; min-width: 0; }
+  }
+
+  /* ── Bookmarks ────────────────────────────────────────────────────────── */
+  .bookmark {
+    display: block;
+    padding: 0.75em 1em;
+    margin: 0.75em 0;
+    border: 1px solid var(--gx-surface-border, rgba(0,0,0,0.12));
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+    &:hover { box-shadow: var(--gx-shadow, 0 2px 8px rgba(0,0,0,0.08)); }
+    .bookmark-title { font-weight: 600; }
+    .bookmark-description { font-size: 0.875em; opacity: 0.7; }
+    .bookmark-href { font-size: 0.8em; opacity: 0.5; }
+  }
+
+  /* ── Tables ───────────────────────────────────────────────────────────── */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0;
+    th, td {
+      border: 1px solid var(--gx-surface-border, rgba(0,0,0,0.12));
+      padding: 0.5em 0.75em;
+      text-align: left;
+    }
+    th { font-weight: 600; background: var(--gx-pill-bg, rgba(0,0,0,0.04)); }
+  }
+
+  /* ── Dividers ─────────────────────────────────────────────────────────── */
+  hr {
+    border: none;
+    border-top: 1px solid var(--gx-surface-border, rgba(0,0,0,0.12));
+    margin: 1.5em 0;
+  }
+}
