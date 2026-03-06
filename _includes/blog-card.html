@@ -37,8 +37,8 @@
   {% endfor %}
 {% endif %}
 
-<div class="blog-card{% if _thumb %} blog-card--has-image{% endif %}">
-  {% if _thumb %}
+<div class="blog-card{% if _thumb != '' %} blog-card--has-image{% endif %}">
+  {% if _thumb != '' %}
   <div class="blog-card__image-wrap">
     <img class="blog-card__image" src="{{ _thumb | replace: ' ', '%20' }}" alt="{{ _post.title }}">
   </div>

@@ -47,7 +47,7 @@
     </div>
     <p class="blog-entry__preview">{{ _preview }}</p>
   </div>
-  {% if _thumb %}
+  {% if _thumb != '' %}
   <div class="blog-entry__cover-wrap">
     <img class="blog-entry__cover" src="{{ _thumb | replace: ' ', '%20' }}" alt="{{ _post.title }}">
   </div>
