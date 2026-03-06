@@ -5,9 +5,9 @@
   Priority: (1) post.description front-matter field,
             (2) extracted plain text from rendered content (strip math, style, headings, HTML),
             (3) nothing (leave blank).
-  Posts using "include_relative" may expose raw Liquid in post.content when
-  accessed via site.related_posts; we strip everything from "{%" onward so
-  the raw tag never reaches the output.
+  Posts using include_relative may expose raw Liquid in post.content when
+  accessed via site.related_posts; we split on the Liquid open-tag delimiter
+  and take only the text before it.
 {% endcomment %}
 {% if _post.description %}
   {% assign _preview = _post.description | truncate: 160 %}
