@@ -1,0 +1,36 @@
+{% assign _post = include.post %}
+
+{% comment %}
+  Extract preview: remove <math>…</math> (contains LaTeX annotation text)
+  then remove <style>…</style> (KaTeX imports + main CSS),
+  then grab body content and strip remaining HTML.
+{% endcomment %}
+{% assign _parts = _post.content | split: '<math' %}
+{% capture _no_math %}{% for _p in _parts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</math>' | last }}{% endif %}{% endfor %}{% endcapture %}
+{% assign _parts2 = _no_math | split: '<style' %}
+{% capture _no_style %}{% for _p in _parts2 %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</style>' | last }}{% endif %}{% endfor %}{% endcapture %}
+{% assign _preview = _no_style | split: '<body' | last | strip_html | strip | truncate: 103 %}
+
+{% if _post.image_dir %}
+  {% assign _thumb = '/blog/' | append: _post.image_dir | append: '/image.png' %}
+{% else %}
+  {% assign _thumb = '/blog/' | append: _post.slug | append: '/image.png' %}
+{% endif %}
+
+<div class="blog-entry">
+  <img class="blog-entry__thumbnail"
+       src="{{ _thumb }}"
+       alt="{{ _post.title }}"
+       onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+  <div class="blog-entry__thumbnail--placeholder">&#128444;</div>
+  <div class="blog-entry__body">
+    <a class="blog-entry__title" href="{{ _post.url | relative_url }}">{{ _post.title }}</a>
+    <div class="blog-entry__meta">
+      <span class="blog-entry__date">{{ _post.date | date: "%B %-d, %Y" }}</span>
+      {% for _cat in _post.categories %}
+        <span class="blog-entry__category">{{ _cat }}</span>
+      {% endfor %}
+    </div>
+    <p class="blog-entry__preview">{{ _preview }}</p>
+  </div>
+</div>
