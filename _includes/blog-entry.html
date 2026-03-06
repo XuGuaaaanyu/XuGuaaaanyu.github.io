@@ -2,7 +2,6 @@
 
 {% comment %}
   Auto-extract preview: strip <math>, <style>, h1-h6 (with content), then all HTML tags.
-  This avoids showing equations, styles, or section headings in the preview snippet.
 {% endcomment %}
 {% capture _c %}{% assign _pts = _post.content | split: '<math' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</math>' | last }}{% endif %}{% endfor %}{% endcapture %}
 {% capture _c %}{% assign _pts = _c | split: '<style' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</style>' | last }}{% endif %}{% endfor %}{% endcapture %}
@@ -14,9 +13,32 @@
 {% capture _c %}{% assign _pts = _c | split: '<h6' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h6>' | last }}{% endif %}{% endfor %}{% endcapture %}
 {% assign _preview = _c | strip_html | strip | truncate: 123 %}
 
-<a class="blog-entry" href="{{ _post.url | relative_url }}">
+{% comment %}
+  Cover image priority:
+  1. cover_image front-matter field (set automatically by notion2jekyll.py)
+  2. First image file found in blog/<image_dir>/ via site.static_files (legacy posts)
+  3. No image — cover wrap is omitted entirely.
+{% endcomment %}
+{% assign _thumb = '' %}
+{% if _post.cover_image %}
+  {% assign _thumb = _post.cover_image %}
+{% elsif _post.image_dir %}
+  {% assign _img_prefix = '/blog/' | append: _post.image_dir | append: '/' %}
+  {% for _sf in site.static_files %}
+    {% if _thumb == '' %}
+      {% if _sf.path contains _img_prefix %}
+        {% assign _ext = _sf.extname | downcase %}
+        {% if _ext == '.png' or _ext == '.jpg' or _ext == '.jpeg' or _ext == '.gif' or _ext == '.webp' %}
+          {% assign _thumb = _sf.path %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<div class="blog-entry">
   <div class="blog-entry__body">
-    <span class="blog-entry__title">{{ _post.title }}</span>
+    <a class="blog-entry__title" href="{{ _post.url | relative_url }}">{{ _post.title }}</a>
     <div class="blog-entry__meta">
       <span class="blog-entry__date">{{ _post.date | date: "%B %-d, %Y" }}</span>
       {% for _cat in _post.categories %}
@@ -25,9 +47,9 @@
     </div>
     <p class="blog-entry__preview">{{ _preview }}</p>
   </div>
-  {% if _post.cover_image %}
+  {% if _thumb %}
   <div class="blog-entry__cover-wrap">
-    <img class="blog-entry__cover" src="{{ _post.cover_image }}" alt="{{ _post.title }}">
+    <img class="blog-entry__cover" src="{{ _thumb | replace: ' ', '%20' }}" alt="{{ _post.title }}">
   </div>
   {% endif %}
-</a>
+</div>

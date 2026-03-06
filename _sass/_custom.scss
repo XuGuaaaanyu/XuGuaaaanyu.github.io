@@ -527,13 +527,15 @@ body.dark-theme {
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.3;
+  text-decoration: none;
+  color: var(--mm-link-color, var(--global-link-color, inherit));
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.blog-card:hover .blog-card__title {
+.blog-card__title:hover {
   text-decoration: underline;
 }
 

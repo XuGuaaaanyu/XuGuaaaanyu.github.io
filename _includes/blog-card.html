@@ -1,9 +1,7 @@
 {% assign _post = include.post %}
 
 {% comment %}
-  Build preview text.
-  Strip raw Liquid tags that can appear in include_relative posts, then
-  strip math, style blocks, headings, and remaining HTML.
+  Build preview text: strip Liquid tags, math, style, headings, then all HTML.
 {% endcomment %}
 {% assign _c = _post.content | split: '{%' | first %}
 {% capture _c %}{% assign _pts = _c | split: '<math' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</math>' | last }}{% endif %}{% endfor %}{% endcapture %}
@@ -16,14 +14,37 @@
 {% capture _c %}{% assign _pts = _c | split: '<h6' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h6>' | last }}{% endif %}{% endfor %}{% endcapture %}
 {% assign _preview = _c | strip_html | strip | truncate: 160 %}
 
-<a class="blog-card{% if _post.cover_image %} blog-card--has-image{% endif %}" href="{{ _post.url | relative_url }}">
-  {% if _post.cover_image %}
+{% comment %}
+  Cover image priority:
+  1. cover_image front-matter field (set automatically by notion2jekyll.py)
+  2. First image file found in blog/<image_dir>/ via site.static_files (legacy posts)
+  3. No image — image section is omitted entirely.
+{% endcomment %}
+{% assign _thumb = '' %}
+{% if _post.cover_image %}
+  {% assign _thumb = _post.cover_image %}
+{% elsif _post.image_dir %}
+  {% assign _img_prefix = '/blog/' | append: _post.image_dir | append: '/' %}
+  {% for _sf in site.static_files %}
+    {% if _thumb == '' %}
+      {% if _sf.path contains _img_prefix %}
+        {% assign _ext = _sf.extname | downcase %}
+        {% if _ext == '.png' or _ext == '.jpg' or _ext == '.jpeg' or _ext == '.gif' or _ext == '.webp' %}
+          {% assign _thumb = _sf.path %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<div class="blog-card{% if _thumb %} blog-card--has-image{% endif %}">
+  {% if _thumb %}
   <div class="blog-card__image-wrap">
-    <img class="blog-card__image" src="{{ _post.cover_image }}" alt="{{ _post.title }}">
+    <img class="blog-card__image" src="{{ _thumb | replace: ' ', '%20' }}" alt="{{ _post.title }}">
   </div>
   {% endif %}
   <div class="blog-card__body">
-    <span class="blog-card__title">{{ _post.title }}</span>
+    <a class="blog-card__title" href="{{ _post.url | relative_url }}">{{ _post.title }}</a>
     <div class="blog-card__meta">
       <span class="blog-card__date">{{ _post.date | date: "%B %-d, %Y" }}</span>
       {% for _cat in _post.categories %}
@@ -32,4 +53,4 @@
     </div>
     <p class="blog-card__preview">{{ _preview }}</p>
   </div>
-</a>
+</div>
