@@ -476,6 +476,7 @@ body.dark-theme {
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 1.25rem;
   margin-top: 1rem;
+  grid-auto-rows: 260px; /* fixed row height — all cards same size regardless of cover */
 }
 
 .blog-card {
@@ -496,10 +497,7 @@ body.dark-theme {
   }
 }
 
-/* Card with an image gets a fixed aspect ratio so the grid rows are uniform */
-.blog-card--has-image {
-  aspect-ratio: 4 / 3;
-}
+/* Cards with an image show the image-wrap; cards without fill the body to the full grid-row height */
 
 .blog-card__image-wrap {
   flex: 0 0 40%;
@@ -521,6 +519,11 @@ body.dark-theme {
   flex-direction: column;
   gap: 0.3rem;
   overflow: hidden;
+}
+
+/* No-image cards: show more preview text since the image area is now body space */
+.blog-card:not(.blog-card--has-image) .blog-card__preview {
+  -webkit-line-clamp: 5;
 }
 
 .blog-card__title {
