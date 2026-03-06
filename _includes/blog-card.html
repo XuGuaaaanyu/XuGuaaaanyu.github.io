@@ -2,45 +2,28 @@
 
 {% comment %}
   Build preview text.
-  Priority: (1) post.description front-matter field,
-            (2) extracted plain text from rendered content (strip math, style, headings, HTML),
-            (3) nothing (leave blank).
-  Posts using include_relative may expose raw Liquid in post.content when
-  accessed via site.related_posts; we split on the Liquid open-tag delimiter
-  and take only the text before it.
+  Strip raw Liquid tags that can appear in include_relative posts, then
+  strip math, style blocks, headings, and remaining HTML.
 {% endcomment %}
-{% if _post.description %}
-  {% assign _preview = _post.description | truncate: 160 %}
-{% else %}
-  {% comment %} Strip raw Liquid tags that can appear in include_relative posts {% endcomment %}
-  {% assign _c = _post.content | split: '{%' | first %}
-  {% capture _c %}{% assign _pts = _c | split: '<math' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</math>' | last }}{% endif %}{% endfor %}{% endcapture %}
-  {% capture _c %}{% assign _pts = _c | split: '<style' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</style>' | last }}{% endif %}{% endfor %}{% endcapture %}
-  {% capture _c %}{% assign _pts = _c | split: '<h1' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h1>' | last }}{% endif %}{% endfor %}{% endcapture %}
-  {% capture _c %}{% assign _pts = _c | split: '<h2' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h2>' | last }}{% endif %}{% endfor %}{% endcapture %}
-  {% capture _c %}{% assign _pts = _c | split: '<h3' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h3>' | last }}{% endif %}{% endfor %}{% endcapture %}
-  {% capture _c %}{% assign _pts = _c | split: '<h4' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h4>' | last }}{% endif %}{% endfor %}{% endcapture %}
-  {% capture _c %}{% assign _pts = _c | split: '<h5' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h5>' | last }}{% endif %}{% endfor %}{% endcapture %}
-  {% capture _c %}{% assign _pts = _c | split: '<h6' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h6>' | last }}{% endif %}{% endfor %}{% endcapture %}
-  {% assign _preview = _c | strip_html | strip | truncate: 160 %}
-{% endif %}
+{% assign _c = _post.content | split: '{%' | first %}
+{% capture _c %}{% assign _pts = _c | split: '<math' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</math>' | last }}{% endif %}{% endfor %}{% endcapture %}
+{% capture _c %}{% assign _pts = _c | split: '<style' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</style>' | last }}{% endif %}{% endfor %}{% endcapture %}
+{% capture _c %}{% assign _pts = _c | split: '<h1' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h1>' | last }}{% endif %}{% endfor %}{% endcapture %}
+{% capture _c %}{% assign _pts = _c | split: '<h2' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h2>' | last }}{% endif %}{% endfor %}{% endcapture %}
+{% capture _c %}{% assign _pts = _c | split: '<h3' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h3>' | last }}{% endif %}{% endfor %}{% endcapture %}
+{% capture _c %}{% assign _pts = _c | split: '<h4' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h4>' | last }}{% endif %}{% endfor %}{% endcapture %}
+{% capture _c %}{% assign _pts = _c | split: '<h5' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h5>' | last }}{% endif %}{% endfor %}{% endcapture %}
+{% capture _c %}{% assign _pts = _c | split: '<h6' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h6>' | last }}{% endif %}{% endfor %}{% endcapture %}
+{% assign _preview = _c | strip_html | strip | truncate: 160 %}
 
-{% if _post.image_dir %}
-  {% assign _thumb = '/blog/' | append: _post.image_dir | append: '/image.png' %}
-{% else %}
-  {% assign _thumb = '/blog/' | append: _post.slug | append: '/image.png' %}
-{% endif %}
-
-<div class="blog-card">
+<a class="blog-card{% if _post.cover_image %} blog-card--has-image{% endif %}" href="{{ _post.url | relative_url }}">
+  {% if _post.cover_image %}
   <div class="blog-card__image-wrap">
-    <img class="blog-card__image"
-         src="{{ _thumb }}"
-         alt="{{ _post.title }}"
-         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-    <div class="blog-card__image--placeholder">&#128444;</div>
+    <img class="blog-card__image" src="{{ _post.cover_image }}" alt="{{ _post.title }}">
   </div>
+  {% endif %}
   <div class="blog-card__body">
-    <a class="blog-card__title" href="{{ _post.url | relative_url }}">{{ _post.title }}</a>
+    <span class="blog-card__title">{{ _post.title }}</span>
     <div class="blog-card__meta">
       <span class="blog-card__date">{{ _post.date | date: "%B %-d, %Y" }}</span>
       {% for _cat in _post.categories %}
@@ -49,4 +32,4 @@
     </div>
     <p class="blog-card__preview">{{ _preview }}</p>
   </div>
-</div>
+</a>

@@ -39,6 +39,7 @@ Front matter (when --date is given):
   - layout, author_profile are always set
   - title, permalink, image_dir are inferred from the filename
   - date and categories come from CLI arguments
+  - cover_image is set to the first embedded figure found in the post (if any)
   - The output file is renamed to YYYY-MM-DD-slug.html
 """
 
@@ -99,30 +100,40 @@ def build_front_matter(
     categories: list,
     permalink: str,
     image_dir: str,
+    cover_image: str = "",
 ) -> str:
     cats = ", ".join(categories) if categories else ""
-    return (
-        "---\n"
-        "layout: blog-post\n"
-        "author_profile: true\n"
-        f'title: "{title}"\n'
-        f"date: {date}\n"
-        f"permalink: {permalink}\n"
-        f"categories: [{cats}]\n"
-        f'image_dir: "{image_dir}"\n'
-        "---\n"
-    )
+    lines = [
+        "---",
+        "layout: blog-post",
+        "author_profile: true",
+        f'title: "{title}"',
+        f"date: {date}",
+        f"permalink: {permalink}",
+        f"categories: [{cats}]",
+        f'image_dir: "{image_dir}"',
+    ]
+    if cover_image:
+        lines.append(f'cover_image: "{cover_image}"')
+    lines.append("---")
+    return "\n".join(lines) + "\n"
 
 
 # ---------------------------------------------------------------------------
 # Image path rewriting
 # ---------------------------------------------------------------------------
 
-def rewrite_image_paths(body: str, content_file: Path) -> str:
-    """Rewrite relative src="..." to absolute /blog/... and copy image dirs."""
+def rewrite_image_paths(body: str, content_file: Path) -> tuple:
+    """Rewrite relative src="..." to absolute /blog/... and copy image dirs.
+
+    Returns (rewritten_body, first_local_image_url).
+    first_local_image_url is the /blog/... URL of the first embedded image,
+    or "" if the post contains no local images.
+    """
     src_pattern = re.compile(r'src="(?!https?://)([^"]+)"')
     content_dir = content_file.parent
-    copied: set[str] = set()
+    copied: set = set()
+    first_img: list = []  # populated on first match
 
     def rewrite(m: re.Match) -> str:
         rel_path = m.group(1)
@@ -143,9 +154,13 @@ def rewrite_image_paths(body: str, content_file: Path) -> str:
                         shutil.copy2(item, dst / item.name)
             copied.add(top_dir)
 
-        return f'src="/blog/{rel_path}"'
+        abs_url = f"/blog/{rel_path}"
+        if not first_img:
+            first_img.append(abs_url)
+        return f'src="{abs_url}"'
 
-    return src_pattern.sub(rewrite, body)
+    new_body = src_pattern.sub(rewrite, body)
+    return new_body, (first_img[0] if first_img else "")
 
 
 # ---------------------------------------------------------------------------
@@ -165,6 +180,8 @@ def process(path: str, date: str = "", categories: list = None) -> None:
             return
         # If front matter was requested but file is already processed,
         # we still need to (re)add front matter and rename.
+
+    cover_image = ""
 
     if "<html" in src or "<body" in src:
         # ── 1. Remove the main Notion <style>…</style> block ──────────────────
@@ -197,7 +214,7 @@ def process(path: str, date: str = "", categories: list = None) -> None:
         )
 
         # ── 7. Rewrite relative image paths to /blog/... absolute paths ────────
-        body = rewrite_image_paths(body, Path(path))
+        body, cover_image = rewrite_image_paths(body, Path(path))
 
         # ── 8. Wrap in scoped container ────────────────────────────────────────
         content = KATEX_CSS + '<div class="notion-content">\n' + body.strip() + "\n</div>\n"
@@ -213,7 +230,9 @@ def process(path: str, date: str = "", categories: list = None) -> None:
         permalink = f"/blog/{slug}.html"
         image_dir = title  # matches the Notion image folder name (without UUID)
 
-        front_matter = build_front_matter(title, date, categories, permalink, image_dir)
+        front_matter = build_front_matter(
+            title, date, categories, permalink, image_dir, cover_image
+        )
         output = front_matter + content
 
         out_path = Path(path).parent / f"{date}-{slug}.html"
@@ -223,6 +242,10 @@ def process(path: str, date: str = "", categories: list = None) -> None:
         print(f"  Slug:     {slug}")
         if categories:
             print(f"  Categories: {', '.join(categories)}")
+        if cover_image:
+            print(f"  Cover:    {cover_image}")
+        else:
+            print(f"  Cover:    (none — no embedded figures found)")
 
         # Remove original if it was renamed
         if out_path.resolve() != Path(path).resolve():
