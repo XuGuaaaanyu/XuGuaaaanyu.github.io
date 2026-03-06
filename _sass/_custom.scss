@@ -20,6 +20,14 @@ code, pre, .highlight, kbd, samp {
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
+/* Headings inside post content use serif (override global $header-font-family: $sans-serif) */
+.page__content,
+.notion-content {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: Georgia, "Times New Roman", Times, serif;
+  }
+}
+
 /* ==========================================================================
    Guanyu custom cards (theme-adaptive)
    - Works for both light/dark and future theme changes
