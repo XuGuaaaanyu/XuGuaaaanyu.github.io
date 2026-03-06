@@ -1,17 +1,29 @@
 {% assign _post = include.post %}
 
 {% comment %}
-  Auto-extract preview: strip <math>, <style>, h1-h6 (with content), then all HTML tags.
+  Build preview text.
+  Priority: (1) post.description front-matter field,
+            (2) extracted plain text from rendered content (strip math, style, headings, HTML),
+            (3) nothing (leave blank).
+  Posts using "include_relative" may expose raw Liquid in post.content when
+  accessed via site.related_posts; we strip everything from "{%" onward so
+  the raw tag never reaches the output.
 {% endcomment %}
-{% capture _c %}{% assign _pts = _post.content | split: '<math' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</math>' | last }}{% endif %}{% endfor %}{% endcapture %}
-{% capture _c %}{% assign _pts = _c | split: '<style' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</style>' | last }}{% endif %}{% endfor %}{% endcapture %}
-{% capture _c %}{% assign _pts = _c | split: '<h1' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h1>' | last }}{% endif %}{% endfor %}{% endcapture %}
-{% capture _c %}{% assign _pts = _c | split: '<h2' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h2>' | last }}{% endif %}{% endfor %}{% endcapture %}
-{% capture _c %}{% assign _pts = _c | split: '<h3' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h3>' | last }}{% endif %}{% endfor %}{% endcapture %}
-{% capture _c %}{% assign _pts = _c | split: '<h4' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h4>' | last }}{% endif %}{% endfor %}{% endcapture %}
-{% capture _c %}{% assign _pts = _c | split: '<h5' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h5>' | last }}{% endif %}{% endfor %}{% endcapture %}
-{% capture _c %}{% assign _pts = _c | split: '<h6' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h6>' | last }}{% endif %}{% endfor %}{% endcapture %}
-{% assign _preview = _c | strip_html | strip | truncate: 123 %}
+{% if _post.description %}
+  {% assign _preview = _post.description | truncate: 160 %}
+{% else %}
+  {% comment %} Strip raw Liquid tags that can appear in include_relative posts {% endcomment %}
+  {% assign _c = _post.content | split: '{%' | first %}
+  {% capture _c %}{% assign _pts = _c | split: '<math' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</math>' | last }}{% endif %}{% endfor %}{% endcapture %}
+  {% capture _c %}{% assign _pts = _c | split: '<style' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</style>' | last }}{% endif %}{% endfor %}{% endcapture %}
+  {% capture _c %}{% assign _pts = _c | split: '<h1' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h1>' | last }}{% endif %}{% endfor %}{% endcapture %}
+  {% capture _c %}{% assign _pts = _c | split: '<h2' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h2>' | last }}{% endif %}{% endfor %}{% endcapture %}
+  {% capture _c %}{% assign _pts = _c | split: '<h3' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h3>' | last }}{% endif %}{% endfor %}{% endcapture %}
+  {% capture _c %}{% assign _pts = _c | split: '<h4' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h4>' | last }}{% endif %}{% endfor %}{% endcapture %}
+  {% capture _c %}{% assign _pts = _c | split: '<h5' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h5>' | last }}{% endif %}{% endfor %}{% endcapture %}
+  {% capture _c %}{% assign _pts = _c | split: '<h6' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</h6>' | last }}{% endif %}{% endfor %}{% endcapture %}
+  {% assign _preview = _c | strip_html | strip | truncate: 160 %}
+{% endif %}
 
 {% if _post.image_dir %}
   {% assign _thumb = '/blog/' | append: _post.image_dir | append: '/image.png' %}

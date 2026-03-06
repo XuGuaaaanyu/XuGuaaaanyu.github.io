@@ -82,11 +82,32 @@ if (plotlyElements.length > 0) {
 }
 
 /* ==========================================================================
+   Equation scroll: only enable horizontal scrollbar when equation truly overflows
+   Toggles: close Notion <details> that are open by default
+   ========================================================================== */
+document.addEventListener('DOMContentLoaded', function () {
+  // Only add overflow-x:auto to equation figures when content genuinely overflows
+  document.querySelectorAll('.notion-content figure.equation').forEach(function (fig) {
+    var container = fig.querySelector('.equation-container');
+    if (!container) return;
+    // 2px tolerance for sub-pixel rendering differences
+    if (container.scrollWidth > fig.clientWidth + 2) {
+      fig.style.overflowX = 'auto';
+    }
+  });
+
+  // Collapse all toggle <details> that Notion exports as expanded by default
+  document.querySelectorAll('.notion-content details').forEach(function (d) {
+    d.removeAttribute('open');
+  });
+});
+
+/* ==========================================================================
    Actions that should occur when the page has been fully loaded
    ========================================================================== */
 
 $(document).ready(function () {
-  // SCSS SETTINGS - These should be the same as the settings in the relevant files 
+  // SCSS SETTINGS - These should be the same as the settings in the relevant files
   const scssLarge = 925;          // pixels, from /_sass/_themes.scss
   const scssMastheadHeight = 70;  // pixels, from the current theme (e.g., /_sass/theme/_default.scss)
 
