@@ -433,3 +433,115 @@ body.dark-theme {
     margin: 1.5em 0;
   }
 }
+
+/* ==========================================================================
+   "You may also enjoy" — square blog card grid
+   ========================================================================== */
+
+.blog-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.blog-card {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--gx-surface-border, rgba(0,0,0,0.12));
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--gx-surface, rgba(255,255,255,0.9));
+  box-shadow: var(--gx-shadow, 0 2px 8px rgba(0,0,0,0.06));
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    box-shadow: var(--gx-shadow-hover, 0 6px 18px rgba(0,0,0,0.12));
+    transform: translateY(-2px);
+  }
+}
+
+.blog-card__image-wrap {
+  flex: 0 0 33.33%;
+  overflow: hidden;
+  position: relative;
+}
+
+.blog-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.blog-card__image--placeholder {
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: var(--gx-pill-bg, rgba(0,0,0,0.04));
+  opacity: 0.4;
+  font-size: 2rem;
+}
+
+.blog-card__body {
+  flex: 1;
+  min-height: 0;
+  padding: 0.55rem 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  overflow: hidden;
+}
+
+.blog-card__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-decoration: none;
+  color: var(--gx-link, inherit);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  &:hover { text-decoration: underline; }
+}
+
+.blog-card__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.blog-card__date {
+  font-size: 0.72rem;
+  opacity: 0.6;
+}
+
+.blog-card__category {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--gx-pill-border, rgba(0,0,0,0.12));
+  background: var(--gx-pill-bg, rgba(0,0,0,0.04));
+  white-space: nowrap;
+}
+
+.blog-card__preview {
+  font-size: 0.78rem;
+  opacity: 0.72;
+  margin: 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

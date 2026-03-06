@@ -2,7 +2,6 @@
 
 {% comment %}
   Auto-extract preview: strip <math>, <style>, h1-h6 (with content), then all HTML tags.
-  This avoids showing equations, styles, or section headings in the preview snippet.
 {% endcomment %}
 {% capture _c %}{% assign _pts = _post.content | split: '<math' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</math>' | last }}{% endif %}{% endfor %}{% endcapture %}
 {% capture _c %}{% assign _pts = _c | split: '<style' %}{% for _p in _pts %}{% if forloop.first %}{{ _p }}{% else %}{{ _p | split: '</style>' | last }}{% endif %}{% endfor %}{% endcapture %}
@@ -20,22 +19,22 @@
   {% assign _thumb = '/blog/' | append: _post.slug | append: '/image.png' %}
 {% endif %}
 
-<div class="blog-entry">
-  <div class="blog-entry__thumbnail-wrap">
-    <img class="blog-entry__thumbnail"
+<div class="blog-card">
+  <div class="blog-card__image-wrap">
+    <img class="blog-card__image"
          src="{{ _thumb }}"
          alt="{{ _post.title }}"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-    <div class="blog-entry__thumbnail--placeholder">&#128444;</div>
+    <div class="blog-card__image--placeholder">&#128444;</div>
   </div>
-  <div class="blog-entry__body">
-    <a class="blog-entry__title" href="{{ _post.url | relative_url }}">{{ _post.title }}</a>
-    <div class="blog-entry__meta">
-      <span class="blog-entry__date">{{ _post.date | date: "%B %-d, %Y" }}</span>
+  <div class="blog-card__body">
+    <a class="blog-card__title" href="{{ _post.url | relative_url }}">{{ _post.title }}</a>
+    <div class="blog-card__meta">
+      <span class="blog-card__date">{{ _post.date | date: "%B %-d, %Y" }}</span>
       {% for _cat in _post.categories %}
-        <span class="blog-entry__category">{{ _cat }}</span>
+        <span class="blog-card__category">{{ _cat }}</span>
       {% endfor %}
     </div>
-    <p class="blog-entry__preview">{{ _preview }}</p>
+    <p class="blog-card__preview">{{ _preview }}</p>
   </div>
 </div>
