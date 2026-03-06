@@ -214,18 +214,6 @@ body.dark-theme {
   margin-top: 0.6rem;
 }
 
-/* ---------- Match .page content width to .archive ----------
-   layout: single (.page) adds suffix(2 of 12) ≈ 16.6% right margin at $large,
-   making about/single pages narrower than archive pages.
-   Remove that margin so all pages share the same content width.
-   $large = 925px in this theme.
-   ---------------------------------------------------------- */
-@media screen and (min-width: 925px) {
-  .page {
-    margin-right: 0 !important;
-  }
-}
-
 /* ---------- Mobile ---------- */
 @media (max-width: 900px) {
   .section-cards { grid-template-columns: 1fr; }
