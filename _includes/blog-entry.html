@@ -21,11 +21,13 @@
 {% endif %}
 
 <div class="blog-entry">
-  <img class="blog-entry__thumbnail"
-       src="{{ _thumb }}"
-       alt="{{ _post.title }}"
-       onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-  <div class="blog-entry__thumbnail--placeholder">&#128444;</div>
+  <div class="blog-entry__thumbnail-wrap">
+    <img class="blog-entry__thumbnail"
+         src="{{ _thumb }}"
+         alt="{{ _post.title }}"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="blog-entry__thumbnail--placeholder">&#128444;</div>
+  </div>
   <div class="blog-entry__body">
     <a class="blog-entry__title" href="{{ _post.url | relative_url }}">{{ _post.title }}</a>
     <div class="blog-entry__meta">

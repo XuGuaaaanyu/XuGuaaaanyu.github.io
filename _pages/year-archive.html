@@ -53,18 +53,25 @@ author_profile: true
   box-shadow: var(--gx-shadow-hover, 0 4px 14px rgba(0,0,0,0.12));
 }
 
-.blog-entry__thumbnail {
+.blog-entry__thumbnail-wrap {
   width: 120px;
   min-width: 120px;
-  height: 120px;
+  align-self: stretch;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.blog-entry__thumbnail {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
 
 .blog-entry__thumbnail--placeholder {
-  width: 120px;
-  min-width: 120px;
-  height: 120px;
+  width: 100%;
+  height: 100%;
+  min-height: 80px;
   background: var(--gx-pill-bg, rgba(0,0,0,0.04));
   display: none;
   align-items: center;
