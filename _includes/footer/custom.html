@@ -21,18 +21,26 @@
 <script data-goatcounter="https://{{ site.goatcounter.code }}.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 <script>
-(function() {
+window.addEventListener('load', function() {
   var el = document.getElementById('view-counter');
   if (!el) return;
   var code = '{{ site.goatcounter.code }}';
   var path = encodeURIComponent(window.location.pathname);
-  fetch('https://' + code + '.goatcounter.com/counter/' + path + '.json')
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      el.textContent = 'Total views: ' + data.count + ', Unique views: ' + data.count_unique;
-    })
-    .catch(function() { el.textContent = ''; });
-})();
+  // Small delay to let GoatCounter record the current visit first
+  setTimeout(function() {
+    fetch('https://' + code + '.goatcounter.com/counter/' + path + '.json')
+      .then(function(r) {
+        if (!r.ok) throw new Error('No data');
+        return r.json();
+      })
+      .then(function(data) {
+        el.textContent = 'Total views: ' + data.count + ', Unique views: ' + data.count_unique;
+      })
+      .catch(function() {
+        el.textContent = 'Total views: 0, Unique views: 0';
+      });
+  }, 1500);
+});
 </script>
 {% endif %}
 
