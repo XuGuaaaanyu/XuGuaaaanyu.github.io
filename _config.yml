@@ -152,6 +152,11 @@ analytics:
   google:
     tracking_id          :
 
+# GoatCounter - free view counter (https://www.goatcounter.com)
+# Sign up and replace with your site code (e.g. "mysite" for mysite.goatcounter.com)
+goatcounter:
+  code                   : "xuguaaaanyu"
+
 
 # Reading Files
 include:

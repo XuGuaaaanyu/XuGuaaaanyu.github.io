@@ -16,4 +16,24 @@
     await mermaid.run({querySelector:'code.language-mermaid'});
 </script>
 
+<!-- GoatCounter view tracking and counter display -->
+{% if site.goatcounter.code != "" %}
+<script data-goatcounter="https://{{ site.goatcounter.code }}.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<script>
+(function() {
+  var el = document.getElementById('view-counter');
+  if (!el) return;
+  var code = '{{ site.goatcounter.code }}';
+  var path = encodeURIComponent(window.location.pathname);
+  fetch('https://' + code + '.goatcounter.com/counter/' + path + '.json')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      el.textContent = 'Total views: ' + data.count + ', Unique views: ' + data.count_unique;
+    })
+    .catch(function() { el.textContent = ''; });
+})();
+</script>
+{% endif %}
+
 <!-- end custom footer snippets -->
