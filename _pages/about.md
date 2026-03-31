@@ -95,7 +95,7 @@ projects:
 ---
 Hi I'm Guanyu Xu, an undergraduate student pursuing dual degrees in Computer Engineering at the **University of Michigan** and Mechanical Engineering at **Shanghai Jiao Tong University**. Currently, I work as a research assistant at [Hybrid Dynamic Robotics Lab](https://soft.robotics.umich.edu/) directed by Prof. [Xiaonan Huang](https://scholar.google.com/citations?user=MNKU_WcAAAAJ&hl=en-US). 
 
-My research primarily focus on **embodied intelligence and robotics**, with the overarching goal of enabling robots to perceive and interact with the physical world in a natural and safe manner. I am particularly interested in leveraging foundation models to explore **scalable action tokenization**. My prior work is grounded in **full-stack robotic systems**, encompassing the expertise in mechanical design and smart manufacturing, embedded and real-time systems, and close-loop sensorimotor control.
+My research interest primarily focuses on **embodied intelligence and robotics**, with the long-term goal of enabling robots to perform diverse tasks in unstructured human environments. I am particularly interested in unifying robotic foundation models with simulation-based RL to enable agile, generalizable robotic behaviors in the real world. My prior work is grounded in **full-stack robotic systems**, encompassing expertise in mechanical design and smart manufacturing, embedded and real-time systems, and closed-loop sensorimotor control.
 
 ## Research Projects
 {% include project_list.html projects=page.projects.research kind="research" %}
