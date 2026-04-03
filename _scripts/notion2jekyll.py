@@ -57,6 +57,12 @@ KATEX_CSS = (
 )
 
 BLOG_DIR = Path("blog")
+PRISM_ASSET_RE = re.compile(
+    r'\s*(?:<script[^>]*src="https://cdnjs\.cloudflare\.com/ajax/libs/prism/[^"]+"[^>]*>\s*</script>'
+    r'|<link[^>]*href="https://cdnjs\.cloudflare\.com/ajax/libs/prism/[^"]+"[^>]*/?>)\s*',
+    flags=re.IGNORECASE,
+)
+FRONT_MATTER_RE = re.compile(r"^(---\n.*?\n---\n)", flags=re.DOTALL)
 
 
 # ---------------------------------------------------------------------------
@@ -119,6 +125,66 @@ def build_front_matter(
     return "\n".join(lines) + "\n"
 
 
+def split_front_matter(text: str) -> tuple[str, str]:
+    """Return (front_matter, remainder) if a Jekyll front matter block exists."""
+    match = FRONT_MATTER_RE.match(text)
+    if not match:
+        return "", text
+    return match.group(1), text[match.end():]
+
+
+def normalize_notion_code_blocks(fragment: str) -> str:
+    """Normalize Notion-exported code blocks for the site CSS/JS pipeline."""
+    fragment = PRISM_ASSET_RE.sub("", fragment)
+
+    # Prism language classes are conventionally lowercase.
+    fragment = re.sub(
+        r"language-([A-Za-z0-9_+-]+)",
+        lambda m: f"language-{m.group(1).lower()}",
+        fragment,
+    )
+
+    # Remove Notion's wrapping styles so code can scroll horizontally again.
+    def strip_code_style(match: re.Match) -> str:
+        prefix = match.group(1)
+        style = match.group(2)
+        declarations = []
+        for declaration in style.split(";"):
+            declaration = declaration.strip()
+            if not declaration:
+                continue
+            prop = declaration.split(":", 1)[0].strip().lower()
+            if prop in {"white-space", "word-break", "overflow-wrap"}:
+                continue
+            declarations.append(declaration)
+        if declarations:
+            return f'{prefix} style="{";".join(declarations)}"'
+        return prefix
+
+    fragment = re.sub(
+        r'(<code\b[^>]*?)\sstyle="([^"]*)"',
+        strip_code_style,
+        fragment,
+        flags=re.IGNORECASE,
+    )
+
+    # Surface the language on the <pre> so CSS can render a small IDE-style label.
+    def add_language_attr(match: re.Match) -> str:
+        pre_open = match.group(1)
+        if "data-language=" in pre_open:
+            return match.group(0)
+        return f'{pre_open} data-language="{match.group(4).lower()}"{match.group(2)}{match.group(3)}'
+
+    fragment = re.sub(
+        r'(<pre\b[^>]*\bclass="[^"]*\bcode\b[^"]*"[^>]*)(>)(\s*<code\b[^>]*\bclass="[^"]*language-([a-z0-9_+-]+)[^"]*"[^>]*>)',
+        add_language_attr,
+        fragment,
+        flags=re.IGNORECASE,
+    )
+
+    return fragment
+
+
 # ---------------------------------------------------------------------------
 # Image path rewriting
 # ---------------------------------------------------------------------------
@@ -171,25 +237,25 @@ def process(path: str, date: str = "", categories: list = None) -> None:
     if categories is None:
         categories = []
 
-    src = Path(path).read_text(encoding="utf-8")
-
-    # Already processed — nothing to do if no front matter is requested.
-    if "<html" not in src and "<body" not in src:
-        if not date:
-            print(f"  (already processed, skipping): {path}")
-            return
-        # If front matter was requested but file is already processed,
-        # we still need to (re)add front matter and rename.
+    src_path = Path(path)
+    src = src_path.read_text(encoding="utf-8")
+    existing_front_matter, src_body = split_front_matter(src)
 
     cover_image = ""
 
-    if "<html" in src or "<body" in src:
+    if "<html" in src_body or "<body" in src_body:
         # ── 1. Remove the main Notion <style>…</style> block ──────────────────
         # It's the first (and largest) <style> tag; everything else is @import katex.
-        src = re.sub(r"<style>(?!@import).*?</style>", "", src, count=1, flags=re.DOTALL)
+        src_body = re.sub(
+            r"<style>(?!@import).*?</style>",
+            "",
+            src_body,
+            count=1,
+            flags=re.DOTALL,
+        )
 
         # ── 2. Extract <body> content ──────────────────────────────────────────
-        m = re.search(r"<body>(.*)</body>", src, re.DOTALL)
+        m = re.search(r"<body>(.*)</body>", src_body, re.DOTALL)
         if not m:
             sys.exit(f"ERROR: no <body> found in {path} — is this a Notion export?")
         body = m.group(1).strip()
@@ -214,15 +280,18 @@ def process(path: str, date: str = "", categories: list = None) -> None:
         )
 
         # ── 7. Rewrite relative image paths to /blog/... absolute paths ────────
-        body, cover_image = rewrite_image_paths(body, Path(path))
+        body, cover_image = rewrite_image_paths(body, src_path)
 
-        # ── 8. Wrap in scoped container ────────────────────────────────────────
+        # ── 8. Normalize code blocks after the HTML cleanup ───────────────────
+        body = normalize_notion_code_blocks(body)
+
+        # ── 9. Wrap in scoped container ────────────────────────────────────────
         content = KATEX_CSS + '<div class="notion-content">\n' + body.strip() + "\n</div>\n"
     else:
-        # Already cleaned — use as-is (strip any existing front matter for re-wrapping)
-        content = re.sub(r"^---\n.*?\n---\n", "", src, count=1, flags=re.DOTALL)
+        # Already cleaned — preserve front matter, but still normalize the HTML.
+        content = normalize_notion_code_blocks(src_body)
 
-    # ── 9. Optionally prepend Jekyll front matter and rename ───────────────────
+    # ── 10. Optionally prepend Jekyll front matter and rename ──────────────────
     if date:
         stem = Path(path).stem
         title = extract_title(stem)
@@ -235,7 +304,7 @@ def process(path: str, date: str = "", categories: list = None) -> None:
         )
         output = front_matter + content
 
-        out_path = Path(path).parent / f"{date}-{slug}.html"
+        out_path = src_path.parent / f"{date}-{slug}.html"
         out_path.write_text(output, encoding="utf-8")
         print(f"  Written:  {out_path}")
         print(f"  Title:    {title}")
@@ -248,11 +317,15 @@ def process(path: str, date: str = "", categories: list = None) -> None:
             print(f"  Cover:    (none — no embedded figures found)")
 
         # Remove original if it was renamed
-        if out_path.resolve() != Path(path).resolve():
-            Path(path).unlink()
+        if out_path.resolve() != src_path.resolve():
+            src_path.unlink()
             print(f"  Removed original: {path}")
     else:
-        Path(path).write_text(content, encoding="utf-8")
+        output = existing_front_matter + content
+        if output == src:
+            print(f"  (already processed, skipping): {path}")
+            return
+        src_path.write_text(output, encoding="utf-8")
         print(f"  Cleaned: {path}")
 
 
