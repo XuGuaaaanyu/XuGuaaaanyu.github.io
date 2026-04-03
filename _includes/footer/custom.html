@@ -21,7 +21,7 @@
 <script data-goatcounter="https://{{ site.goatcounter.code }}.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+function initVisitCounter() {
   var el = document.getElementById('view-counter');
   if (!el) return;
   el.textContent = 'Loading visits...';
@@ -58,7 +58,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, 1500);
   }, 100);
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initVisitCounter);
+} else {
+  initVisitCounter();
+}
 </script>
 {% endif %}
 
