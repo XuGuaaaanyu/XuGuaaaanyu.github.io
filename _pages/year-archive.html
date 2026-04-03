@@ -3,9 +3,18 @@ layout: archive
 permalink: /year-archive/
 title: "Blog"
 author_profile: true
+intro: "This is a collection of my learning notes. I find it helpful to write everything down to confirm my understanding, but they are mostly pedantic and boring. If you feel difficult to fall asleep, feel free to read through them."
 ---
 
 <style>
+.blog-intro {
+  margin: 0.4rem 0 1.1rem;
+  max-width: 48rem;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  opacity: 0.8;
+}
+
 .blog-controls {
   display: flex;
   gap: 0.5rem;
@@ -125,6 +134,10 @@ author_profile: true
   display: block;
 }
 </style>
+
+{% if page.intro %}
+  <p class="blog-intro">{{ page.intro }}</p>
+{% endif %}
 
 <div class="blog-controls">
   <button class="blog-view-btn active" onclick="blogShowView('year', this)">By Year</button>
