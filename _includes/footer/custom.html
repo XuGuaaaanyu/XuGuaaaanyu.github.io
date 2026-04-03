@@ -39,8 +39,6 @@ function initVisitCounter() {
     }
 
     clearInterval(poll);
-
-    // Wait a bit so GoatCounter has time to record the current visit.
     setTimeout(function() {
       var path = window.goatcounter.get_data()['p'];
       var url = 'https://' + code + '.goatcounter.com/counter/' + encodeURIComponent(path) + '.json';
