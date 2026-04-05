@@ -22,18 +22,21 @@
 {% assign _thumb = '' %}
 {% if _post.cover_image %}
   {% assign _thumb = _post.cover_image %}
-{% elsif _post.image_dir %}
-  {% assign _img_prefix = '/blog/' | append: _post.image_dir | append: '/' %}
+{% else %}
+  {% assign _title_dir = '/blog/' | append: _post.title | append: '/' %}
+  {% assign _title_names = '' | split: '' %}
   {% for _sf in site.static_files %}
-    {% if _thumb == '' %}
-      {% if _sf.path contains _img_prefix %}
-        {% assign _ext = _sf.extname | downcase %}
-        {% if _ext == '.png' or _ext == '.jpg' or _ext == '.jpeg' or _ext == '.gif' or _ext == '.webp' %}
-          {% assign _thumb = _sf.path %}
-        {% endif %}
+    {% if _sf.path contains _title_dir %}
+      {% assign _ext = _sf.extname | downcase %}
+      {% if _ext == '.png' or _ext == '.jpg' or _ext == '.jpeg' or _ext == '.gif' or _ext == '.webp' %}
+        {% assign _title_names = _title_names | push: _sf.name %}
       {% endif %}
     {% endif %}
   {% endfor %}
+  {% assign _title_names = _title_names | sort %}
+  {% if _title_names.size > 0 %}
+    {% assign _thumb = _title_dir | append: _title_names[0] %}
+  {% endif %}
 {% endif %}
 
 <div class="blog-entry">

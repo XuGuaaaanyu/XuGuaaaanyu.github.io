@@ -3,7 +3,7 @@ _site/
 .sass-cache/
 
 # Ignore the directory for local files during development
-local/
+.local/
 
 # Ignore the Gemfile that is generated
 Gemfile.lock
@@ -21,3 +21,6 @@ package-lock.json
 
 */.DS_Store
 .DS_Store
+
+.gem-bin/
+.gem-home/
