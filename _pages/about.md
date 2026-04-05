@@ -97,7 +97,7 @@ Hi I'm Guanyu Xu, an undergraduate student pursuing dual degrees in Computer Eng
 
 My research interest primarily focuses on **embodied intelligence and robotics**. I am particularly interested in combining robotic foundation models with simulation-based RL to enable agile, generalizable robotic behaviors in the real world. My prior work is grounded in **full-stack robotic systems**, with expertise in mechanical design and smart manufacturing, embedded and real-time systems, and closed-loop sensorimotor control.
 
-In addition to research, I maintain a **[portfolio]**({{ '/portfolio/' | relative_url }})of course projects that reflects hands-on experience. I also occasionaly update my learning notes in the **[blog]**({{ '/year-archive/' | relative_url }}). Feel free to check those if you are interested. 
+In addition to research, I maintain a [**portfolio**](https://xuguaaaanyu.github.io/portfolio/) of course projects that reflects hands-on experience. I also occasionaly update my learning notes in the [**blog**](https://xuguaaaanyu.github.io/year-archive/). Feel free to check those if you are interested. 
 
 ## Research Projects
 {% include project_list.html projects=page.projects.research kind="research" %}
