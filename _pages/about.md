@@ -78,24 +78,26 @@ projects:
           icon: "fab fa-youtube"
           new_tab: true
     
-    - title: "Rover with Transformable Wheels"
-      url: /portfolio/03.Wheel/
-      image: /images/wheel/teaser.png
-      alt: "Transformable Wheel teaser"
-      authors: ["Guanyu Xu", "Jiawen Li", "Yimin Wang", "Haobo Fang"]
-      desc: "A rover equipped with transformable wheels for cluttered terrain navigation."
-      date: "Summer 2024"
-      venue: "ME3500J: Design and Manufacturing (SJTU)"
-      tags:
-        - label: "Report"
-          href: /files/Wheel/report.pdf
-          icon: "fas fa-file-pdf"
-          new_tab: true
+    # - title: "Rover with Transformable Wheels"
+    #   url: /portfolio/03.Wheel/
+    #   image: /images/wheel/teaser.png
+    #   alt: "Transformable Wheel teaser"
+    #   authors: ["Guanyu Xu", "Jiawen Li", "Yimin Wang", "Haobo Fang"]
+    #   desc: "A rover equipped with transformable wheels for cluttered terrain navigation."
+    #   date: "Summer 2024"
+    #   venue: "ME3500J: Design and Manufacturing (SJTU)"
+    #   tags:
+    #     - label: "Report"
+    #       href: /files/Wheel/report.pdf
+    #       icon: "fas fa-file-pdf"
+    #       new_tab: true
     
 ---
 Hi I'm Guanyu Xu, an undergraduate student pursuing dual degrees in Computer Engineering at the **University of Michigan** and Mechanical Engineering at **Shanghai Jiao Tong University**. Currently, I work as a research assistant at [Hybrid Dynamic Robotics Lab](https://soft.robotics.umich.edu/) directed by Prof. [Xiaonan Huang](https://scholar.google.com/citations?user=MNKU_WcAAAAJ&hl=en-US). 
 
-My research interest primarily focuses on **embodied intelligence and robotics**, with the long-term goal of enabling robots to perform diverse tasks in unstructured human environments. I am particularly interested in unifying robotic foundation models with simulation-based RL to enable agile, generalizable robotic behaviors in the real world. My prior work is grounded in **full-stack robotic systems**, encompassing expertise in mechanical design and smart manufacturing, embedded and real-time systems, and closed-loop sensorimotor control.
+My research interest primarily focuses on **embodied intelligence and robotics**. I am particularly interested in combining robotic foundation models with simulation-based RL to enable agile, generalizable robotic behaviors in the real world. My prior work is grounded in **full-stack robotic systems**, with expertise in mechanical design and smart manufacturing, embedded and real-time systems, and closed-loop sensorimotor control.
+
+In addition to research, I maintain a **[portfolio]**({{ '/portfolio/' | relative_url }})of course projects that reflects hands-on experience. I also occasionaly update my learning notes in the **[blog]**({{ '/year-archive/' | relative_url }}). Feel free to check those if you are interested. 
 
 ## Research Projects
 {% include project_list.html projects=page.projects.research kind="research" %}
