@@ -23,7 +23,7 @@
 {% if _post.cover_image %}
   {% assign _thumb = _post.cover_image %}
 {% else %}
-  {% assign _title_dir = '/blog/' | append: _post.title | append: '/' %}
+  {% assign _title_dir = '/nerd/' | append: _post.title | append: '/' %}
   {% assign _title_names = '' | split: '' %}
   {% for _sf in site.static_files %}
     {% if _sf.path contains _title_dir %}

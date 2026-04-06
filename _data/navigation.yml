@@ -14,8 +14,8 @@ main:
   - title: "Portfolio"
     url: /portfolio/
 
-  - title: "Blog"
-    url: /year-archive/
+  - title: "Nerd"
+    url: /nerd/
 
   - title: "CV"
     url: /resume/main.pdf

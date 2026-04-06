@@ -24,7 +24,7 @@
 {% if _post.cover_image %}
   {% assign _thumb = _post.cover_image %}
 {% elsif _post.image_dir %}
-  {% assign _img_prefix = '/blog/' | append: _post.image_dir | append: '/' %}
+  {% assign _img_prefix = '/nerd/' | append: _post.image_dir | append: '/' %}
   {% for _sf in site.static_files %}
     {% if _thumb == '' %}
       {% if _sf.path contains _img_prefix %}

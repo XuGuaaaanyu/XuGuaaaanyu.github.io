@@ -32,7 +32,7 @@ The output is wrapped in <div class="notion-content"> so the SCSS in
 _sass/_notion.scss can style Notion-specific elements without leaking.
 
 Image handling:
-  - Relative src="..." paths are rewritten to absolute /blog/... paths
+  - Relative src="..." paths are rewritten to absolute /nerd/... paths
   - Image directories sibling to the content file are copied to blog/
 
 Front matter (when --date is given):
@@ -56,7 +56,7 @@ KATEX_CSS = (
     ' crossorigin="anonymous">\n'
 )
 
-BLOG_DIR = Path("blog")
+BLOG_DIR = Path("nerd")
 PRISM_ASSET_RE = re.compile(
     r'\s*(?:<script[^>]*src="https://cdnjs\.cloudflare\.com/ajax/libs/prism/[^"]+"[^>]*>\s*</script>'
     r'|<link[^>]*href="https://cdnjs\.cloudflare\.com/ajax/libs/prism/[^"]+"[^>]*/?>)\s*',
@@ -190,10 +190,10 @@ def normalize_notion_code_blocks(fragment: str) -> str:
 # ---------------------------------------------------------------------------
 
 def rewrite_image_paths(body: str, content_file: Path) -> tuple:
-    """Rewrite relative src="..." to absolute /blog/... and copy image dirs.
+    """Rewrite relative src="..." to absolute /nerd/... and copy image dirs.
 
     Returns (rewritten_body, first_local_image_url).
-    first_local_image_url is the /blog/... URL of the first embedded image,
+    first_local_image_url is the /nerd/... URL of the first embedded image,
     or "" if the post contains no local images.
     """
     src_pattern = re.compile(r'src="(?!https?://)([^"]+)"')
@@ -220,7 +220,7 @@ def rewrite_image_paths(body: str, content_file: Path) -> tuple:
                         shutil.copy2(item, dst / item.name)
             copied.add(top_dir)
 
-        abs_url = f"/blog/{rel_path}"
+        abs_url = f"/nerd/{rel_path}"
         if not first_img:
             first_img.append(abs_url)
         return f'src="{abs_url}"'
@@ -279,7 +279,7 @@ def process(path: str, date: str = "", categories: list = None) -> None:
             body,
         )
 
-        # ── 7. Rewrite relative image paths to /blog/... absolute paths ────────
+        # ── 7. Rewrite relative image paths to /nerd/... absolute paths ────────
         body, cover_image = rewrite_image_paths(body, src_path)
 
         # ── 8. Normalize code blocks after the HTML cleanup ───────────────────
@@ -296,7 +296,7 @@ def process(path: str, date: str = "", categories: list = None) -> None:
         stem = Path(path).stem
         title = extract_title(stem)
         slug = slugify(title)
-        permalink = f"/blog/{slug}.html"
+        permalink = f"/nerd/{slug}.html"
         image_dir = title  # matches the Notion image folder name (without UUID)
 
         front_matter = build_front_matter(
