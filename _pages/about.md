@@ -21,7 +21,7 @@ projects:
           icon: "fas fa-file-pdf"
           new_tab: true
         - label: "Code"
-          href: "https://github.com/GuanyuXu04/ShapeNet"
+          href: "https://github.com/GuanyuXu04/Lumos"
           icon: "fab fa-github"
           new_tab: true
         - label: "Video"
