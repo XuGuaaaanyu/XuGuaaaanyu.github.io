@@ -1,30 +1,28 @@
 /* ==========================================================================
-   Global serif font
+   Serif font — scoped to "Nerd" posts only (layout: blog-post)
+   Everything else keeps the theme default sans-serif font.
    ========================================================================== */
 
-body,
-.page__content,
-.notion-content,
-.archive__item-title,
-.page__title,
-.blog-entry__title,
-.blog-entry__preview,
-.masthead__menu-item,
-.author__name,
-.nav__title {
-  font-family: Georgia, "Times New Roman", Times, serif;
-}
-
-/* Keep monospace for code */
-code, pre, .highlight, kbd, samp {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-}
-
-/* Headings inside post content use serif (override global $header-font-family: $sans-serif) */
-.page__content,
-.notion-content {
-  h1, h2, h3, h4, h5, h6 {
+.layout--blog-post {
+  &,
+  .page__content,
+  .notion-content,
+  .page__title {
     font-family: Georgia, "Times New Roman", Times, serif;
+  }
+
+  /* Headings inside post content use serif
+     (override global $header-font-family: $sans-serif) */
+  .page__content,
+  .notion-content {
+    h1, h2, h3, h4, h5, h6 {
+      font-family: Georgia, "Times New Roman", Times, serif;
+    }
+  }
+
+  /* Keep monospace for code */
+  code, pre, .highlight, kbd, samp {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   }
 }
 
