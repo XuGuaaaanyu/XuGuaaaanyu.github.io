@@ -7,31 +7,7 @@ redirect_from:
   - /about.html
 projects:
   course:
-    - title: "INSIGHT: Smart Assistive Glass"
-      url: /portfolio/01.SmartGlass/
-      image: /images/glass/teaser.png
-      alt: "Smart Glass teaser"
-      authors: ["Guanyu Xu", "Haobo Fang", "Ruopu Dong", "Yizhe Shen", "Zhuoyang Chen", "Jinlin Li"]
-      desc: "In-device navigation and scene interpretation glasses for low-vision users."
-      date: "Fall 2025"
-      venue: "EECS 473: Advanced Embedded Systems (UM)"
-      tags:
-        - label: "Poster"
-          href: /files/SmartGlass/poster.pdf
-          icon: "fas fa-file-pdf"
-          new_tab: true
-        - label: "Report"
-          href: /files/SmartGlass/report.pdf
-          icon: "fas fa-file-pdf"
-          new_tab: true
-        - label: "Code"
-          href: "https://github.com/GuanyuXu04/Smart_Glass"
-          icon: "fab fa-github"
-          new_tab: true
-        - label: "Video"
-          href: "https://www.youtube.com/watch?v=iU_iTmCLjYo"
-          icon: "fab fa-youtube"
-          new_tab: true
+    
     
     - title: "Proprioceptive Membrane for 3D Shape Reconstruction"
       url: /research/optical-sensor/
@@ -56,6 +32,32 @@ projects:
           new_tab: true
         - label: "Video"
           href: "https://www.youtube.com/watch?v=h68orwc2Z1U"
+          icon: "fab fa-youtube"
+          new_tab: true
+    
+    - title: "INSIGHT: Smart Assistive Glass"
+      url: /portfolio/01.SmartGlass/
+      image: /images/glass/teaser.png
+      alt: "Smart Glass teaser"
+      authors: ["Guanyu Xu", "Haobo Fang", "Ruopu Dong", "Yizhe Shen", "Zhuoyang Chen", "Jinlin Li"]
+      desc: "In-device navigation and scene interpretation glasses for low-vision users."
+      date: "Fall 2025"
+      venue: "EECS 473: Advanced Embedded Systems (UM)"
+      tags:
+        - label: "Poster"
+          href: /files/SmartGlass/poster.pdf
+          icon: "fas fa-file-pdf"
+          new_tab: true
+        - label: "Report"
+          href: /files/SmartGlass/report.pdf
+          icon: "fas fa-file-pdf"
+          new_tab: true
+        - label: "Code"
+          href: "https://github.com/GuanyuXu04/Smart_Glass"
+          icon: "fab fa-github"
+          new_tab: true
+        - label: "Video"
+          href: "https://www.youtube.com/watch?v=iU_iTmCLjYo"
           icon: "fab fa-youtube"
           new_tab: true
     
