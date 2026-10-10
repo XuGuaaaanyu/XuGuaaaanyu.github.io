@@ -32,24 +32,32 @@
 }
 </style>
 
+{% comment %}
+  Each entry is `ref` (path of a _research / _portfolio file) plus an optional `title` override.
+  Everything else on the card comes from that file's front matter:
+  header.teaser, links, authors, period, venue, excerpt.
+{% endcomment %}
 <div class="project-list">
   {% for p in include.projects %}
+    {% assign doc = site.documents | where: "relative_path", p.ref | first %}
+    {% unless doc %}{% continue %}{% endunless %}
+    {% assign p_title = p.title | default: doc.title %}
     <div class="project-card">
       <div class="project-teaser">
-        <img src="{{ p.image | relative_url }}" alt="{{ p.alt | escape }}">
+        <img src="{{ doc.header.teaser | relative_url }}" alt="{{ p_title | escape }}">
       </div>
 
       <div class="project-body">
         <div class="project-title">
-          <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+          <a href="{{ doc.url | relative_url }}">{{ p_title }}</a>
         </div>
 
-        {% if p.tags and p.tags.size > 0 %}
+        {% if doc.links and doc.links.size > 0 %}
           <div class="project-tags">
-            {% for t in p.tags %}
+            {% for t in doc.links %}
               <a class="tag"
-                 href="{% if t.href contains '://' %}{{ t.href }}{% else %}{{ t.href | relative_url }}{% endif %}"
-                 {% if t.new_tab %}target="_blank" rel="noopener"{% endif %}>
+                 href="{% if t.url contains '://' %}{{ t.url }}{% else %}{{ t.url | relative_url }}{% endif %}"
+                 target="_blank" rel="noopener">
                 {% if t.icon %}<i class="{{ t.icon }}" aria-hidden="true"></i>{% endif %}
                 <span>{{ t.label }}</span>
               </a>
@@ -57,23 +65,23 @@
           </div>
         {% endif %}
 
-        {% if p.authors and p.authors.size > 0 %}
+        {% if doc.authors and doc.authors.size > 0 %}
           <div class="project-authors">
-            {% for a in p.authors %}
+            {% for a in doc.authors %}
               {% if a == "Guanyu Xu" %}<strong>{{ a }}</strong>{% else %}{{ a }}{% endif %}{% unless forloop.last %}, {% endunless %}
             {% endfor %}
           </div>
         {% endif %}
 
         {% if include.kind == "research" or include.kind == "course" %}
-          {% if p.date or p.venue %}
+          {% if doc.period or doc.venue %}
             <div class="project-meta">
-              {% if p.date %}{{ p.date }}{% endif %}{% if p.date and p.venue %} — {% endif %}{% if p.venue %}{{ p.venue }}{% endif %}
+              {% if doc.period %}{{ doc.period }}{% endif %}{% if doc.period and doc.venue %} — {% endif %}{% if doc.venue %}{{ doc.venue }}{% endif %}
             </div>
           {% endif %}
         {% endif %}
 
-        <div class="project-desc">{{ p.desc }}</div>
+        <div class="project-desc">{{ doc.excerpt | strip_html | strip }}</div>
       </div>
     </div>
   {% endfor %}

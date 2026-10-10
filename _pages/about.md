@@ -6,90 +6,25 @@ redirect_from:
   - /about/
   - /about.html
 projects:
+  # List order = display order. Everything else (image, links, authors, period, venue, excerpt)
+  # is read from the `ref` file's front matter; `title` optionally overrides its title.
   course:
-    
-    
-    - title: "Proprioceptive Membrane for 3D Shape Reconstruction"
-      url: /research/optical-sensor/
-      image: /images/optical_sensor/cover.png
-      alt: "Optical Sensor teaser"
-      authors: ["Guanyu Xu", "Jiaqi Wang", "Dezhong Tong", "Xiaonan Huang"]
-      desc: "A soft, stretchable optical waveguide sensor with embedded LEDs and photodiodes for learning-based 3D deformation reconstruction."
-      date: "2026-01"
-      venue: "ArXiv Preprint"
-      tags:
-        - label: "Paper"
-          href: "/files/OpticalSensor/paper.pdf"
-          icon: "fas fa-file-pdf"
-          new_tab: true
-        - label: "Poster"
-          href: "/files/OpticalSensor/poster.pdf"
-          icon: "fas fa-file-pdf"
-          new_tab: true
-        - label: "Code"
-          href: "https://github.com/GuanyuXu04/Lumos"
-          icon: "fab fa-github"
-          new_tab: true
-        - label: "Video"
-          href: "https://www.youtube.com/watch?v=h68orwc2Z1U"
-          icon: "fab fa-youtube"
-          new_tab: true
-    
-    - title: "INSIGHT: Smart Assistive Glass"
-      url: /portfolio/01.SmartGlass/
-      image: /images/glass/teaser.png
-      alt: "Smart Glass teaser"
-      authors: ["Guanyu Xu", "Haobo Fang", "Ruopu Dong", "Yizhe Shen", "Zhuoyang Chen", "Jinlin Li"]
-      desc: "In-device navigation and scene interpretation glasses for low-vision users."
-      date: "Fall 2025"
-      venue: "EECS 473: Advanced Embedded Systems (UM)"
-      tags:
-        - label: "Poster"
-          href: /files/SmartGlass/poster.pdf
-          icon: "fas fa-file-pdf"
-          new_tab: true
-        - label: "Report"
-          href: /files/SmartGlass/report.pdf
-          icon: "fas fa-file-pdf"
-          new_tab: true
-        - label: "Code"
-          href: "https://github.com/GuanyuXu04/Smart_Glass"
-          icon: "fab fa-github"
-          new_tab: true
-        - label: "Video"
-          href: "https://www.youtube.com/watch?v=iU_iTmCLjYo"
-          icon: "fab fa-youtube"
-          new_tab: true
-    
-    - title: "Lumen Grid: Multi-Robot Parking Game"
-      url: /portfolio/02.LumenGrid/
-      image: /images/parking/teaser.png
-      alt: "Lumen Grid teaser"
-      authors: ["Guanyu Xu", "Haobo Fang", "Varun Agrawal", "Xiang Jiang"]
-      desc: "A competitive parking game using four Zumo robots on an LED-marked field."
-      date: "Winter 2025"
-      venue: "EECS 373: Introduction to Embedded System Design (UM)"
-      tags:
-        - label: "Poster"
-          href: /files/LumenGrid/poster.pdf
-          icon: "fas fa-file-pdf"
-          new_tab: true
-        - label: "Code"
-          href: "https://github.com/XuGuaaaanyu/Lumen_Grid"
-          icon: "fab fa-github"
-          new_tab: true
-        - label: "Video"
-          href: "https://www.youtube.com/watch?v=jwMOQGUDSMY"
-          icon: "fab fa-youtube"
-          new_tab: true
-    
-    
+    - ref: _research/01.OpticalSensor.md
+      title: "Proprioceptive Membrane for 3D Shape Reconstruction"
+    - ref: _portfolio/01.SmartGlass.md
+      title: "INSIGHT: Smart Assistive Glass"
+    - ref: _portfolio/02.LumenGrid.md
+      title: "Lumen Grid: Multi-Robot Parking Game"
 ---
 Hi I'm Guanyu Xu, an undergraduate student pursuing dual degrees in Computer Engineering at the **University of Michigan** and Mechanical Engineering at **Shanghai Jiao Tong University**.
 
 My research interest primarily focuses on **embodied intelligence and robotics**. I am particularly interested in combining robotic foundation models with simulation-based RL to enable agile, generalizable robotic behaviors in the real world. My prior work is grounded in **full-stack robotic systems**, with expertise in mechanical design and smart manufacturing, embedded and real-time systems, and closed-loop sensorimotor control.
 
-In addition to research, I maintain a [**portfolio**](https://xuguaaaanyu.github.io/portfolio/) of course projects that reflects my hands-on experience. I also occasionaly update my learning notes in the [**blog**](https://xuguaaaanyu.github.io/nerd/). Feel free to check those if you are interested. 
+In addition to research, I maintain a [**portfolio**](https://xuguaaaanyu.github.io/portfolio/) of course projects that reflects my hands-on experience. I also occasionaly update my learning notes in the [**blog**](https://xuguaaaanyu.github.io/nerd/).
+
+
+## News
+{% include news.html %}
 
 ## Selected Projects
 {% include project_list.html projects=page.projects.course kind="course" %}

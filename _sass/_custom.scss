@@ -242,6 +242,32 @@ body.dark-theme {
   margin-top: 0.6rem;
 }
 
+/* ---------- Homepage news ---------- */
+.news-list {
+  list-style: none;
+  margin: 0.5rem 0 1.5rem 0;
+  padding: 0;
+}
+
+.news-item {
+  display: flex;
+  gap: 1rem;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.55;
+}
+
+.news-date {
+  flex: 0 0 5.5rem;
+  font-weight: 700;
+  opacity: 0.8;
+  white-space: nowrap;
+}
+
+.news-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 /* ---------- Mobile ---------- */
 @media (max-width: 900px) {
   .section-cards { grid-template-columns: 1fr; }

@@ -1,0 +1,4 @@
+# Homepage news, newest first. `text` supports Markdown (links, **bold**, ...).
+# The homepage shows the first `news_limit` items (set in _includes/news.html).
+- date: "2026-09"
+  text: "I'll start as a Master's student in Robotics at the University of Pennsylvania."
