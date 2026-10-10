@@ -30,7 +30,7 @@
 \fancyfoot{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
-\geometry{margin=0.75in}
+\geometry{left=0.6in,right=0.6in,top=0.5in,bottom=0.5in}
 \setlength{\footskip}{5pt} % Addressing fancyhdr warning
 
 % Hyperlink setup (moved after fancyhdr to address warning)
@@ -70,6 +70,7 @@
 \titleformat{\section}{
   \vspace{-4pt}\scshape\raggedright\large
 }{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+\titlespacing*{\section}{0pt}{2.2ex}{1.6ex}
 
 % Custom commands
 \newcommand{\resumeItem}[2]{
@@ -169,7 +170,7 @@
     \mbox{\socialicon{\faPhone*} +1-734-330-1367} \hspace{0.8em}
     \mbox{\socialicon{\faEnvelope} \href{mailto:xuguanyu@engineering.upenn.edu}{xuguanyu@engineering.upenn.edu}} \hspace{0.8em}
     \mbox{\socialicon{\faHome} \href{https://xuguaaaanyu.github.io/}{Homepage}} \hspace{0.8em}
-    \mbox{\socialicon{\faGraduationCap} \href{https://scholar.google.com/citations?user=Rl5LyhoAAAAJ&hl=en&authuser=2}{Scholar}} \hspace{0.8em}
+    \mbox{\socialicon{\faGraduationCap} \href{https://scholar.google.com/citations?user=Rl5LyhoAAAAJ}{Scholar}} \hspace{0.8em}
     \mbox{\socialicon{\faLinkedin} \href{https://www.linkedin.com/in/guanyu-xu-7aa7b932a/}{LinkedIn}}\par
     }
     \vspace{1mm}
@@ -184,6 +185,7 @@
 %\end{center}
 %\vspace{-6mm}
     {\small Philadelphia, PA - 19104, United States\par}
+    {\small{Last updated: Oct 1, 2026}\par}
 }
 \vspace{1mm}
 
@@ -195,17 +197,20 @@
 {University of Pennsylvania}{Philadelphia, US}
 {M.S.E. in Robotics (Expected)}
 {}
-{Aug 2026 - May 2028}
+{Aug 2026 -- May 2028}
 
 \resumeSubheading
 {University of Michigan - Ann Arbor}{Ann Arbor, US}
 {B.S.E. in Computer Engineering}
-{\textbf{Major GPA}: 4.0/4.0}
-{Aug 2024 - May 2026}
+{}
+{Aug 2024 -- May 2026}
+\par\vspace{1.5mm}{\small\textbf{Coursework:} Advanced Embedded Systems (A), Computer Vision (A), Introduction to Machine Learning (A), Embedded Systems Design (A+), Introduction to Operating Systems (A-), Data Structures and Algorithms (A), Introduction to Computer Organization (A+), Embedded Control Systems (A+), Signals and Systems (A).\par}
 
 \resumeSubheading
 {Shanghai Jiao Tong University}{Shanghai, China}
-{B.E. in Mechanical Engineering}{\textbf{Major GPA}: 3.68/4.0}{Sep 2022 - Aug 2026}
+{B.E. in Mechanical Engineering}{}{Sep 2022 -- Aug 2026}
+\par\vspace{1.5mm}{\small\textbf{Coursework:} Digital Circuits and Logic Design (A), Introduction to Analog Circuits (A+), Programming and Data Structures (A).\par}
+\vspace{-2mm}
 \resumeSubHeadingListEnd
 
 % \section{\textbf{Research Interest}}
@@ -219,24 +224,24 @@
 \resumeProject
     {In-Hand Object Reorientation on a Dexterous Robotic Hand\projlinks{}{}}
     {\href{https://irmv.sjtu.edu.cn/}{\underline{The IRMV Lab}}, Shanghai Jiao Tong University}
-    {May. 2026 - Sep. 2026}
+    {May 2026 -- Sep 2026}
     {Advisor: Prof. Hesheng Wang}
 \vspace{2mm}
 \resumeItemListStart
-    \item \textbf{Led DexOrient}, a \textbf{proprioception-only} framework for \textbf{precise command-following in-hand reorientation} on a \textbf{16-DoF LEAP Hand}, with no vision or touch at deployment.
+    \item Developed a \textbf{proprioception-only} framework for \textbf{precise command-following in-hand reorientation} on a \textbf{16-DoF LEAP Hand}.
     \item Trained a \textbf{sim-to-real PPO policy in Isaac Lab} with domain randomization, reaching \textbf{100\% hardware success} given ground-truth rotation progress.
     \item Decoupled \textbf{rotation progress estimation} from \textbf{RMA-style object property adaptation}, raising hardware success from \textbf{44.0\% to 81.0\%}.
     \item Fine-tuned the estimator via \textbf{on-policy hardware DAgger} on its own closed-loop rollouts, raising success from \textbf{57.5\% to 81.0\%}.
     \item Robust to \textbf{unseen objects}, \textbf{mid-command mass changes}, and \textbf{external disturbances}.
+    \item \textbf{First-authored paper under review at ICRA 2027.}
     
 \resumeItemListEnd
-
 
 % Optical Sensor Project
 \resumeProject
     {Proprioceptive Membrane for 3D Shape Reconstruction\projlinks{https://www.youtube.com/watch?v=h68orwc2Z1U}{https://github.com/GuanyuXu04/PHAROS/}}
     {Project Lead $\cdot$ \href{https://soft.robotics.umich.edu/}{\underline{Hybrid Dynamic Robotics Lab}}, University of Michigan}
-    {Jun 2025 - Apr 2026}
+    {Jun 2025 -- Apr 2026}
     {Advisor: Prof. Xiaonan Huang}
 \vspace{2mm}
 \resumeItemListStart
@@ -248,11 +253,24 @@
     \item \textbf{First-authored paper under review at \textit{Advanced Robotics Research}.}
 \resumeItemListEnd
 
+% SSoN Benchmark Project
+\resumeProject
+    {Cross-View Spatial Consistency in VLMs}
+    {}
+    {Sep 2026}
+    {Advisor: Prof. Shilong Liu}
+\vspace{2mm}
+\resumeItemListStart
+    \item Benchmarked \textbf{17 CLIP, ViT, and DINOv2 encoders} as non-VLM baselines; appearance similarity scores only \textbf{16.9--21.7\%} (25\% chance), showing the task needs \textbf{spatial reasoning}.
+    \item \textbf{LoRA fine-tuned Qwen2.5-VL-7B}, raising test accuracy from \textbf{21.9\% to 41.8\%} with \textbf{rationale supervision} vs.\ 33.3\% answer-only.
+    \item \textbf{Manuscript under review at ICLR 2027.}
+\resumeItemListEnd
+
 % % Growing Robot Project
 % \resumeProject
 %     {Active Steering Control of Soft Growing Robot (Core contributor)}
 %     {Project Lead $\cdot$ \href{https://soft.robotics.umich.edu/}{\underline{Hybrid Dynamic Robotics Lab}}, University of Michigan}
-%     {Oct. 2024 - Mar. 2025}
+%     {Oct 2024 -- Mar 2025}
 %     {Instructor: Prof. Xiaonan Huang}
 % \vspace{2mm}
 % \resumeItemListStart
@@ -265,7 +283,7 @@
 % \resumeProject
 %     {Lunar Rover with Transformable Wheel (Project lead)}
 %     {School of Aeronautics and Astronautics, Shanghai Jiao Tong University}
-%     {Jan. 2023 - Oct. 2023}
+%     {Jan 2023 -- Oct 2023}
 %     {Instructor: Prof. Longquan Liu}
 % \vspace{2mm}
 % \resumeItemListStart
@@ -275,17 +293,15 @@
 % \resumeItemListEnd
 \resumeSubHeadingListEnd
 
-\section{\textbf{Publication \& Patents}}
+\section{\textbf{Publications}}
 \begingroup\small
 \begin{enumerate}[leftmargin=*, labelsep=0.5em, align=left, widest={[\textbf{S.1}]}, itemindent=0em, label={\textbf{[\arabic*]}]}]
 %\item[\textbf{[C.1]}] Your Name, et al. (Year). \href{https://doi.org/XX.XXXX/XXXXXXX.XXXX.XXXXXXX}{\textbf{Title of Conference Paper}}. In \textit{Name of Conference Proceedings}, pp. XX-XX. Publisher. Date, Location. DOI: XX.XXXX/XXXXXXX.XXXX.XXXXXXX
 
 %\item[\textbf{[S.1]}] Your Name, et al. (Year). \textbf{Title of Submitted Paper}. Manuscript submitted for publication in \textit{Journal Name}.
 
-\item[\textbf{[1]}] \textbf{\underline{Guanyu Xu}}, Jiaqi Wang, Dezhong Tong, and Xiaonan Huang, "Highly Deformable Proprioceptive Membrane for Real-Time 3D Shape Reconstruction", \textit{ArXiv.org. \href{https://arxiv.org/abs/2601.13574}{https://arxiv.org/abs/2601.13574}}, 2026. 
+\item[\textbf{[1]}] \textbf{\underline{Guanyu Xu}}, Jiaqi Wang, Dezhong Tong, and Xiaonan Huang, ``Highly Deformable Proprioceptive Membrane for Real-Time 3D Shape Reconstruction,'' \textit{arXiv preprint} \href{https://arxiv.org/abs/2601.13574}{arXiv:2601.13574}, 2026. 
 
-\item[\textbf{[2]}] \textbf{\underline{Guanyu Xu}} and Longquan Liu, "A Variable Radius Wheel", \textit{National Intellectual Property Office, Patent No. \href{http://epub.cnipa.gov.cn/cred/CN221698395U}{
-CN221698395U}}, 2024.
 %\item[\textbf{[J.1]}] Author 1, Your Name, Author 3, et al. (Year). \href{https://doi.org/XX.XXXX/XXXXX.XXXX.XXXXXXX}{\textbf{Title of Journal Article}}. \textit{Journal Name}, Vol. XX, Issue X, pp. XXX-XXX. DOI: XX.XXXX/XXXXX.XXXX.XXXXXXX
 \end{enumerate}
 \endgroup
@@ -296,7 +312,7 @@ CN221698395U}}, 2024.
 \resumeProject
   {INSIGHT: Smart Assistive Glass for Visually Impaired\projlinks{https://www.youtube.com/watch?v=iU_iTmCLjYo}{https://github.com/GuanyuXu04/Smart_Glass}}
   {Project Lead $\cdot$ \href{https://www.eecs.umich.edu/courses/eecs473/overview.html}{\underline{EECS 473: Advanced Embedded Systems}} (Capstone) Course Project}
-  {Aug. 2025 - Dec. 2025}
+  {Aug 2025 -- Dec 2025}
   {Instructor: Prof. Mark Brehob}
 \vspace{2mm}
 \resumeItemListStart
@@ -308,44 +324,42 @@ CN221698395U}}, 2024.
 \resumeItemListEnd
 
 % LuminGrid Project
-\resumeProject
-    {Lumen Grid: Multi-Robot Competitive Parking Game\projlinks{https://www.youtube.com/watch?v=jwMOQGUDSMY}{https://github.com/XuGuaaaanyu/Lumen_Grid}}
-    {Project Lead $\cdot$ \href{https://www.eecs.umich.edu/courses/eecs373/index.html}{\underline{EECS 373: Introduction to Embedded Systems Design}} Course Project}
-    {Feb. 2025 - Apr. 2025}
-    {Instructor: Prof. Junyi Zhu}
-\vspace{2mm}
-\resumeItemListStart
-    \item Built a \textbf{4-robot competitive game} from three \textbf{STM32} subsystems (gesture controller, Zumo robots, LED arena) linked over \textbf{Bluetooth, UART, SPI, and I2C}.
-    \item Designed an \textbf{IMU gesture controller} mapping hand pitch/roll to speed and steering, with \textbf{haptic speed feedback} and an emergency stop.
-    \item Implemented \textbf{vision-based multi-robot localization} by \textbf{porting the PixyCam library from Arduino to STM32}, tracking robots by color tags.
-    \item Wrote the arena \textbf{game engine}: random spot generation, real-time occupancy checking, SPI LED control, and scoring.
-\resumeItemListEnd
+% \resumeProject
+%     {Lumen Grid: Multi-Robot Competitive Parking Game\projlinks{https://www.youtube.com/watch?v=jwMOQGUDSMY}{https://github.com/XuGuaaaanyu/Lumen_Grid}}
+%     {Project Lead $\cdot$ \href{https://www.eecs.umich.edu/courses/eecs373/index.html}{\underline{EECS 373: Introduction to Embedded Systems Design}} Course Project}
+%     {Feb 2025 -- Apr 2025}
+%     {Instructor: Prof. Junyi Zhu}
+% \vspace{2mm}
+% \resumeItemListStart
+%     \item Built a \textbf{4-robot competitive game} from three \textbf{STM32} subsystems (gesture controller, Zumo robots, LED arena) linked over \textbf{Bluetooth, UART, SPI, and I2C}.
+%     \item Designed an \textbf{IMU gesture controller} mapping hand pitch/roll to speed and steering, with \textbf{haptic speed feedback} and an emergency stop.
+%     \item Implemented \textbf{vision-based multi-robot localization} by \textbf{porting the PixyCam library from Arduino to STM32}, tracking robots by color tags.
+%     \item Wrote the arena \textbf{game engine}: random spot generation, real-time occupancy checking, SPI LED control, and scoring.
+% \resumeItemListEnd
 \resumeSubHeadingListEnd
 
 \section{\textbf{Teaching \& Community Service Experience}}
 \vspace{-0.4mm}
 \resumeSubHeadingListStart
-  \resumeOneLine{Grader, EECS 370: Intro to Computer Organization, University of Michigan}{Sep. 2025 -- Dec. 2025}
-  \resumeOneLine{Volunteer, IEEE International Conference on Robotics and Automation, Atlanta}{May. 2025}
+  \resumeOneLine{Grader, EECS 370: Intro to Computer Organization, University of Michigan}{Sep 2025 -- Dec 2025}
+  \resumeOneLine{Volunteer, IEEE International Conference on Robotics and Automation, Atlanta}{May 2025}
 \resumeSubHeadingListEnd
 
 \section{\textbf{Honors \& Awards}}
 \vspace{-0.4mm}
 \resumeSubHeadingListStart
-  \resumeOneLine{University Honors, University of Michigan}{Dec. 2024 \& May 2025}
-  \resumeOneLine{Dean's List, University of Michigan}{Dec. 2024 \& May. 2025}
-  \resumeOneLine{Undergraduate Excellent Scholarship, Shanghai Jiao Tong University}{May 2023 \& Dec. 2023 \& May 2024}
+  \resumeOneLine{University Honors \& Dean's List, University of Michigan}{Dec 2024 \& May 2025}
+  \resumeOneLine{Undergraduate Excellent Scholarship, Shanghai Jiao Tong University}{May 2023 \& Dec 2023 \& May 2024}
 \resumeSubHeadingListEnd
 
 
 \section{\textbf{Skills}}
-\vspace{-0.4mm}
+\vspace{1.2mm}
 \resumeHeadingSkillStart
-  \resumeItem{Programming: }{C/C++, Python, MATLAB, Bash, CUDA C/C++.}
+  \resumeItem{Programming: }{C/C++, CUDA, Python, MATLAB, Bash.}
   \resumeItem{Machine Learning: }{PyTorch; reinforcement learning (PPO), sim-to-real transfer, point-cloud learning; YOLO, VLM edge deployment.}
   \resumeItem{Embedded Systems: }{STM32, ESP32; Raspberry Pi, Jetson Orin Nano; FreeRTOS.}
   \resumeItem{Simulation: }{Isaac Sim, Isaac Lab, MuJoCo.}
-  \resumeItem{Hardware Design: }{Altium Designer, EasyEDA, SolidWorks, AutoCAD.}
-  \resumeItem{Tools: }{Git, SSH, CMake, Vim.}
+  \resumeItem{Hardware \& Tools: }{Altium Designer, EasyEDA, SolidWorks, AutoCAD; Git, SSH, CMake, Vim.}
 \resumeHeadingSkillEnd
 \end{document}
