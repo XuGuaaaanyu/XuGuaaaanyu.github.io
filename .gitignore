@@ -24,3 +24,5 @@ package-lock.json
 
 .gem-bin/
 .gem-home/
+# Generated from _notion/ by _scripts/notion2jekyll.py --build
+_posts/notion/

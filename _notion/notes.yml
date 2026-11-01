@@ -1,0 +1,28 @@
+# One subfolder per note: copy the whole Notion export (the .html plus its
+# images) into _notion/<any-folder-name>/ unchanged. On push, CI converts it.
+#
+# Settings per note, keyed by that folder name. All fields optional:
+#   date:       YYYY-MM-DD   (default: date the export was first committed)
+#   categories: [Robotics, Mathematics]
+#   visible:    false        -> not rendered, not listed, images not published
+#                               (default: true)
+
+bayes-filtering:
+  date: 2026-03-04
+  categories: [Robotics]
+  visible: true
+
+lie-theory:
+  date: 2026-03-10
+  categories: [Robotics]
+  visible: true
+
+occupancy-grid-mapping:
+  date: 2026-03-22
+  categories: [Robotics]
+  visible: true
+
+optimization-part-1:
+  date: 2026-03-31
+  categories: [Mathematics]
+  visible: false

@@ -9,6 +9,11 @@ The file is modified IN-PLACE (or renamed if --date is given). Run this once
 after dropping a new Notion export.
 
 Usage:
+    # Build mode (what CI runs on every push): convert every raw export in
+    # _notion/ into _posts/notion/, reading date / categories / visible from the
+    # Notion property table and/or _notion/notes.yml. Hidden notes are skipped.
+    python3 _scripts/notion2jekyll.py --build _notion
+
     # Clean only (original behaviour):
     python3 _scripts/notion2jekyll.py _posts/my-post.html
 
@@ -44,10 +49,13 @@ Front matter (when --date is given):
 """
 
 import argparse
+import html as html_lib
 import re
 import shutil
+import subprocess
 import sys
 import urllib.parse
+from datetime import datetime
 from pathlib import Path
 
 KATEX_CSS = (
@@ -229,18 +237,46 @@ def rewrite_image_paths(body: str, content_file: Path) -> tuple:
     return new_body, (first_img[0] if first_img else "")
 
 
+LOCAL_LINK_RE = re.compile(r'(src|href)="(?![a-z][a-z0-9+.-]*:|#|/)([^"]+)"', flags=re.IGNORECASE)
+IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"}
+
+
+def publish_local_files(body: str, content_dir: Path, dest_name: str) -> tuple:
+    """Copy every locally referenced file to nerd/<dest_name>/ and rewrite links.
+
+    Works for both Notion export layouts: images next to the .html (current)
+    or inside a "<Page Title>/" subfolder (older). Returns (body, cover_image).
+    """
+    dest_dir = BLOG_DIR / dest_name
+    first_img: list = []
+
+    def rewrite(m: re.Match) -> str:
+        attr, rel_path = m.group(1), m.group(2)
+        rel_decoded = urllib.parse.unquote(rel_path)
+        src = content_dir / rel_decoded
+        if not src.is_file():
+            return m.group(0)
+        dst = dest_dir / src.name
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(src, dst)
+        url = f"/nerd/{urllib.parse.quote(dest_name)}/{urllib.parse.quote(src.name)}"
+        if not first_img and src.suffix.lower() in IMAGE_EXTS:
+            first_img.append(url)
+        return f'{attr}="{url}"'
+
+    return LOCAL_LINK_RE.sub(rewrite, body), (first_img[0] if first_img else "")
+
+
 # ---------------------------------------------------------------------------
 # Core processing
 # ---------------------------------------------------------------------------
 
-def process(path: str, date: str = "", categories: list = None) -> None:
-    if categories is None:
-        categories = []
+def clean_notion_html(src_body: str, src_path: Path, image_dir: str = "") -> tuple:
+    """Strip the Notion wrapper from a raw export. Returns (content, cover_image).
 
-    src_path = Path(path)
-    src = src_path.read_text(encoding="utf-8")
-    existing_front_matter, src_body = split_front_matter(src)
-
+    With image_dir, local files are published to nerd/<image_dir>/ (build mode);
+    otherwise the legacy "<Title>/" folder rewrite is used.
+    """
     cover_image = ""
 
     if "<html" in src_body or "<body" in src_body:
@@ -257,7 +293,7 @@ def process(path: str, date: str = "", categories: list = None) -> None:
         # ── 2. Extract <body> content ──────────────────────────────────────────
         m = re.search(r"<body>(.*)</body>", src_body, re.DOTALL)
         if not m:
-            sys.exit(f"ERROR: no <body> found in {path} — is this a Notion export?")
+            sys.exit(f"ERROR: no <body> found in {src_path} — is this a Notion export?")
         body = m.group(1).strip()
 
         # ── 3. Remove Notion page header (<header>…</header>) ─────────────────
@@ -280,7 +316,10 @@ def process(path: str, date: str = "", categories: list = None) -> None:
         )
 
         # ── 7. Rewrite relative image paths to /nerd/... absolute paths ────────
-        body, cover_image = rewrite_image_paths(body, src_path)
+        if image_dir:
+            body, cover_image = publish_local_files(body, src_path.parent, image_dir)
+        else:
+            body, cover_image = rewrite_image_paths(body, src_path)
 
         # ── 8. Normalize code blocks after the HTML cleanup ───────────────────
         body = normalize_notion_code_blocks(body)
@@ -290,6 +329,19 @@ def process(path: str, date: str = "", categories: list = None) -> None:
     else:
         # Already cleaned — preserve front matter, but still normalize the HTML.
         content = normalize_notion_code_blocks(src_body)
+
+    return content, cover_image
+
+
+def process(path: str, date: str = "", categories: list = None) -> None:
+    if categories is None:
+        categories = []
+
+    src_path = Path(path)
+    src = src_path.read_text(encoding="utf-8")
+    existing_front_matter, src_body = split_front_matter(src)
+
+    content, cover_image = clean_notion_html(src_body, src_path)
 
     # ── 10. Optionally prepend Jekyll front matter and rename ──────────────────
     if date:
@@ -330,6 +382,136 @@ def process(path: str, date: str = "", categories: list = None) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Build mode: convert every raw export in a drop folder (run by CI)
+# ---------------------------------------------------------------------------
+
+PROPERTY_ROW_RE = re.compile(
+    r'<tr class="property-row[^"]*">\s*<th>(.*?)</th>\s*<td>(.*?)</td>\s*</tr>',
+    flags=re.DOTALL,
+)
+DATE_PROPS = {"date", "日期"}
+CATEGORY_PROPS = {"categories", "category", "tags", "分类"}
+VISIBLE_PROPS = {"visible", "published", "可见"}
+
+
+def strip_tags(html: str) -> str:
+    return re.sub(r"<[^>]+>", "", html).strip()
+
+
+def parse_date(text: str) -> str:
+    """Return YYYY-MM-DD from a Notion date cell or a manifest value, or ""."""
+    text = str(text)
+    m = re.search(r"\d{4}-\d{2}-\d{2}", text)
+    if m:
+        return m.group(0)
+    m = re.search(r"\d{4}/\d{1,2}/\d{1,2}", text)
+    if m:
+        return datetime.strptime(m.group(0), "%Y/%m/%d").strftime("%Y-%m-%d")
+    m = re.search(r"([A-Z][a-z]+) (\d{1,2}), (\d{4})", text)
+    if m:
+        for fmt in ("%B %d, %Y", "%b %d, %Y"):
+            try:
+                return datetime.strptime(m.group(0), fmt).strftime("%Y-%m-%d")
+            except ValueError:
+                pass
+    return ""
+
+
+def read_notion_properties(html: str) -> dict:
+    """Read Date / Categories / Visible from a Notion database page's property table."""
+    props = {}
+    for th, td in PROPERTY_ROW_RE.findall(html):
+        name = strip_tags(th).lower()
+        if name in DATE_PROPS:
+            date = parse_date(strip_tags(td))
+            if date:
+                props["date"] = date
+        elif name in CATEGORY_PROPS:
+            values = re.findall(r'<span class="selected-value[^"]*">(.*?)</span>', td)
+            if not values:
+                values = strip_tags(td).split(",")
+            props["categories"] = [strip_tags(v) for v in values if strip_tags(v)]
+        elif name in VISIBLE_PROPS:
+            if "checkbox-on" in td:
+                props["visible"] = True
+            elif "checkbox-off" in td:
+                props["visible"] = False
+    return props
+
+
+def load_manifest(src_dir: Path) -> dict:
+    manifest = src_dir / "notes.yml"
+    if not manifest.exists():
+        return {}
+    try:
+        import yaml
+    except ImportError:
+        sys.exit("ERROR: PyYAML is required to read notes.yml (pip install pyyaml)")
+    return yaml.safe_load(manifest.read_text(encoding="utf-8")) or {}
+
+
+def git_added_date(path: Path) -> str:
+    """Date the file was first committed, so undated notes keep a stable date."""
+    try:
+        out = subprocess.run(
+            ["git", "log", "--diff-filter=A", "--format=%as", "--", str(path)],
+            capture_output=True, text=True, check=True,
+        ).stdout.split()
+        return out[-1] if out else ""
+    except (OSError, subprocess.CalledProcessError):
+        return ""
+
+
+def build(src_dir: str, out_dir: str) -> None:
+    src_root = Path(src_dir)
+    out_root = Path(out_dir)
+    manifest = load_manifest(src_root)
+
+    if out_root.exists():
+        shutil.rmtree(out_root)
+    out_root.mkdir(parents=True)
+
+    for src_path in sorted(src_root.rglob("*.html")):
+        raw = src_path.read_text(encoding="utf-8")
+        file_title = extract_title(src_path.stem)
+        m = re.search(r'<h1 class="page-title"[^>]*>(.*?)</h1>', raw, flags=re.DOTALL)
+        title = html_lib.unescape(strip_tags(m.group(1))) if m else file_title
+
+        keys = [title, file_title]
+        if src_path.parent != src_root:
+            keys.insert(0, src_path.parent.name)
+        entry = next((manifest[k] for k in keys if k in manifest), None)
+        if entry is None:
+            print(f"  WARNING:  no notes.yml entry for {keys[0]!r} — using defaults")
+
+        meta = {"visible": True, "categories": []}
+        meta.update(read_notion_properties(raw))
+        meta.update(entry or {})
+
+        if not meta["visible"]:
+            print(f"  Hidden:   {title}")
+            continue
+
+        date = (
+            parse_date(meta.get("date", ""))
+            or git_added_date(src_path)
+            or datetime.now().strftime("%Y-%m-%d")
+        )
+        categories = meta["categories"]
+        if isinstance(categories, str):
+            categories = [categories]
+
+        slug = slugify(title)
+        content, cover_image = clean_notion_html(raw, src_path, image_dir=slug)
+        front_matter = build_front_matter(
+            title.replace('"', '\\"'), date, categories, f"/nerd/{slug}.html", slug, cover_image
+        )
+        out_path = out_root / f"{date}-{slug}.html"
+        out_path.write_text(front_matter + content, encoding="utf-8")
+        print(f"  Built:    {out_path}  [{', '.join(categories)}]")
+
+
+# ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
 
@@ -339,7 +521,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "files",
-        nargs="+",
+        nargs="*",
         metavar="FILE",
         help="Path(s) to Notion-exported .html file(s) in _posts/",
     )
@@ -358,7 +540,25 @@ if __name__ == "__main__":
         help="Post category (repeatable, e.g. -c Mathematics -c Physics).",
     )
 
+    parser.add_argument(
+        "--build",
+        metavar="SRC_DIR",
+        help="Convert every raw Notion export in SRC_DIR (plus notes.yml) into "
+             "posts under --out. Used by the GitHub Actions deploy workflow.",
+    )
+    parser.add_argument(
+        "--out",
+        default="_posts/notion",
+        metavar="OUT_DIR",
+        help="Output folder for --build (default: _posts/notion, git-ignored).",
+    )
+
     args = parser.parse_args()
+
+    if args.build:
+        build(args.build, args.out)
+    elif not args.files:
+        parser.error("give FILE(s) to convert, or --build SRC_DIR")
 
     for f in args.files:
         process(f, date=args.date, categories=args.categories)
