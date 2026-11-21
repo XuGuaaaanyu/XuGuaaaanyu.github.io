@@ -1,69 +1,27 @@
-<style>
-/* Scope styles to the project list to avoid affecting other parts of the site */
-.project-list .project-title a{
-  text-decoration: none;
-}
-.project-list .project-title a:hover{
-  text-decoration: underline;
-}
-
-/* Ensure tag links don't get underlined or show "visited" styling changes */
-.project-list .project-tags .tag{
-  text-decoration: none;
-}
-.project-list .project-tags .tag:hover{
-  text-decoration: none;
-}
-.project-list .project-tags .tag:visited{
-  text-decoration: none;
-  color: inherit;
-}
-
-.project-list .project-authors{
-  font-size: 0.85em;
-  opacity: 0.85;
-  margin-top: 0.25rem;
-}
-
-.project-list .project-meta{
-  font-size: 0.85em;
-  opacity: 0.8;
-  margin-top: 0.2rem;
-}
-</style>
-
 {% comment %}
   Each entry is `ref` (path of a _research / _portfolio file) plus an optional `title` override.
   Everything else on the card comes from that file's front matter:
   header.teaser, links, authors, period, venue, excerpt.
 {% endcomment %}
-<div class="project-list">
+<div class="project-list project-list--{{ include.kind }}">
   {% for p in include.projects %}
-    {% assign doc = site.documents | where: "relative_path", p.ref | first %}
-    {% unless doc %}{% continue %}{% endunless %}
+    {% if p.ref %}
+      {% assign doc = site.documents | where: "relative_path", p.ref | first %}
+    {% else %}
+      {% assign doc = p %}
+    {% endif %}
+    {% unless doc.title and doc.header.teaser %}{% continue %}{% endunless %}
     {% assign p_title = p.title | default: doc.title %}
-    <div class="project-card">
-      <div class="project-teaser">
-        <img src="{{ doc.header.teaser | relative_url }}" alt="{{ p_title | escape }}">
-      </div>
+    <article class="project-card">
+      <a class="project-teaser" href="{{ doc.url | relative_url }}" tabindex="-1" aria-hidden="true">
+        <img src="{{ doc.header.teaser | relative_url }}" alt="{{ p_title | escape }}" loading="lazy">
+      </a>
 
       <div class="project-body">
-        <div class="project-title">
+        <h3 class="project-title">
           <a href="{{ doc.url | relative_url }}">{{ p_title }}</a>
-        </div>
+        </h3>
 
-        {% if doc.links and doc.links.size > 0 %}
-          <div class="project-tags">
-            {% for t in doc.links %}
-              <a class="tag"
-                 href="{% if t.url contains '://' %}{{ t.url }}{% else %}{{ t.url | relative_url }}{% endif %}"
-                 target="_blank" rel="noopener">
-                {% if t.icon %}<i class="{{ t.icon }}" aria-hidden="true"></i>{% endif %}
-                <span>{{ t.label }}</span>
-              </a>
-            {% endfor %}
-          </div>
-        {% endif %}
 
         {% if doc.authors and doc.authors.size > 0 %}
           <div class="project-authors">
@@ -82,7 +40,19 @@
         {% endif %}
 
         <div class="project-desc">{{ doc.excerpt | strip_html | strip }}</div>
+        {% if doc.links and doc.links.size > 0 %}
+          <div class="project-tags">
+            {% for t in doc.links %}
+              <a class="tag"
+                 href="{% if t.url contains '://' %}{{ t.url }}{% else %}{{ t.url | relative_url }}{% endif %}"
+                 target="_blank" rel="noopener">
+                {% if t.icon %}<i class="{{ t.icon }}" aria-hidden="true"></i>{% endif %}
+                <span>{{ t.label }}</span>
+              </a>
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
-    </div>
+    </article>
   {% endfor %}
 </div>

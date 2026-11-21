@@ -11,3 +11,6 @@ end
 
 gem 'github-pages'
 gem 'connection_pool', '2.5.0'
+
+# Windows has no system zoneinfo database; TZInfo needs the packaged data.
+gem 'tzinfo-data', platforms: [:windows, :jruby]

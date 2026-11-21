@@ -59,10 +59,10 @@
 @supports (background: color-mix(in srgb, black 50%, white)) {
   :root {
     /* base variables from minimal-mistakes/academicpages (with fallbacks) */
-    --gx-bg: var(--mm-background, #ffffff);
-    --gx-text: var(--mm-text-color, #111111);
-    --gx-border: var(--mm-border-color, rgba(0, 0, 0, 0.12));
-    --gx-link: var(--mm-link-color, var(--mm-link, inherit));
+    --gx-bg: var(--global-bg-color, #ffffff);
+    --gx-text: var(--global-text-color, #111111);
+    --gx-border: var(--global-border-color, rgba(0, 0, 0, 0.12));
+    --gx-link: var(--global-link-color);
 
     /* Surface: mostly background, slightly nudged toward text color.
        In light mode text is dark -> surface becomes a tiny bit darker than bg.
@@ -240,48 +240,6 @@ body.dark-theme {
 /* optional: a bit of spacing for publication/research link pills */
 .pub-tags {
   margin-top: 0.6rem;
-}
-
-/* ---------- Homepage news ---------- */
-.news-list {
-  list-style: none;
-  margin: 0.5rem 0 1.5rem 0;
-  padding: 0;
-}
-
-.news-item {
-  display: flex;
-  gap: 1rem;
-  margin: 0 0 0.5rem 0;
-  line-height: 1.55;
-}
-
-.news-date {
-  flex: 0 0 5.5rem;
-  font-weight: 700;
-  opacity: 0.8;
-  white-space: nowrap;
-}
-
-.news-text {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-/* ---------- Mobile ---------- */
-@media (max-width: 900px) {
-  .section-cards { grid-template-columns: 1fr; }
-
-  .project-card {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .project-teaser {
-    flex: none;
-    width: 100%;
-    height: 220px;
-  }
 }
 
 /* ==========================================================================
@@ -637,4 +595,11 @@ body.dark-theme {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Stack shared cards on small screens outside the homepage as well. */
+@media (max-width: 900px) {
+  .section-cards { grid-template-columns: 1fr; }
+  .project-card { flex-direction: column; align-items: stretch; }
+  .project-teaser { flex: none; width: 100%; height: 220px; }
 }

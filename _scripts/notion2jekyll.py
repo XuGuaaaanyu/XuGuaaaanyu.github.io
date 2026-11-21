@@ -120,7 +120,7 @@ def build_front_matter(
     lines = [
         "---",
         "layout: blog-post",
-        "author_profile: true",
+        "author_profile: false",
         f'title: "{title}"',
         f"date: {date}",
         f"permalink: {permalink}",

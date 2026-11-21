@@ -12,7 +12,7 @@ site_theme               : "air" # Currently available options are "default", "a
 title                    : "Guanyu's Homepage"
 title_separator          : "-"
 name                     : &name "Guanyu Xu"
-description              : &description "personal description"
+description              : &description "Guanyu Xu — Robotics at Penn. Research in robot sensing and control."
 url                      : https://xuguaaaanyu.github.io # the base hostname & protocol for your site e.g. "https://[your GitHub username].github.io" or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "XuGuaaaanyu/XuGuaaaanyu.github.io"
@@ -78,22 +78,12 @@ author:
   youtube          : # Username
   zhihu            : # Username
 
-# Publication Category - The following the list of publication categories and their headings
-research_category:
-  HDRL:
-    title: 'Hybrid Dynamic Robotics Lab, University of Michigan'
-  
-  IRMV:
-    title: 'Intelligent Robotics and Machine Vision Lab, Shanghai Jiao Tong University'
-
-
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 breadcrumbs              : false # true, false (default)
 words_per_minute         : 160
 future                   : true
 read_more                : "disabled" # if enabled, adds "Read more" links to excerpts
-talkmap_link             : false      #change to true to add link to talkmap on talks page
 comments:
   provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
   disqus:
@@ -192,6 +182,9 @@ exclude:
   - Rakefile
   - README
   - tmp
+  - _notion
+  - _scripts
+  - resume/main.tex
   - vendor
 keep_files:
   - .git
@@ -222,16 +215,10 @@ kramdown:
 
 # These settings control the types of collections used by the template
 collections:
-  teaching:
-    output: true
-    permalink: /:collection/:path/
   research:
     output: true
     permalink: /:collection/:path/
   portfolio:
-    output: true
-    permalink: /:collection/:path/
-  talks:
     output: true
     permalink: /:collection/:path/
 
@@ -244,7 +231,7 @@ defaults:
       type: posts
     values:
       layout: single
-      author_profile: true
+      author_profile: false
       read_time: true
       comments: true
       share: true
@@ -256,22 +243,14 @@ defaults:
     values:
       layout: single
       author_profile: true
-  # _teaching
-  - scope:
-      path: ""
-      type: teaching
-    values:
-      layout: single
-      author_profile: true
-      share: true
-      comments: true
+
   # _research
   - scope:
       path: ""
       type: research
     values:
       layout: single
-      author_profile: true
+      author_profile: false
       share: false
       comments: true
   # _portfolio
@@ -280,17 +259,9 @@ defaults:
       type: portfolio
     values:
       layout: single
-      author_profile: true
+      author_profile: false
       share: false
       comment: true
-  # _talks
-  - scope:
-      path: ""
-      type: talks
-    values:
-      layout: talk
-      author_profile: true
-      share: true
 
 
 # Sass/SCSS

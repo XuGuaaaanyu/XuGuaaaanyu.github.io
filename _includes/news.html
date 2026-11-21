@@ -1,9 +1,9 @@
 {% assign news_limit = include.limit | default: 8 %}
-<ul class="news-list">
+<ol class="news-list">
   {% for item in site.data.news limit: news_limit %}
     <li class="news-item">
-      <span class="news-date">{{ item.date }}</span>
+      <time class="news-date" datetime="{{ item.date }}">{{ item.date }}</time>
       <span class="news-text">{{ item.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</span>
     </li>
   {% endfor %}
-</ul>
+</ol>
