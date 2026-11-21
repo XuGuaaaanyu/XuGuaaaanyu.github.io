@@ -1,6 +1,8 @@
 ---
 title: "Transformable Wheel"
 date: 2024-08-01
+redirect_from:
+  - /portfolio/03.Wheel/
 homepage: false
 excerpt: "An autonomous vehicle equipped with transformable wheels for complex terrain locomotion."
 header:

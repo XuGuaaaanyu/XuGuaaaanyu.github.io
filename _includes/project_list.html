@@ -4,7 +4,7 @@
     kind:       "research" or "course" (CSS modifier)
     homepage:   true -> only files with `homepage: true`
   Each card reads the file's front matter: short_title (falls back to title),
-  venue, header.teaser, links, authors, excerpt.
+  venue, header.teaser, links, authors, excerpt, status (optional badge, e.g. "Under Construction").
   Where the card points (`card_url`) is set by _plugins/project_pages.rb.
   Files without a title or header.teaser are skipped.
 {% endcomment %}
@@ -60,6 +60,7 @@
       <div class="project-body">
         <h3 class="project-title">
           {% if href %}<a href="{{ href }}"{{ ext }}>{{ p_title }}</a>{% else %}{{ p_title }}{% endif %}
+          {% if doc.status %}<span class="project-status">{{ doc.status }}</span>{% endif %}
         </h3>
 
         {% if doc.authors and doc.authors.size > 0 %}

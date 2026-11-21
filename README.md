@@ -21,7 +21,7 @@ Each item is defined in exactly one place, and every list is sorted by date, new
 | --- | --- | --- |
 | News | an entry in `_data/news.yml` | `homepage: false` hides it (default shown) |
 | Research project | a file in `_research/` | `homepage: true` puts it on the homepage; it is always on `/research/` |
-| Course project | a file in `_portfolio/` | `homepage: true` puts it on the homepage; it is always on `/portfolio/` |
+| Course project | a file in `_portfolio/` | `homepage: true` puts it on the homepage; it is always on `/projects/` |
 | Nerdy note | a Notion export folder in `_notion/` + optional entry in `_notion/notes.yml` | `visible: false` unpublishes it (default published) |
 
 News `text` is Markdown (`*italic*`, `**bold**`, `[link](url)`); keep it in double quotes.
@@ -31,7 +31,7 @@ Project front matter: `title`, `date` (YYYY-MM-DD; only sorts the lists, not dis
 Where a project card points is decided by `_plugins/project_pages.rb`:
 - `link: "https://..."` → the card opens that site; no page is generated.
 - nothing below the front matter → the card is not clickable; no page is generated.
-- otherwise → the card opens the project's own page at `/research/<file name>/` or `/portfolio/<file name>/`; its link pills are added by the layout.
+- otherwise → the card opens the project's own page at `/research/<file name>/` or `/projects/<file name>/`; its link pills are added by the layout.
 
 ## Layout and styling
 

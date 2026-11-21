@@ -1,6 +1,8 @@
 ---
 title: "Lumen Grid: Competitive Multi-Robot Parking Game"
 date: 2025-01-01
+redirect_from:
+  - /portfolio/02.LumenGrid/
 homepage: true
 short_title: "Lumen Grid: Multi-Robot Parking Game"
 excerpt: "A fast-paced, interactive parking game using four Zumo robots on an LED-marked field."
@@ -62,5 +64,3 @@ The PixyCam is a powerful camera module with an ESP32 processor on board that ha
 Starting from this project, my major field of study started to change from mechanical-oriented to electrical- and computer-oriented. One fun thing about implementing this project is how we gradually increase the difficulty by adding more and more things. Actually, we added the entire playground system only three weeks before the deadline, because we completed the other two earlier than we expected (Yeah only those two were on the initial proposal).
 
 Also, when porting the Pixycam library for STM32, I got a chance to look at the “Arduino code” from the bare-metal side and that was eye-opening. It’s not just “read sensor, drive motors.” You start caring about serial framing and checksums, SPI vs UART trade-offs, DMA vs polling, interrupt timing, circular buffers, and what happens when your packets are off by exactly one byte.
-
-Group Members: Guanyu Xu, Haobo Fang, Varun Agrawal, Xiang Jiang

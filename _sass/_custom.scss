@@ -230,6 +230,32 @@ body.dark-theme {
   filter: brightness(1.04);
 }
 
+/* status badge next to a project title, from `status:` front matter (e.g. "Under Construction") */
+.project-status {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.08rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid #e0a33b;
+  background: rgba(240, 173, 78, 0.14);
+  color: #b26a00;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.page__title .project-status {
+  font-size: 0.45em;
+}
+
+html[data-theme="dark"] .project-status {
+  color: #f2b860;
+  border-color: rgba(242, 184, 96, 0.7);
+}
+
 /* description */
 .project-desc {
   font-size: 1rem;

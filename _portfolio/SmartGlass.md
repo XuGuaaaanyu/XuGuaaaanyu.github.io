@@ -1,6 +1,8 @@
 ---
 title: "INSIGHT: Smart Assistive Glass for Visually Impaired"
 date: 2025-12-08
+redirect_from:
+  - /portfolio/01.SmartGlass/
 homepage: true
 short_title: "INSIGHT: Smart Assistive Glass"
 excerpt: "In-device navigation and scene interpretation glasses for low-vision users."
@@ -84,10 +86,12 @@ After one weeks of debugging and redesigning, we finally got out second version 
 
 ## Project Documentation
 More results can be found in our **poster** [(PDF)](/files/SmartGlass/poster.pdf) at the CoE Design Expo, and the **final report** [(PDF)](/files/SmartGlass/report.pdf) of our course. If you are interested, the implementation details can be found at the following repositories:
-- [ESP32 Code](https://github.com/realfanghb/Smart_glass_esp32)
-- [Jetson Nano Pipeline Code](https://github.com/GuanyuXu04/Smart_Glass)
-- [Umich North Campus Navigation](https://github.com/janChen0310/OSM-Valhalla-Routing-Demo)
-- PCB [Schematic](/files/SmartGlass/SmartGlass_Schematic.pdf) and [Layout](/files/SmartGlass/SmartGlass_PCB.pdf)
+<ul class="doc-links">
+  <li><a href="https://github.com/realfanghb/Smart_glass_esp32" class="section-link" target="_blank" rel="noopener">ESP32 Code <i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+  <li><a href="https://github.com/GuanyuXu04/Smart_Glass" class="section-link" target="_blank" rel="noopener">Jetson Nano Pipeline Code <i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+  <li><a href="https://github.com/janChen0310/OSM-Valhalla-Routing-Demo" class="section-link" target="_blank" rel="noopener">Umich North Campus Navigation <i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+  <li>PCB <a href="{{ '/files/SmartGlass/SmartGlass_Schematic.pdf' | relative_url }}" class="section-link">Schematic <i class="fas fa-external-link-alt" aria-hidden="true"></i></a> and <a href="{{ '/files/SmartGlass/SmartGlass_PCB.pdf' | relative_url }}" class="section-link">Layout <i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+</ul>
 
 ## Acknowledgements
 Special thanks to my fantastic teammates: Haobo Fang, Jinlin (Jack) Li, Yizhe (William) Shen, Zhuoyang Chen, and Ruopu Dong for their collaboration and dedication throughout the project. We've spent a busy but unforgettable semester working together. We would also like to thank Dr. Mark Brehob, Matt Smith, James Carl and all of our GSIs, Frederick, Anna, and Alec for their help. This work is funded by Infineon.

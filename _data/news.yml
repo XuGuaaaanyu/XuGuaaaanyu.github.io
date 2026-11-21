@@ -7,8 +7,10 @@
   text: "Started my master's studies in Robotics at the University of Pennsylvania."
 - date: "2026-05"
   text: "Graduated from the University of Michigan."
+  homepage: false
 - date: "2026-08"
   text: "Graduated from Shanghai Jiao Tong University."
+  homepage: false
 - date: "2026-11"
   text: "Proprioceptive Membrane accepted by [*Advanced Robotics Research*](https://advanced.onlinelibrary.wiley.com/journal/29439973)."
   homepage: false

@@ -217,10 +217,10 @@ kramdown:
 collections:
   research:
     output: true
-    permalink: /:collection/:path/
+    permalink: /research/:path/
   portfolio:
     output: true
-    permalink: /:collection/:path/
+    permalink: /projects/:path/
 
 
 # These settings control how pages and collections are included in the site

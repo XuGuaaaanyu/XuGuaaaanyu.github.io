@@ -1,8 +1,8 @@
 main:
   - title: "Research"
     url: /research/
-  - title: "Portfolio"
-    url: /portfolio/
+  - title: "Projects"
+    url: /projects/
   - title: "CV"
     url: /resume/main.pdf
   - title: "Nerdy"

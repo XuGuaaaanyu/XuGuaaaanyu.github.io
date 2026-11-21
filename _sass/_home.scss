@@ -121,3 +121,8 @@ a.section-link:focus, .project-tags a.tag:focus {
 a.section-link:focus:not(:focus-visible), .project-tags a.tag:focus:not(:focus-visible) { outline: none; }
 
 .scholar-intro .section-link { font-size: 0.85em; vertical-align: baseline; }
+/* Bulleted capsule links inside a project page (e.g. code repos, PDFs). */
+.doc-links {
+  li { margin-bottom: 0.5em; }
+  a.section-link { font-size: 0.9em; padding: 0.2em 0.75em; }
+}

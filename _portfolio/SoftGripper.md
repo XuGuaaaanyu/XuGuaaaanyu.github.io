@@ -1,6 +1,8 @@
 ---
 title: "Toy Crane with Soft Gripper"
 date: 2024-04-30
+redirect_from:
+  - /portfolio/04.SoftGripper/
 homepage: false
 excerpt: "A teleoperated toy crane system with soft gripper that perform simple pick and place tasks."
 header:

@@ -19,6 +19,9 @@ links:
   - label: Code
     icon: "fab fa-github"
     url: "https://github.com/GuanyuXu04/PHAROS"
+  - label: Data
+    icon: "fas fa-download"
+    url: "https://huggingface.co/datasets/xuguanyu04/PHAROS-data"
   - label: Video
     icon: "fab fa-youtube"
     url: "https://www.youtube.com/watch?v=h68orwc2Z1U"
