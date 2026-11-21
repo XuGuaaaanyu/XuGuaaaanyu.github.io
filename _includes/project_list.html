@@ -1,57 +1,107 @@
 {% comment %}
-  Each entry is `ref` (path of a _research / _portfolio file) plus an optional `title` override.
-  Everything else on the card comes from that file's front matter:
-  header.teaser, links, authors, period, venue, excerpt.
+  Project cards for one collection, newest first by each file's `date`.
+    collection: "research" or "portfolio"
+    kind:       "research" or "course" (CSS modifier)
+    homepage:   true -> only files with `homepage: true`
+  Each card reads the file's front matter: short_title (falls back to title),
+  venue, header.teaser, links, authors, excerpt.
+  Where the card points (`card_url`) is set by _plugins/project_pages.rb.
+  Files without a title or header.teaser are skipped.
 {% endcomment %}
+{% assign docs = site[include.collection] %}
+{% if include.homepage %}
+  {% assign docs = docs | where: "homepage", true %}
+{% endif %}
+{% assign docs = docs | sort: "date" | reverse %}
 <div class="project-list project-list--{{ include.kind }}">
-  {% for p in include.projects %}
-    {% if p.ref %}
-      {% assign doc = site.documents | where: "relative_path", p.ref | first %}
-    {% else %}
-      {% assign doc = p %}
-    {% endif %}
+  {% for doc in docs %}
     {% unless doc.title and doc.header.teaser %}{% continue %}{% endunless %}
-    {% assign p_title = p.title | default: doc.title %}
+    {% assign p_title = doc.title %}
+    {% if include.homepage and doc.short_title %}{% assign p_title = doc.short_title %}{% endif %}
+    {% comment %}
+      Card target: `link` (external or in-site path) wins over the file's own page;
+      no `link` and an empty body -> not clickable.
+      Keep in sync with _plugins/project_pages.rb, which skips writing those pages.
+    {% endcomment %}
+    {% assign href = nil %}
+    {% assign ext = '' %}
+    {% assign p_link = doc.link | strip %}
+    {% assign p_body = doc.content | strip %}
+    {% if p_link != '' %}
+      {% if p_link contains '://' %}
+        {% assign href = p_link %}
+        {% assign ext = ' target="_blank" rel="noopener"' %}
+      {% else %}
+        {% assign href = p_link | relative_url %}
+      {% endif %}
+    {% elsif p_body != '' %}
+      {% assign href = doc.url | relative_url %}
+    {% endif %}
+    {% comment %}
+      Teaser: an image (png/jpg/gif...) or a short clip (.mp4/.webm) that autoplays muted
+      and loops. A clip uses the same path with .jpg as its poster (shown while loading).
+      `?v=<build time>` makes browsers drop a cached copy after each rebuild.
+    {% endcomment %}
+    {% assign t_ver = site.time | date: "%s" %}
+    {% assign t_src = doc.header.teaser %}
+    {% assign t_ext = t_src | split: "." | last | downcase %}
+    {% capture teaser_media %}{% if t_ext == "mp4" or t_ext == "webm" %}{% assign t_poster = t_src | replace: ".mp4", ".jpg" | replace: ".webm", ".jpg" %}<video src="{{ t_src | relative_url }}?v={{ t_ver }}" poster="{{ t_poster | relative_url }}?v={{ t_ver }}" autoplay muted loop playsinline preload="metadata" aria-label="{{ p_title | escape }}"></video>{% else %}<img src="{{ t_src | relative_url }}" alt="{{ p_title | escape }}" loading="lazy">{% endif %}{% endcapture %}
     <article class="project-card">
-      <a class="project-teaser" href="{{ doc.url | relative_url }}" tabindex="-1" aria-hidden="true">
-        <img src="{{ doc.header.teaser | relative_url }}" alt="{{ p_title | escape }}" loading="lazy">
-      </a>
+      {% if href %}
+        <a class="project-teaser" href="{{ href }}"{{ ext }} tabindex="-1" aria-hidden="true">
+          {{ teaser_media }}
+        </a>
+      {% else %}
+        <div class="project-teaser">
+          {{ teaser_media }}
+        </div>
+      {% endif %}
 
       <div class="project-body">
         <h3 class="project-title">
-          <a href="{{ doc.url | relative_url }}">{{ p_title }}</a>
+          {% if href %}<a href="{{ href }}"{{ ext }}>{{ p_title }}</a>{% else %}{{ p_title }}{% endif %}
         </h3>
 
-
         {% if doc.authors and doc.authors.size > 0 %}
+          {% comment %}
+            Author markers are written as a suffix in `authors`:
+              "Haobo Fang†" (or "Haobo Fang+") -> equal contribution
+              "Hesheng Wang*"                   -> corresponding author
+              both: "Name†*"
+          {% endcomment %}
+          {% assign has_equal = false %}{% assign has_corr = false %}
           <div class="project-authors">
             {% for a in doc.authors %}
-              {% if a == "Guanyu Xu" %}<strong>{{ a }}</strong>{% else %}{{ a }}{% endif %}{% unless forloop.last %}, {% endunless %}
+              {% assign name = a | strip %}
+              {% assign is_equal = false %}{% assign is_corr = false %}
+              {% for _ in (1..3) %}
+                {% assign last = name | slice: -1 %}
+                {% if last == "*" %}{% assign is_corr = true %}
+                {% elsif last == "†" or last == "+" %}{% assign is_equal = true %}
+                {% else %}{% break %}{% endif %}
+                {% assign n = name | size | minus: 1 %}
+                {% assign name = name | slice: 0, n | strip %}
+              {% endfor %}
+              {% if name == "Guanyu Xu" %}<strong>{{ name }}</strong>{% else %}{{ name }}{% endif %}
+              {%- if is_equal -%}{% assign has_equal = true %}<sup class="author-mark" title="Equal contribution">†</sup>{%- endif -%}
+              {%- if is_corr -%}{% assign has_corr = true %}<sup class="author-mark" title="Corresponding author">*</sup>{%- endif -%}
+              {%- unless forloop.last -%}, {% endunless %}
             {% endfor %}
           </div>
-        {% endif %}
-
-        {% if include.kind == "research" or include.kind == "course" %}
-          {% if doc.period or doc.venue %}
-            <div class="project-meta">
-              {% if doc.period %}{{ doc.period }}{% endif %}{% if doc.period and doc.venue %} — {% endif %}{% if doc.venue %}{{ doc.venue }}{% endif %}
+          {% if has_equal or has_corr %}
+            <div class="project-author-notes">
+              {% if has_equal %}<span>† Equal contribution</span>{% endif %}
+              {% if has_corr %}<span>* Corresponding author</span>{% endif %}
             </div>
           {% endif %}
         {% endif %}
 
-        <div class="project-desc">{{ doc.excerpt | strip_html | strip }}</div>
-        {% if doc.links and doc.links.size > 0 %}
-          <div class="project-tags">
-            {% for t in doc.links %}
-              <a class="tag"
-                 href="{% if t.url contains '://' %}{{ t.url }}{% else %}{{ t.url | relative_url }}{% endif %}"
-                 target="_blank" rel="noopener">
-                {% if t.icon %}<i class="{{ t.icon }}" aria-hidden="true"></i>{% endif %}
-                <span>{{ t.label }}</span>
-              </a>
-            {% endfor %}
-          </div>
+        {% if doc.venue %}
+          <div class="project-meta"><em>{{ doc.venue }}</em></div>
         {% endif %}
+
+        <div class="project-desc">{{ doc.excerpt | strip_html | strip }}</div>
+        {% include project_links.html links=doc.links %}
       </div>
     </article>
   {% endfor %}

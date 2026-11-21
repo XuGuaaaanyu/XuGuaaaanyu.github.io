@@ -5,27 +5,36 @@ author_profile: true
 redirect_from: 
   - /about/
   - /about.html
-homepage: true
-projects:
-  # List order = display order. Everything else (image, links, authors, period, venue, excerpt)
-  # is read from the `ref` file's front matter; `title` optionally overrides its title.
-  research:
-    - ref: _research/01.OpticalSensor.md
-      title: "Proprioceptive Membrane for 3D Shape Reconstruction"
-  course:
-    - ref: _portfolio/01.SmartGlass.md
-      title: "INSIGHT: Smart Assistive Glass"
-    - ref: _portfolio/02.LumenGrid.md
-      title: "Lumen Grid: Multi-Robot Parking Game"
+home_layout: true   # homepage styling (body class "homepage")
+# Project cards below are picked from _research/ and _portfolio/ files with `homepage: true`,
+# newest `date` first. Nothing to edit here when adding a project.
 ---
 <div class="home-intro" markdown="1">
-I'm a master's student in **Robotics at the University of Pennsylvania**. During my undergraduate studies, I worked with Prof. Xiaonan Huang at the University of Michigan and Prof. Hesheng Wang at Shanghai Jiao Tong University.
+Hi! I'm a first year master's student in **Robotics** at the [University of Pennsylvania](https://www.grasp.upenn.edu/). I received my Bachelor's degree from the [University of Michigan](https://ece.engin.umich.edu/), where I was advised by Prof. [Xiaonan Huang](https://robotics.umich.edu/people/faculty/xiaonan-sean-huang/).
 
-I work on robot sensing and control: reconstructing the shape of soft sensors from optical signals, and learning policies that let a robotic hand reorient objects using proprioception. My projects connect sensor hardware and embedded systems with learning-based perception and control.
+I'm broadly interested in **embodied intelligence and robotics**, with focus on robotic foundation models and sim-to-real reinforcement learning. My prior work involve **full-stack robotic systems**, with expertise in [embedded systems](/portfolio/01.SmartGlass/), [mechanical design](/portfolio/03.Wheel/), and harware manufacturing. 
+
 </div>
 
-## Education
+## News
 
+{% include news.html %}
+
+<div class="home-section-heading">
+  <h2 id="research-projects">Research Projects</h2>
+  <a href="{{ '/research/' | relative_url }}" class="section-link">All research <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
+</div>
+{% include project_list.html collection="research" kind="research" homepage=true %}
+
+<div class="home-section-heading">
+  <h2 id="course-projects">Course Projects</h2>
+  <a href="{{ '/portfolio/' | relative_url }}" class="section-link">Full portfolio <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
+</div>
+{% include project_list.html collection="portfolio" kind="course" homepage=true %}
+
+<div class="home-section-heading">
+  <h2 id="education">Education</h2>
+</div>
 <ul class="education-list">
   <li>
     <img class="education-logo education-logo--light" src="{{ '/images/education/penn.png' | relative_url }}" alt="University of Pennsylvania logo" width="72" height="72" loading="lazy">
@@ -44,18 +53,3 @@ I work on robot sensing and control: reconstructing the shape of soft sensors fr
     <p>B.E. in Mechanical Engineering</p></div>
   </li>
 </ul>
-
-## News
-{% include news.html %}
-
-<div class="home-section-heading">
-  <h2 id="research-projects">Research Projects</h2>
-  <a href="{{ '/research/' | relative_url }}" class="section-link">All research <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
-</div>
-{% include project_list.html projects=page.projects.research kind="research" %}
-
-<div class="home-section-heading">
-  <h2 id="course-projects">Course Projects</h2>
-  <a href="{{ '/portfolio/' | relative_url }}" class="section-link">Full portfolio <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
-</div>
-{% include project_list.html projects=page.projects.course kind="course" %}

@@ -1,4 +1,14 @@
-# Homepage news, newest first. `text` supports Markdown (links, **bold**, ...).
-# The homepage shows the first `news_limit` items (set in _includes/news.html).
+# Homepage news. Order in this file doesn't matter: the homepage sorts by `date`, newest first,
+# and shows at most `news_limit` items (set in _includes/news.html).
+#   date:     "YYYY-MM" or "YYYY-MM-DD" (quoted)
+#   text:     Markdown (links, **bold**, ...)
+#   homepage: false  -> hidden (default: shown)
 - date: "2026-09"
-  text: "I started my master's studies in Robotics at the University of Pennsylvania."
+  text: "Started my master's studies in Robotics at the University of Pennsylvania."
+- date: "2026-05"
+  text: "Graduated from the University of Michigan."
+- date: "2026-08"
+  text: "Graduated from Shanghai Jiao Tong University."
+- date: "2026-11"
+  text: "Proprioceptive Membrane accepted by [*Advanced Robotics Research*](https://advanced.onlinelibrary.wiley.com/journal/29439973)."
+  homepage: false

@@ -1,6 +1,11 @@
+{% comment %}
+  News come from _data/news.yml. Items with `homepage: false` are hidden.
+  Sorted by `date` (newest first), so the order in the YAML file doesn't matter.
+{% endcomment %}
 {% assign news_limit = include.limit | default: 8 %}
+{% assign news_items = site.data.news | where_exp: "n", "n.homepage != false" | sort: "date" | reverse %}
 <ol class="news-list">
-  {% for item in site.data.news limit: news_limit %}
+  {% for item in news_items limit: news_limit %}
     <li class="news-item">
       <time class="news-date" datetime="{{ item.date }}">{{ item.date }}</time>
       <span class="news-text">{{ item.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</span>

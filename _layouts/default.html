@@ -11,7 +11,7 @@ layout: compress
     {% include head/custom.html %}
   </head>
 
-  <body class="layout--{{ page.layout }}{% if page.homepage %} homepage{% endif %}{% unless page.author_profile or layout.author_profile or page.sidebar %} without-sidebar{% endunless %}">
+  <body class="layout--{{ page.layout }}{% if page.home_layout %} homepage{% endif %}{% unless page.author_profile or layout.author_profile or page.sidebar %} without-sidebar{% endunless %}">
 
     {% include browser-upgrade.html %}
     {% include masthead.html %}

@@ -18,15 +18,16 @@
   &:focus:not(:focus-visible) { outline: none; }
   &:focus-visible { outline: 2px solid var(--global-link-color); outline-offset: 3px; }
 }
-.news-list { list-style: none; padding: 0; margin: 0.8rem 0 1.5rem 0.3rem; }
+.news-list { list-style: none; padding: 0; margin: 0.8rem 0 0 0.3rem; }
 .news-item {
-  position: relative; display: grid; grid-template-columns: 5rem 1fr;
-  gap: 1rem; margin: 0; padding: 0.2rem 0 1rem 1.2rem;
+  position: relative; display: grid; grid-template-columns: 4.5rem 1fr;
+  gap: 0.75rem; margin: 0; padding: 0.15rem 0 0.7rem 1.2rem;
   border-left: 1px solid var(--gx-surface-border); line-height: 1.6;
   &::before {
     content: ''; position: absolute; left: -4px; top: 0.65rem;
     width: 7px; height: 7px; border-radius: 50%; background: var(--global-link-color);
   }
+  &:nth-child(even)::before { background: var(--gx-dot-alt); }
 }
 .news-date { font-size: clamp(14px, 0.8rem, 20px); padding-top: 0.1rem; font-variant-numeric: tabular-nums; }
 .news-text { min-width: 0; }
@@ -42,6 +43,7 @@
     position: relative; display: flex; align-items: center; gap: 1rem; margin: 0;
     padding: 1.25rem 0 1.25rem 1.2rem; border-bottom: 0;
     &::before { content: ''; position: absolute; left: -3px; top: 50%; width: 7px; height: 7px; border-radius: 50%; background: var(--global-link-color); transform: translateY(-50%); }
+    &:nth-child(even)::before { background: var(--gx-dot-alt); }
   }
   li:last-child { border-bottom: 0; }
   .education-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 0.4rem 1rem; flex-wrap: wrap; }
@@ -72,8 +74,15 @@
 .project-list .project-title a:hover { text-decoration: underline; }
 .project-list .project-teaser { flex: 0 0 32%; height: auto; display: block; }
 .project-list .project-teaser img { aspect-ratio: 16 / 10; height: auto; object-fit: contain; }
+/* Clips keep their own shape (16:10 or 16:9). */
+.project-list .project-teaser video { aspect-ratio: auto; height: auto; }
 .project-list .project-authors,
 .project-list .project-meta { font-size: clamp(14px, 0.8rem, 20px); line-height: 1.55; }
+.project-list .author-mark { font-size: 0.75em; margin-left: 0.05em; }
+.project-list .project-author-notes {
+  display: flex; flex-wrap: wrap; gap: 0 1rem;
+  font-size: clamp(12px, 0.7rem, 16px); opacity: 0.7; line-height: 1.5;
+}
 .project-list .project-desc { font-size: clamp(16px, 0.9rem, 24px); }
 .project-list .project-tags a { text-decoration: none; }
 .project-list .project-card:focus-within { border-color: var(--global-link-color); }

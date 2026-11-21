@@ -1,0 +1,19 @@
+{% comment %}
+  Resource pills (Paper / Code / Video ...) from a project's `links` front matter.
+  Entries with an empty url are skipped. Pass extra_class="project-tags-page" on project pages.
+{% endcomment %}
+{% assign _has_link = false %}
+{% for t in include.links %}{% if t.url and t.url != "" %}{% assign _has_link = true %}{% endif %}{% endfor %}
+{% if _has_link %}
+  <div class="project-tags {{ include.extra_class }}">
+    {% for t in include.links %}
+      {% if t.url == nil or t.url == "" %}{% continue %}{% endif %}
+      <a class="tag"
+         href="{% if t.url contains '://' %}{{ t.url }}{% else %}{{ t.url | relative_url }}{% endif %}"
+         target="_blank" rel="noopener">
+        {% if t.icon %}<i class="{{ t.icon }}" aria-hidden="true"></i>{% endif %}
+        <span>{{ t.label }}</span>
+      </a>
+    {% endfor %}
+  </div>
+{% endif %}

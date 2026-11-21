@@ -5,7 +5,7 @@ permalink: /research/
 author_profile: false
 ---
 {% if site.author.googlescholar %}
-<p class="scholar-intro">You can also find my articles on <a class="section-link" href="{{ site.author.googlescholar }}">my Google Scholar profile <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>.</p>
+<p class="scholar-intro">You can also find my articles on <a class="section-link" href="{{ site.author.googlescholar }}">Google Scholar <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>.</p>
 {% endif %}
 
-{% include project_list.html projects=site.research kind="research" %}
+{% include project_list.html collection="research" kind="research" %}
