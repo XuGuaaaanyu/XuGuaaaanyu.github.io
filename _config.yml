@@ -145,6 +145,14 @@ analytics:
   google:
     tracking_id          :
 
+# MapMyVisitors - visitor map shown at the bottom of the homepage (https://mapmyvisitors.com)
+# Register your site there, then copy from the embed code:
+#   map_id  -> the "d=" value in map.png?d=XXXX
+#   web_id  -> the code in https://mapmyvisitors.com/web/XXXX
+mapmyvisitors:
+  map_id                 : "e-YdHmuTkKEqJ_biZ6z9O-YKo0zvS056E3eou1CFUUQ"
+  web_id                 : "1c2zo"
+
 # GoatCounter - free view counter (https://www.goatcounter.com)
 # Sign up and replace with your site code (e.g. "mysite" for mysite.goatcounter.com)
 goatcounter:

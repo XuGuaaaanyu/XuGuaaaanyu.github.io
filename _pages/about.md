@@ -53,3 +53,11 @@ I'm broadly interested in **embodied intelligence and robotics**, with focus on 
     <p>B.E. in Mechanical Engineering</p></div>
   </li>
 </ul>
+
+{% if site.mapmyvisitors.map_id %}
+<div class="visitor-map">
+  <a href="https://mapmyvisitors.com/web/{{ site.mapmyvisitors.web_id }}" title="Visit tracker" target="_blank" rel="noopener">
+    <img src="https://mapmyvisitors.com/map.png?cl=ffffff&w=300&t=n&d={{ site.mapmyvisitors.map_id }}" alt="Visitor map" loading="lazy">
+  </a>
+</div>
+{% endif %}

@@ -126,3 +126,16 @@ a.section-link:focus:not(:focus-visible), .project-tags a.tag:focus:not(:focus-v
   li { margin-bottom: 0.5em; }
   a.section-link { font-size: 0.9em; padding: 0.2em 0.75em; }
 }
+
+/* Visitor map (MapMyVisitors) at the bottom of the homepage */
+.visitor-map {
+  text-align: center;
+  margin: 3rem 0 1rem;
+
+  img {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+}
