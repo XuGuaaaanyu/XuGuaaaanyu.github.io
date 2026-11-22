@@ -515,3 +515,7 @@ html[data-theme="dark"] .project-status {
    opened in a new tab); keyboard navigation still gets a visible ring. */
 a:focus { outline: none; }
 a:focus-visible { outline: 2px solid var(--global-link-color); outline-offset: 3px; }
+
+/* Sticky footer: assets/js/_main.js already sets body margin-bottom to the
+   footer's height, so the theme's extra 9em padding only added a blank gap. */
+body { padding-bottom: 0; }
