@@ -5,7 +5,7 @@ redirect_from:
   - /portfolio/01.SmartGlass/
 homepage: true
 short_title: "INSIGHT: Smart Assistive Glass"
-excerpt: "In-device navigation and scene interpretation glasses for low-vision users."
+excerpt: "On-device navigation and scene interpretation glasses for low-vision users."
 header:
   teaser: /images/glass/teaser.mp4
 venue: "EECS 473: Advanced Embedded Systems (UM)"

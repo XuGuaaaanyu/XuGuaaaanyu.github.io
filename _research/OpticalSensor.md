@@ -1,11 +1,11 @@
 ---
 title: "Highly Deformable Proprioceptive Membrane for Real-Time 3D Shape Reconstruction"
-date: 2026-01-21
+date: 2026-11-24
 homepage: true
 short_title: "Proprioceptive Membrane for 3D Shape Reconstruction"
 link: "https://proprioceptive-membrane.github.io/"
 excerpt: 'A soft, stretchable optical waveguide sensor with embedded LEDs and photodiodes for learning-based 3D deformation reconstruction.'
-venue: 'Advanced Robotics Research (under review)'
+venue: 'Advanced Robotics Research'
 header:
   teaser: /images/optical_sensor/teaser.mp4
 authors: ["Guanyu Xu†", "Jiaqi Wang†", "Dezhong Tong", "Xiaonan Huang*"]

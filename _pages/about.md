@@ -10,9 +10,9 @@ home_layout: true   # homepage styling (body class "homepage")
 # newest `date` first. Nothing to edit here when adding a project.
 ---
 <div class="home-intro" markdown="1">
-Hi! I'm a first year master's student in **Robotics** at the [University of Pennsylvania](https://www.grasp.upenn.edu/). I received my Bachelor's degree from the [University of Michigan](https://ece.engin.umich.edu/), where I was advised by Prof. [Xiaonan Huang](https://robotics.umich.edu/people/faculty/xiaonan-sean-huang/).
+Hi! I'm a first-year master's student in **Robotics** at the [University of Pennsylvania](https://www.grasp.upenn.edu/). I received dual bachelor's degrees from Shanghai Jiao Tong University and the [University of Michigan](https://ece.engin.umich.edu/), where I was advised by Prof. [Xiaonan Huang](https://robotics.umich.edu/people/faculty/xiaonan-sean-huang/).
 
-I'm broadly interested in **embodied intelligence and robotics**, with focus on robotic foundation models and sim-to-real reinforcement learning. My prior work involve **full-stack robotic systems**, with expertise in [embedded systems](/projects/SmartGlass/), [mechanical design](/projects/Wheel/), and harware manufacturing. 
+I'm broadly interested in **embodied intelligence and robotics**, with a focus on robotic foundation models and sim-to-real reinforcement learning. I'm also interested in building dedicated hardware for robotic data collection. My prior work involves **full-stack robotic systems**, spanning [embedded systems](/projects/SmartGlass/), [mechanical design](/projects/Wheel/), and hardware manufacturing. 
 
 </div>
 

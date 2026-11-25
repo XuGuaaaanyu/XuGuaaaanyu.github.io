@@ -5,7 +5,7 @@ redirect_from:
   - /portfolio/02.LumenGrid/
 homepage: true
 short_title: "Lumen Grid: Multi-Robot Parking Game"
-excerpt: "A fast-paced, interactive parking game using four Zumo robots on an LED-marked field."
+excerpt: "A multi-robot parking game using four Zumo robots on an LED-marked field"
 header:
   teaser: /images/parking/teaser.mp4
 venue: "EECS 373: Introduction to Embedded System Design (UM)"

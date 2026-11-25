@@ -4,7 +4,7 @@
     {
       "name": "jekyll",
       "runtimeExecutable": "C:\\Ruby33-x64\\bin\\bundle.bat",
-      "runtimeArgs": ["exec", "jekyll", "serve", "--no-watch", "--destination", "C:/Users/Guanyu Xu/AppData/Local/Temp/jekyll_preview", "--port", "4010"],
+      "runtimeArgs": ["exec", "jekyll", "serve", "--livereload", "--livereload-port", "35730","--destination", "C:/Users/Guanyu Xu/AppData/Local/Temp/jekyll_preview", "--port", "4010"],
       "port": 4010
     }
   ]
